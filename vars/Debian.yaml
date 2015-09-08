@@ -1,0 +1,5 @@
+---
+__zuul_build_depends:
+  - git
+  - python-dev
+  - python-pip

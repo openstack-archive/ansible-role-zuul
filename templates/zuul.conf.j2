@@ -1,0 +1,25 @@
+[gearman]
+port = {{ zuul_config_gearman_port }}
+server = {{ zuul_config_gearman_server }}
+
+[gearman_server]
+listen_address = {{ zuul_config_gearman_server_listen_address }}
+log_config = {{ zuul_config_gearman_server_log_config }}
+start = {{ zuul_config_gearman_server_start }}
+
+[gerrit]
+port = {{ zuul_config_gerrit_port }}
+server = {{ zuul_config_gerrit_server }}
+sshkey = {{ zuul_config_gerrit_sshkey }}
+user = {{ zuul_config_gerrit_user }}
+
+[zuul]
+log_config = {{ zuul_config_zuul_log_config }}
+state_dir = /var/lib/zuul
+
+[merger]
+git_dir = {{ zuul_config_merger_git_dir }}
+log_config = {{ zuul_config_merger_log_config }}
+zuul_url = {{ zuul_config_merger_zuul_url }}
+
+# {{ ansible_managed }}

@@ -1,0 +1,64 @@
+---
+- name: Create system user account.
+  user:
+    createhome: yes
+    home: /var/lib/zuul
+    name: zuul
+
+- name: Ensure .ssh directory exists.
+  file:
+    dest: /var/lib/zuul/.ssh
+    group: zuul
+    mode: 0700
+    owner: zuul 
+    state: directory
+
+- name: Create ssh known hosts.
+  copy:
+    content: "{{ zuul_ssh_known_hosts }}"
+    dest: /var/lib/zuul/.ssh/known_hosts
+    group: zuul
+    mode: 0600
+    owner: zuul 
+
+- name: Create ssh private key.
+  copy:
+    content: "{{ zuul_ssh_private_key }}"
+    dest: /var/lib/zuul/.ssh/id_rsa
+    group: zuul
+    mode: 0600
+    owner: zuul 
+
+- name: Create required directories.
+  file:
+    group: zuul
+    owner: zuul 
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/zuul
+    - /var/log/zuul
+
+- name: Template zuul configuration file.
+  template:
+    dest: /etc/zuul/zuul.conf
+    src: zuul.conf.j2
+  notify: Restart zuul-server
+
+- name: Copy gearman logging file.
+  copy:
+    dest: "{{ zuul_config_gearman_server_log_config }}"
+    src: "{{ zuul_file_gearman_logging_conf }}"
+  notify: Restart zuul-server
+
+- name: Copy merger logging file.
+  copy:
+    dest: "{{ zuul_config_merger_log_config }}"
+    src: "{{ zuul_file_merger_logging_conf }}"
+  notify: Restart zuul-merger
+
+- name: Copy server logging file.
+  copy:
+    dest: "{{ zuul_config_zuul_log_config }}"
+    src: "{{ zuul_file_server_logging_conf }}"
+  notify: Restart zuul-server

@@ -1,0 +1,12 @@
+---
+# NOTE(pabelanger): This needs to be here for now, since we need python-pip.
+- name: Ensure EPEL is enabled.
+  yum:
+    pkg: epel-release
+    state: installed
+  when: zuul_install_method == 'git' or zuul_install_method == 'pip'
+
+- name: Ensure build dependencies are installed.
+  yum: "pkg={{ item }} state=installed"
+  with_items: zuul_build_depends
+  when: zuul_install_method == 'git' or zuul_install_method == 'pip'

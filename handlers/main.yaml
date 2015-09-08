@@ -1,0 +1,12 @@
+---
+- name: Restart zuul-merger
+  service:
+    name: zuul-merger
+    state: restarted
+  sudo: yes
+
+- name: Restart zuul-server
+  service:
+    name: zuul-server
+    state: restarted
+  sudo: yes

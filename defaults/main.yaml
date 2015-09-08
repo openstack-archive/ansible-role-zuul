@@ -1,0 +1,34 @@
+---
+# tasks/config.yaml
+zuul_config_gearman_port: 4730
+zuul_config_gearman_server: localhost
+
+zuul_config_gearman_server_start: true
+zuul_config_gearman_server_listen_address: 0.0.0.0
+zuul_config_gearman_server_log_config: /etc/zuul/gearman-logging.conf
+
+zuul_config_gerrit_port: 29418
+zuul_config_gerrit_server: localhost
+zuul_config_gerrit_sshkey: /var/lib/zuul/.ssh/id_rsa
+zuul_config_gerrit_user: zuul
+
+zuul_config_merger_git_dir: /var/lib/zuul/git
+zuul_config_merger_log_config: /etc/zuul/merger-logging.conf
+zuul_config_merger_zuul_url: localhost
+
+zuul_config_zuul_log_config: /etc/zuul/server-logging.conf
+
+zuul_file_gearman_logging_conf: etc/zuul/gearman-logging.conf
+zuul_file_merger_logging_conf: etc/zuul/merger-logging.conf
+zuul_file_server_logging_conf: etc/zuul/server-logging.conf
+
+zuul_ssh_private_key:
+
+# tasks/install.yaml
+zuul_git_dest: /opt/git/openstack-infra/zuul
+zuul_git_uri: https://git.openstack.org/openstack-infra/zuul
+zuul_git_version: master
+
+zuul_install_method: git
+
+zuul_pip_version:

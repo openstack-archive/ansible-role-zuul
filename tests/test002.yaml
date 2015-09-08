@@ -1,0 +1,4 @@
+---
+- hosts: localhost
+  roles:
+    - { role: ansible-role-zuul, zuul_install_method: 'pip' }

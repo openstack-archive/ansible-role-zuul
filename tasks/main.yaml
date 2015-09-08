@@ -1,0 +1,15 @@
+---
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yaml"
+
+- name: Include zuul configuration defaults.
+  include_vars: zuul.yaml
+
+- include: install.yaml
+  sudo: yes
+
+- include: config.yaml
+  sudo: yes
+
+- include: service.yaml
+  sudo: yes

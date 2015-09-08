@@ -1,0 +1,12 @@
+[Unit]
+Description=Zuul Merger Service
+
+[Service]
+Type=simple
+User=zuul
+Group=zuul
+EnvironmentFile=-/etc/sysconfig/zuul
+ExecStart=/usr/bin/zuul-merger -d
+
+StandardOutput=syslog
+StandardError=syslog

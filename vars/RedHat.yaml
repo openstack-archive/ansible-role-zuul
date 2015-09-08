@@ -1,0 +1,7 @@
+---
+__zuul_build_depends:
+  - gcc
+  - gcc-c++
+  - git
+  - python-devel
+  - python-pip

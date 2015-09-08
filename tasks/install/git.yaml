@@ -1,0 +1,10 @@
+---
+- name: Git clone zuul.
+  git:
+    dest: "{{ zuul_git_dest }}"
+    repo: "{{ zuul_git_uri }}"
+    version: "{{ zuul_git_version }}"
+
+- name: Pip install zuul from local git repo.
+  pip:
+    name: "file://{{ zuul_git_dest }}"
