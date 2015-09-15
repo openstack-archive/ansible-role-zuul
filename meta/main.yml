@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Paul Belanger
+  description: |
+    Zuul is a program that is used to gate the source code repository of a
+    project so that changes are only merged if they pass tests.
+  company: Red Hat, Inc.
+  license: Apache
+  min_ansible_version: 1.9
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  categories:
+  - cloud
+dependencies: []
