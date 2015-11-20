@@ -1,11 +1,11 @@
 ---
 - name: Install zuul using pip.
   pip:
-    name: zuul 
+    name: zuul
   when: zuul_pip_version is none
 
 - name: Install zuul using pip.
   pip:
-    name: zuul 
+    name: zuul
     version: "{{ zuul_pip_version }}"
   when: zuul_pip_version is not none

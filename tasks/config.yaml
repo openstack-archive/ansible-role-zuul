@@ -10,7 +10,7 @@
     dest: /var/lib/zuul/.ssh
     group: zuul
     mode: 0700
-    owner: zuul 
+    owner: zuul
     state: directory
 
 - name: Create ssh known hosts.
@@ -19,7 +19,7 @@
     dest: /var/lib/zuul/.ssh/known_hosts
     group: zuul
     mode: 0600
-    owner: zuul 
+    owner: zuul
 
 - name: Create ssh private key.
   copy:
@@ -27,12 +27,12 @@
     dest: /var/lib/zuul/.ssh/id_rsa
     group: zuul
     mode: 0600
-    owner: zuul 
+    owner: zuul
 
 - name: Create required directories.
   file:
     group: zuul
-    owner: zuul 
+    owner: zuul
     path: "{{ item }}"
     state: directory
   with_items:
