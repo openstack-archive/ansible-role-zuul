@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  vars:
+    rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+  roles:
+    - "{{ rolename }}"
