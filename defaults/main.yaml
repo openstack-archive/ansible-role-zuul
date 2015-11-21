@@ -17,7 +17,7 @@ zuul_config_gearman_port: 4730
 zuul_config_gearman_server: localhost
 
 zuul_config_gearman_server_start: true
-zuul_config_gearman_server_listen_address: 0.0.0.0
+zuul_config_gearman_server_listen_address: 127.0.0.1
 zuul_config_gearman_server_log_config: /etc/zuul/gearman-logging.conf
 
 zuul_config_gerrit_port: 29418
