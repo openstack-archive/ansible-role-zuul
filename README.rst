@@ -1,5 +1,5 @@
-zuul
-====
+ansible-role-zuul
+=================
 
 Requirements
 ------------
