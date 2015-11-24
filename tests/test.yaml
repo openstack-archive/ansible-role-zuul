@@ -13,7 +13,15 @@
 # under the License.
 ---
 - hosts: localhost
+  sudo: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+  pre_tasks:
+    # Make sure OS does not have a stale package cache.
+    - name: Update apt cache.
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+
   roles:
     - "{{ rolename }}"
