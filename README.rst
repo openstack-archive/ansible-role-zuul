@@ -1,8 +1,28 @@
+=================
 ansible-role-zuul
 =================
 
+Ansible role to manage Zuul
+
+* License: Apache License, Version 2.0
+* Documentation: https://ansible-role-zuul.readthedocs.org
+* Source: https://git.openstack.org/cgit/openstack/ansible-role-zuul
+* Bugs: https://bugs.launchpad.net/ansible-role-zuul
+
+Description
+-----------
+
+Zuul is a program that is used to gate the source code repository of a project
+so that changes are only merged if they pass tests.
+
 Requirements
 ------------
+
+Packages
+~~~~~~~~
+
+Package repository index files should be up to date before using this role, we
+do not manage them.
 
 Role Variables
 --------------
@@ -13,21 +33,9 @@ Dependencies
 Example Playbook
 ----------------
 
-License
--------
-  Copyright 2015 Red Hat, Inc.
+.. code-block:: yaml
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-
-Author Information
-------------------
+    - name: Install zuul
+      hosts: zuul
+      roles:
+        - ansible-role-zuul
