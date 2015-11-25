@@ -41,7 +41,7 @@ zuul_template_zuul_conf_dest: /etc/zuul/zuul.conf
 zuul_template_zuul_conf_src: etc/zuul/zuul.conf.j2
 
 # tasks/install.yaml
-zuul_git_dest: /opt/git/openstack-infra/zuul
+zuul_git_dest: /opt/ansible-role-zuul/git/openstack-infra/zuul
 zuul_git_uri: https://git.openstack.org/openstack-infra/zuul
 zuul_git_version: master
 
