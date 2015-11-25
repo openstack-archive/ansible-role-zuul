@@ -26,14 +26,6 @@
     owner: zuul
     state: directory
 
-- name: Create ssh known hosts.
-  copy:
-    content: "{{ zuul_ssh_known_hosts }}"
-    dest: /var/lib/zuul/.ssh/known_hosts
-    group: zuul
-    mode: 0600
-    owner: zuul
-
 - name: Create ssh private key.
   copy:
     content: "{{ zuul_ssh_private_key }}"
