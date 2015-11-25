@@ -34,6 +34,20 @@ should be copied to ``zuul_config_gerrit_sshkey``.
 Role Variables
 --------------
 
+.. code-block:: yaml
+
+    # Name of the user to be created.
+    # Default: zuul
+    zuul_user_name: zuul
+
+    # Name of the group to be created.
+    # Default: zuul
+    zuul_user_group: zuul
+
+    # Path of home directory to be created.
+    # Default: /var/lib/zuul
+    zuul_user_home: /var/lib/zuul
+
 Dependencies
 ------------
 
