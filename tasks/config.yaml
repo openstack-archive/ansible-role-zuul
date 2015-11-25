@@ -30,8 +30,8 @@
 
 - name: Template zuul configuration file.
   template:
-    dest: /etc/zuul/zuul.conf
-    src: zuul.conf.j2
+    dest: "{{ zuul_template_zuul_conf_dest }}" 
+    src: "{{ zuul_template_zuul_conf_src }}"
   notify: Restart zuul-server
 
 - name: Copy gearman logging file.

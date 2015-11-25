@@ -29,11 +29,16 @@ zuul_config_merger_git_dir: /var/lib/zuul/git
 zuul_config_merger_log_config: /etc/zuul/merger-logging.conf
 zuul_config_merger_zuul_url: localhost
 
+zuul_config_zuul_layout_config: /etc/zuul/layout.yaml
 zuul_config_zuul_log_config: /etc/zuul/server-logging.conf
+zuul_config_zuul_state_dir: /var/lib/zuul
 
 zuul_file_gearman_logging_conf: etc/zuul/gearman-logging.conf
 zuul_file_merger_logging_conf: etc/zuul/merger-logging.conf
 zuul_file_server_logging_conf: etc/zuul/server-logging.conf
+
+zuul_template_zuul_conf_dest: /etc/zuul/zuul.conf
+zuul_template_zuul_conf_src: etc/zuul/zuul.conf.j2
 
 # tasks/install.yaml
 zuul_git_dest: /opt/git/openstack-infra/zuul

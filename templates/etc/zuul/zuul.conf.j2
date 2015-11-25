@@ -14,8 +14,9 @@ sshkey = {{ zuul_config_gerrit_sshkey }}
 user = {{ zuul_config_gerrit_user }}
 
 [zuul]
+layout_config = {{ zuul_config_zuul_layout_config }}
 log_config = {{ zuul_config_zuul_log_config }}
-state_dir = /var/lib/zuul
+state_dir = {{ zuul_config_zuul_state_dir }}
 
 [merger]
 git_dir = {{ zuul_config_merger_git_dir }}
