@@ -18,22 +18,6 @@
     home: /var/lib/zuul
     name: zuul
 
-- name: Ensure .ssh directory exists.
-  file:
-    dest: /var/lib/zuul/.ssh
-    group: zuul
-    mode: 0700
-    owner: zuul
-    state: directory
-
-- name: Create ssh private key.
-  copy:
-    content: "{{ zuul_ssh_private_key }}"
-    dest: /var/lib/zuul/.ssh/id_rsa
-    group: zuul
-    mode: 0600
-    owner: zuul
-
 - name: Create required directories.
   file:
     group: zuul

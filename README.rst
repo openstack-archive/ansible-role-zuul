@@ -24,6 +24,13 @@ Packages
 Package repository index files should be up to date before using this role, we
 do not manage them.
 
+SSH
+~~~
+
+An SSH private key will need to be installed before you can use zuul. The
+contents of the private key will be used by ``zuul_config_gerrit_user`` and
+should be copied to ``zuul_config_gerrit_sshkey``.
+
 Role Variables
 --------------
 
