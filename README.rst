@@ -36,6 +36,26 @@ Role Variables
 
 .. code-block:: yaml
 
+    # Method used to install zuul. Valid values are git and pip.
+    # Default: git
+    zuul_install_method: git
+
+    # Git, SSH, or HTTP(s) protocol address of the git repository.
+    # Default: https://git.openstack.org/openstack-infra/zuul
+    zuul_git_uri: https://git.openstack.org/openstack-infra/zuul
+
+    # What version of the repository to check out.
+    # Default: master
+    zuul_git_version: master
+
+    # Absolute path of where the repository should be checked out to.
+    # Default: /opt/ansible-role-zuul/git/openstack-infra/zuul
+    zuul_git_dest: /opt/ansible-role-zuul/git/openstack-infra/zuul
+
+    # The version number to install from the Python Package Index.
+    # Default: None
+    zuul_pip_version:
+
     # Name of the user to be created.
     # Default: zuul
     zuul_user_name: zuul
