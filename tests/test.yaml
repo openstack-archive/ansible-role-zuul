@@ -27,6 +27,9 @@
     - "{{ rolename }}"
 
   post_tasks:
+    - name: Ensure zuul_user_group exists.
+      shell: /usr/bin/getent group zuul
+
     - name: Register zuul_user_home_result
       shell: '/usr/bin/getent passwd zuul | cut -d: -f6'
       register: zuul_user_home_result
