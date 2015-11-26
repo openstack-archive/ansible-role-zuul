@@ -25,3 +25,11 @@
 
   roles:
     - "{{ rolename }}"
+
+  post_tasks:
+    - name: Ensure zuul group exists.
+      shell: /usr/bin/getent group zuu
+      register: zuul_user_group
+    - assert:
+      that:
+        - zuul_user_group.rc == 0
