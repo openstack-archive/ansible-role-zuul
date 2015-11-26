@@ -25,3 +25,12 @@
 
   roles:
     - "{{ rolename }}"
+
+  post_tasks:
+    - name: Register zuul_user_home_result
+      shell: /usr/bin/getent passwd zuul | cut -d: -f6
+      register: zuul_user_home_result
+
+    - assert:
+        that:
+          - 'zuul_user_home_result.stdout == /var/lib/zuul'
