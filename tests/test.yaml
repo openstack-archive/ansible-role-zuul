@@ -27,11 +27,27 @@
     - "{{ rolename }}"
 
   post_tasks:
-    - name: Register zuul_user_home_result
+    - name: Ensure zuul_user_name is zuul.
+      shell: /usr/bin/getent passwd zuul
+
+    - name: Ensure zuul_user_group is zuul.
+      shell: /usr/bin/getent group zuul
+
+    - name: Register zuul_user_home_getent.
       shell: '/usr/bin/getent passwd zuul | cut -d: -f6'
-      register: zuul_user_home_result
+      register: zuul_user_home_getent
 
     - name: Assert zuul_user_home is /var/lib/zuul
       assert:
         that:
-          - zuul_user_home_result.stdout == '/var/lib/zuul'
+          - zuul_user_home_getent.stdout == '/var/lib/zuul'
+
+    - name: Register zuul_user_home_stat.
+      stat:
+        path: /var/lib/zuul
+      register: zuul_user_home_stat
+
+    - name: Assert zuul_user_home is directory.
+      assert:
+        that:
+          - zuul_user_home_stat.exists and zuul_user_home_stat.isdir
