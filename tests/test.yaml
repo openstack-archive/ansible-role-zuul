@@ -25,3 +25,7 @@
 
   roles:
     - "{{ rolename }}"
+
+  post_tasks:
+    - name: Ensure zuul group exists.
+      shell: /usr/bin/getent group zuul
