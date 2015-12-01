@@ -56,3 +56,23 @@
     dest: "{{ zuul_config_zuul_log_config }}"
     src: "{{ zuul_file_server_logging_conf }}"
   notify: Restart zuul-server
+
+- name: Create project config directory.
+  file:
+    group: "{{ ansible_ssh_user }}"
+    mode: 0775
+    owner: "{{ ansible_ssh_user }}"
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ zuul_project_config_dir_dest }}"
+
+- name: Rsync project config directory.
+  sudo: no
+  synchronize:
+    dest: "{{ zuul_project_config_dir_dest }}"
+    perms: yes
+    rsync_opts:
+      - '--delete'
+    src: "{{ zuul_project_config_dir }}"
+  when: zuul_project_config_dir != ""

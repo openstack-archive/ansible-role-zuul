@@ -17,6 +17,9 @@ zuul_user_name: zuul
 zuul_user_group: "{{ zuul_user_name }}"
 zuul_user_home: "/var/lib/{{ zuul_user_name }}"
 
+zuul_project_config_dir: ""
+zuul_project_config_dir_dest: /etc/zuul/config
+
 zuul_config_gearman_port: 4730
 zuul_config_gearman_server: 127.0.0.1
 
@@ -33,7 +36,7 @@ zuul_config_merger_git_dir: "{{ zuul_user_home }}/git"
 zuul_config_merger_log_config: /etc/zuul/merger-logging.conf
 zuul_config_merger_zuul_url: 127.0.0.1
 
-zuul_config_zuul_layout_config: /etc/zuul/layout.yaml
+zuul_config_zuul_layout_config: "{{ zuul_project_config_dir_dest }}/layout.yaml"
 zuul_config_zuul_log_config: /etc/zuul/server-logging.conf
 zuul_config_zuul_state_dir: "{{ zuul_user_home }}"
 
