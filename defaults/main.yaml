@@ -33,6 +33,8 @@ zuul_config_gerrit_sshkey: "{{ zuul_user_home }}/.ssh/id_rsa"
 zuul_config_gerrit_user: zuul
 
 zuul_config_merger_git_dir: "{{ zuul_user_home }}/git"
+zuul_config_merger_git_user_email: ""
+zuul_config_merger_git_user_name: ""
 zuul_config_merger_log_config: /etc/zuul/merger-logging.conf
 zuul_config_merger_zuul_url: 127.0.0.1
 

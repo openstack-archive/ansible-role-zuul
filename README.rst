@@ -68,6 +68,19 @@ Role Variables
     # Default: /var/lib/zuul
     zuul_user_home: /var/lib/zuul
 
+Zuul Merger Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: yaml
+
+    # Value to pass to git config user.email.
+    # Default: Empty
+    zuul_config_merger_git_user_email: ""
+
+    # Value to pass to git config user.name.
+    # Default: Empty
+    zuul_config_merger_git_user_name: ""
+
 Dependencies
 ------------
 

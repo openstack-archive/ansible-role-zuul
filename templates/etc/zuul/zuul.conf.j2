@@ -20,6 +20,12 @@ state_dir = {{ zuul_config_zuul_state_dir }}
 
 [merger]
 git_dir = {{ zuul_config_merger_git_dir }}
+{% if zuul_config_merger_git_user_email != "" %}
+git_user_email = {{ zuul_config_merger_git_user_email }}
+{%endif %}
+{% if zuul_config_merger_git_user_name != "" %}
+git_user_name = {{ zuul_config_merger_git_user_name }}
+{%endif %}
 log_config = {{ zuul_config_merger_log_config }}
 zuul_url = {{ zuul_config_merger_zuul_url }}
 
