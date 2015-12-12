@@ -57,3 +57,16 @@ zuul_git_version: master
 zuul_install_method: git
 
 zuul_pip_version:
+
+# tasks/service.yaml
+zuul_file_zuul_merger_service_dest: /etc/systemd/system
+zuul_file_zuul_merger_service_group: root
+zuul_file_zuul_merger_service_mode: "0644"
+zuul_file_zuul_merger_service_owner: root
+zuul_file_zuul_merger_service_src: ../../files/etc/systemd/system/zuul-merger.service
+
+zuul_file_zuul_server_service_dest: /etc/systemd/system
+zuul_file_zuul_server_service_group: root
+zuul_file_zuul_server_service_mode: "0644"
+zuul_file_zuul_server_service_owner: root
+zuul_file_zuul_server_service_src: ../../files/etc/systemd/system/zuul-server.service

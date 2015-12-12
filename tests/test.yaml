@@ -84,3 +84,31 @@
       shell: "ls -1 /etc/zuul/config | wc -l"
       register: result
       failed_when: result.stdout != "0"
+
+    - name: Register /etc/systemd/system/zuul-merger.service
+      stat:
+        path: /etc/systemd/system/zuul-merger.service
+      register: zuul_merger_service_stat
+
+    - name: Assert zuul_merger_service_stat tests.
+      assert:
+        that:
+          - zuul_merger_service_stat.stat.exists
+          - zuul_merger_service_stat.stat.isreg
+          - zuul_merger_service_stat.stat.pw_name == 'root'
+          - zuul_merger_service_stat.stat.gr_name == 'root'
+          - zuul_merger_service_stat.stat.mode == '0644'
+
+    - name: Register /etc/systemd/system/zuul-server.service
+      stat:
+        path: /etc/systemd/system/zuul-server.service
+      register: zuul_server_service_stat
+
+    - name: Assert zuul_server_service_stat tests.
+      assert:
+        that:
+          - zuul_server_service_stat.stat.exists
+          - zuul_server_service_stat.stat.isreg
+          - zuul_server_service_stat.stat.pw_name == 'root'
+          - zuul_server_service_stat.stat.gr_name == 'root'
+          - zuul_server_service_stat.stat.mode == '0644'

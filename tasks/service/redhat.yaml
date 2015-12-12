@@ -14,13 +14,19 @@
 ---
 - name: Copy systemd file into place for zuul-merger.
   copy:
-    dest: /etc/systemd/system
-    src: ../../files/zuul-merger.service
+    dest: "{{ zuul_file_zuul_merger_service_dest }}"
+    group: "{{ zuul_file_zuul_merger_service_group }}"
+    mode: "{{ zuul_file_zuul_merger_service_mode }}"
+    owner: "{{ zuul_file_zuul_merger_service_owner }}"
+    src: "{{ zuul_file_zuul_merger_service_src }}"
 
 - name: Copy systemd file into place for zuul-server.
   copy:
-    dest: /etc/systemd/system
-    src: ../../files/zuul-server.service
+    dest: "{{ zuul_file_zuul_server_service_dest }}"
+    group: "{{ zuul_file_zuul_server_service_group }}"
+    mode: "{{ zuul_file_zuul_server_service_mode }}"
+    owner: "{{ zuul_file_zuul_server_service_owner }}"
+    src: "{{ zuul_file_zuul_server_service_src }}"
 
 - name: Copy sysconfig file into place.
   copy:
