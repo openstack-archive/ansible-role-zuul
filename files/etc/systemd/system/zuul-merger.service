@@ -1,5 +1,6 @@
 [Unit]
 Description=Zuul Merger Service
+After=syslog.target network.target
 
 [Service]
 Type=simple
@@ -7,6 +8,7 @@ User=zuul
 Group=zuul
 EnvironmentFile=-/etc/sysconfig/zuul
 ExecStart=/usr/bin/zuul-merger -d
+ExecReload=/bin/kill -HUP $MAINPID
 
-StandardOutput=syslog
-StandardError=syslog
+[Install]
+WantedBy=multi-user.target
