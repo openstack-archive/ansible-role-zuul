@@ -37,25 +37,24 @@
   template:
     dest: "{{ zuul_template_zuul_conf_dest }}"
     src: "{{ zuul_template_zuul_conf_src }}"
-  notify: Restart zuul-server
+  notify:
+    - Reload zuul-merger
+    - Reload zuul-server
 
 - name: Copy gearman logging file.
   copy:
     dest: "{{ zuul_config_gearman_server_log_config }}"
     src: "{{ zuul_file_gearman_logging_conf }}"
-  notify: Restart zuul-server
 
 - name: Copy merger logging file.
   copy:
     dest: "{{ zuul_config_merger_log_config }}"
     src: "{{ zuul_file_merger_logging_conf }}"
-  notify: Restart zuul-merger
 
 - name: Copy server logging file.
   copy:
     dest: "{{ zuul_config_zuul_log_config }}"
     src: "{{ zuul_file_server_logging_conf }}"
-  notify: Restart zuul-server
 
 - name: Create project config directory.
   file:
@@ -76,3 +75,5 @@
       - '--delete'
     src: "{{ zuul_project_config_dir }}"
   when: zuul_project_config_dir != ""
+  notify:
+    - Reload zuul-server
