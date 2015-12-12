@@ -12,14 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Restart zuul-merger
+- name: Reload zuul-merger
   service:
     name: zuul-merger
-    state: restarted
+    state: reloaded
   sudo: yes
 
-- name: Restart zuul-server
+- name: Reload zuul-server
   service:
     name: zuul-server
-    state: restarted
+    state: reloaded
   sudo: yes
