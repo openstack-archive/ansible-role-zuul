@@ -85,30 +85,74 @@
       register: result
       failed_when: result.stdout != "0"
 
+    - name: Register /etc/init.d/zuul-merger
+      stat:
+        path: /etc/init.d/zuul-merger
+      register: debian_zuul_merger_service_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_zuul_merger_service_stat tests.
+      assert:
+        that:
+          - debian_zuul_merger_service_stat.stat.exists
+          - debian_zuul_merger_service_stat.stat.isreg
+          - debian_zuul_merger_service_stat.stat.pw_name == 'root'
+          - debian_zuul_merger_service_stat.stat.gr_name == 'root'
+          - debian_zuul_merger_service_stat.stat.mode == '0644'
+      when: ansible_os_family == 'Debian'
+
+    - name: Register /etc/init.d/zuul-server
+      stat:
+        path: /etc/init.d/zuul-server
+      register: debian_zuul_server_service_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_zuul_server_service_stat tests.
+      assert:
+        that:
+          - debian_zuul_server_service_stat.stat.exists
+          - debian_zuul_server_service_stat.stat.isreg
+          - debian_zuul_server_service_stat.stat.pw_name == 'root'
+          - debian_zuul_server_service_stat.stat.gr_name == 'root'
+          - debian_zuul_server_service_stat.stat.mode == '0755'
+      when: ansible_os_family == 'Debian'
+
     - name: Register /etc/systemd/system/zuul-merger.service
       stat:
         path: /etc/systemd/system/zuul-merger.service
-      register: zuul_merger_service_stat
+      register: redhat_zuul_merger_service_stat
+      when: ansible_os_family == 'RedHat'
 
-    - name: Assert zuul_merger_service_stat tests.
+    - name: Assert redhat_zuul_merger_service_stat tests.
       assert:
         that:
-          - zuul_merger_service_stat.stat.exists
-          - zuul_merger_service_stat.stat.isreg
-          - zuul_merger_service_stat.stat.pw_name == 'root'
-          - zuul_merger_service_stat.stat.gr_name == 'root'
-          - zuul_merger_service_stat.stat.mode == '0644'
+          - redhat_zuul_merger_service_stat.stat.exists
+          - redhat_zuul_merger_service_stat.stat.isreg
+          - redhat_zuul_merger_service_stat.stat.pw_name == 'root'
+          - redhat_zuul_merger_service_stat.stat.gr_name == 'root'
+          - redhat_zuul_merger_service_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
 
     - name: Register /etc/systemd/system/zuul-server.service
       stat:
         path: /etc/systemd/system/zuul-server.service
-      register: zuul_server_service_stat
+      register: redhat_zuul_server_service_stat
+      when: ansible_os_family == 'RedHat'
 
-    - name: Assert zuul_server_service_stat tests.
+    - name: Assert redhat_zuul_server_service_stat tests.
       assert:
         that:
-          - zuul_server_service_stat.stat.exists
-          - zuul_server_service_stat.stat.isreg
-          - zuul_server_service_stat.stat.pw_name == 'root'
-          - zuul_server_service_stat.stat.gr_name == 'root'
-          - zuul_server_service_stat.stat.mode == '0644'
+          - redhat_zuul_server_service_stat.stat.exists
+          - redhat_zuul_server_service_stat.stat.isreg
+          - redhat_zuul_server_service_stat.stat.pw_name == 'root'
+          - redhat_zuul_server_service_stat.stat.gr_name == 'root'
+          - redhat_zuul_server_service_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Ensure zuul-merger is running.
+      shell: /usr/sbin/service zuul-merger status
+      tags: skip_ansible_lint
+
+    - name: Ensure zuul-server is running.
+      shell: /usr/sbin/service zuul-server status
+      tags: skip_ansible_lint
