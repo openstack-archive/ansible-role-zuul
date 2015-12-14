@@ -16,3 +16,11 @@ __zuul_build_depends:
   - git
   - python-dev
   - python-pip
+
+__zuul_file_zuul_merger_service_dest: /etc/init.d/zuul-merger
+__zuul_file_zuul_merger_service_mode: "0755"
+__zuul_file_zuul_merger_service_src: etc/init.d/zuul-merger
+
+__zuul_file_zuul_server_service_dest: /etc/init.d/zuul-server
+__zuul_file_zuul_server_service_mode: "0755"
+__zuul_file_zuul_server_service_src: etc/init.d/zuul-server
