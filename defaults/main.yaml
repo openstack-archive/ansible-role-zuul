@@ -64,3 +64,11 @@ zuul_file_zuul_merger_service_owner: root
 
 zuul_file_zuul_server_service_group: root
 zuul_file_zuul_server_service_owner: root
+
+zuul_service_zuul_merger_enabled: yes
+zuul_service_zuul_merger_name: zuul-merger
+zuul_service_zuul_merger_state: started
+
+zuul_service_zuul_server_enabled: yes
+zuul_service_zuul_server_name: zuul-server
+zuul_service_zuul_server_state: started
