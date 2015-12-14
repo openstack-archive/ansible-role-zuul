@@ -17,9 +17,11 @@
     name: zuul-merger
     state: reloaded
   sudo: yes
+  when: zuul_service_zuul_merger_state == "started"
 
 - name: Reload zuul-server
   service:
     name: zuul-server
     state: reloaded
   sudo: yes
+  when: zuul_service_zuul_server_state == "started"
