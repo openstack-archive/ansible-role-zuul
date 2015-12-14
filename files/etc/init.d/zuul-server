@@ -10,10 +10,10 @@
 ### END INIT INFO
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
-PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Zuul"
-NAME=zuul
-DAEMON=zuul-server
+NAME=zuul-server
+DAEMON=/usr/local/bin/zuul-server
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 USER=zuul

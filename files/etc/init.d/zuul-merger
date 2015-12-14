@@ -12,10 +12,10 @@
 # Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
-PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Zuul Merger"
 NAME=zuul-merger
-DAEMON=zuul-merger
+DAEMON=/usr/local/bin/zuul-merger
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 USER=zuul
