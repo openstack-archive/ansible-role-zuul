@@ -63,12 +63,12 @@
 
 - name: Enable zuul-merger service.
   service:
-    enabled: yes
-    name: zuul-merger
-    state: started
+    enabled: "{{ zuul_service_zuul_merger_enabled }}"
+    name: "{{ zuul_service_zuul_merger_name }}"
+    state: "{{ zuul_service_zuul_merger_state }}"
 
 - name: Enable zuul-server service.
   service:
-    enabled: yes
-    name: zuul-server
-    state: started
+    enabled: "{{ zuul_service_zuul_server_enabled }}"
+    name: "{{ zuul_service_zuul_server_name }}"
+    state: "{{ zuul_service_zuul_server_state }}"
