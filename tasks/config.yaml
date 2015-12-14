@@ -38,7 +38,7 @@
     dest: "{{ zuul_template_zuul_conf_dest }}"
     src: "{{ zuul_template_zuul_conf_src }}"
   notify:
-    - Reload zuul-merger
+#    - Reload zuul-merger
     - Reload zuul-server
 
 - name: Copy gearman logging file.
@@ -51,7 +51,7 @@
   copy:
     dest: "{{ zuul_config_merger_log_config }}"
     src: "{{ zuul_file_merger_logging_conf }}"
-  notify: Reload zuul-merger
+#  notify: Reload zuul-merger
 
 - name: Copy server logging file.
   copy:
