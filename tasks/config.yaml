@@ -59,24 +59,8 @@
     src: "{{ zuul_file_server_logging_conf }}"
   notify: Reload zuul-server
 
-- name: Create project config directory.
-  file:
-    group: "{{ ansible_ssh_user }}"
-    mode: 0775
-    owner: "{{ ansible_ssh_user }}"
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - "{{ zuul_project_config_dir_dest }}"
-  notify: Reload zuul-server
-
-- name: Rsync project config directory.
-  sudo: no
-  synchronize:
-    dest: "{{ zuul_project_config_dir_dest }}"
-    perms: yes
-    rsync_opts:
-      - '--delete'
-    src: "{{ zuul_project_config_dir }}"
-  when: zuul_project_config_dir != ""
+- name: Copy layout yaml file.
+  copy:
+    dest: "{{ zuul_file_layout_yaml_dest }}"
+    src: "{{ zuul_file_layout_yaml_src }}"
   notify: Reload zuul-server
