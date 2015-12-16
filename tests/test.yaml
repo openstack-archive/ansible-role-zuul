@@ -64,26 +64,19 @@
           - zuul_git_dest_stat.stat.exists
           - zuul_git_dest_stat.stat.isdir
 
-    - name: Register zuul_project_config_dir_dest_stat.
+    - name: Register /etc/zuul/layout.yaml
       stat:
-        path: /etc/zuul/config
-      register: zuul_project_config_dir_dest_stat
+        path: /etc/zuul/layout.yaml
+      register: zuul_layout_yaml_stat
 
-    - name: Assert zuul_project_config_dir_dest tests.
+    - name: Assert zuul_layout_yaml_stat tests.
       assert:
         that:
-          - zuul_project_config_dir_dest_stat.stat.exists
-          - zuul_project_config_dir_dest_stat.stat.isdir
-            # NOTE(pabelanger): This means we are hardcoded to the
-            # openstack-infra jenkins user in nodepool.
-          - zuul_project_config_dir_dest_stat.stat.pw_name == 'jenkins'
-          - zuul_project_config_dir_dest_stat.stat.gr_name == 'jenkins'
-          - zuul_project_config_dir_dest_stat.stat.mode == '0775'
-
-    - name: Ensure /etc/zuul/config is empty.
-      shell: "ls -1 /etc/zuul/config | wc -l"
-      register: result
-      failed_when: result.stdout != "0"
+          - zuul_layout_yaml_stat.stat.exists
+          - zuul_layout_yaml_stat.stat.isreg
+          - zuul_layout_yaml_stat.stat.pw_name == 'zuul'
+          - zuul_layout_yaml_stat.stat.gr_name == 'zuul'
+          - zuul_layout_yaml_stat.stat.mode == '0644'
 
     - name: Register /etc/init.d/zuul-merger
       stat:
