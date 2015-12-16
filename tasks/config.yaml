@@ -66,4 +66,5 @@
     mode: "{{ zuul_file_layout_yaml_mode }}"
     owner: "{{ zuul_file_layout_yaml_owner }}"
     src: "{{ zuul_file_layout_yaml_src }}"
+    validate: 'zuul-server -c {{ zuul_template_zuul_conf_dest }} -t -l %s'
   notify: Reload zuul-server
