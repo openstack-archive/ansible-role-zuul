@@ -110,7 +110,7 @@ do_reload() {
     # then implement that here.
     #
     start-stop-daemon \
-        --stop --signal 1 --quiet --pidfile $PIDFILE --name $DAEMON
+        --stop --signal 1 --quiet --pidfile $PIDFILE --exec $DAEMON
     return 0
 }
 

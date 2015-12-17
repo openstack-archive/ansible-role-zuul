@@ -39,11 +39,14 @@ zuul_config_merger_git_dir: "{{ zuul_user_home }}/git"
 zuul_config_merger_git_user_email: ""
 zuul_config_merger_git_user_name: ""
 zuul_config_merger_log_config: /etc/zuul/merger-logging.conf
+zuul_config_merger_pidfile: /var/run/zuul-merger/zuul-merger.pid
 zuul_config_merger_zuul_url: 127.0.0.1
 
 zuul_config_zuul_layout_config: "{{ zuul_file_layout_yaml_dest }}"
 zuul_config_zuul_log_config: /etc/zuul/server-logging.conf
+zuul_config_zuul_pidfile: /var/run/zuul-server/zuul-server.pid
 zuul_config_zuul_state_dir: "{{ zuul_user_home }}"
+
 
 zuul_file_gearman_logging_conf: etc/zuul/gearman-logging.conf
 zuul_file_merger_logging_conf: etc/zuul/merger-logging.conf
