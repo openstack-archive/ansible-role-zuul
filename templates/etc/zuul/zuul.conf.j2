@@ -16,6 +16,7 @@ user = {{ zuul_config_gerrit_user }}
 [zuul]
 layout_config = {{ zuul_config_zuul_layout_config }}
 log_config = {{ zuul_config_zuul_log_config }}
+pidfile = {{ zuul_config_zuul_pidfile }}
 state_dir = {{ zuul_config_zuul_state_dir }}
 
 [merger]
@@ -27,6 +28,7 @@ git_user_email = {{ zuul_config_merger_git_user_email }}
 git_user_name = {{ zuul_config_merger_git_user_name }}
 {%endif %}
 log_config = {{ zuul_config_merger_log_config }}
+pidfile = {{ zuul_config_merger_pidfile }}
 zuul_url = {{ zuul_config_merger_zuul_url }}
 
 # {{ ansible_managed }}
