@@ -9,6 +9,7 @@ Group=zuul
 EnvironmentFile=-/etc/sysconfig/zuul
 ExecStart=/usr/bin/zuul-server -d
 ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
 
 [Install]
 WantedBy=multi-user.target
