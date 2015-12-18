@@ -17,11 +17,11 @@
     name: zuul-merger
     state: reloaded
   sudo: yes
-  when: zuul_service_zuul_merger_state == "started"
+  when: zuul_service_zuul_merger_state == "started" and not __zuul_merger_service.changed
 
 - name: Reload zuul-server
   service:
     name: zuul-server
     state: reloaded
   sudo: yes
-  when: zuul_service_zuul_server_state == "started"
+  when: zuul_service_zuul_server_state == "started" and not __zuul_server_service.changed

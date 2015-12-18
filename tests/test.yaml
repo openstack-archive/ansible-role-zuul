@@ -141,3 +141,11 @@
           - redhat_zuul_server_service_stat.stat.gr_name == 'root'
           - redhat_zuul_server_service_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
+
+    - name: Ensure zuul-merger is running.
+      shell: /usr/sbin/service zuul-merger status
+      tags: skip_ansible_lint
+
+    - name: Ensure zuul-server is running.
+      shell: /usr/sbin/service zuul-server status
+      tags: skip_ansible_lint
