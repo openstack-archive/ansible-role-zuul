@@ -64,19 +64,39 @@
           - zuul_git_dest_stat.stat.exists
           - zuul_git_dest_stat.stat.isdir
 
-    - name: Register /etc/zuul/layout.yaml
+    - name: Register /etc/zuul/config/
       stat:
-        path: /etc/zuul/layout.yaml
+        path: /etc/zuul/config/
+      register: zuul_layout_stat
+
+    - name: Assert zuul_layout_stat tests.
+      assert:
+        that:
+          - zuul_layout_stat.stat.exists
+          - zuul_layout_stat.stat.isdir
+            # NOTE(pabelanger): This means we are hardcoded to the
+            # openstack-infra jenkins user in nodepool.
+          - zuul_layout_stat.stat.pw_name == 'jenkins'
+          - zuul_layout_stat.stat.gr_name == 'jenkins'
+          - zuul_layout_stat.stat.mode == '0755'
+
+    - name: Register /etc/zuul/config/layout.yaml
+      stat:
+        path: /etc/zuul/config/layout.yaml
       register: zuul_layout_yaml_stat
+
+    - debug: var=zuul_layout_yaml_stat.stat.mode
 
     - name: Assert zuul_layout_yaml_stat tests.
       assert:
         that:
           - zuul_layout_yaml_stat.stat.exists
           - zuul_layout_yaml_stat.stat.isreg
-          - zuul_layout_yaml_stat.stat.pw_name == 'zuul'
-          - zuul_layout_yaml_stat.stat.gr_name == 'zuul'
-          - zuul_layout_yaml_stat.stat.mode == '0644'
+            # NOTE(pabelanger): This means we are hardcoded to the
+            # openstack-infra jenkins user in nodepool.
+          - zuul_layout_yaml_stat.stat.pw_name == 'jenkins'
+          - zuul_layout_yaml_stat.stat.gr_name == 'jenkins'
+          - zuul_layout_yaml_stat.stat.mode == '0664'
 
     - name: Register /etc/init.d/zuul-merger
       stat:
