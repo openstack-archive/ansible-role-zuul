@@ -64,19 +64,24 @@
           - zuul_git_dest_stat.stat.exists
           - zuul_git_dest_stat.stat.isdir
 
-    - name: Register /etc/zuul/layout.yaml
+    - name: Register /etc/zuul/config/
       stat:
-        path: /etc/zuul/layout.yaml
-      register: zuul_layout_yaml_stat
+        path: /etc/zuul/config/
+      register: zuul_layout_stat
 
-    - name: Assert zuul_layout_yaml_stat tests.
+    - name: Assert zuul_layout_stat tests.
       assert:
         that:
-          - zuul_layout_yaml_stat.stat.exists
-          - zuul_layout_yaml_stat.stat.isreg
-          - zuul_layout_yaml_stat.stat.pw_name == 'zuul'
-          - zuul_layout_yaml_stat.stat.gr_name == 'zuul'
-          - zuul_layout_yaml_stat.stat.mode == '0644'
+          - zuul_layout_stat.stat.exists
+          - zuul_layout_stat.stat.isdir
+          - zuul_layout_stat.stat.pw_name == 'jenkins'
+          - zuul_layout_stat.stat.gr_name == 'jenkins'
+          - zuul_layout_stat.stat.mode == '0755'
+
+    - name: Ensure /etc/zuul/config/layout.yaml exists.
+      shell: "ls -1 /etc/zuul/config | wc -l"
+      register: result
+      failed_when: result.stdout != "1"
 
     - name: Register /etc/init.d/zuul-merger
       stat:
