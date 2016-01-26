@@ -14,13 +14,13 @@
 ---
 # tasks/config.yaml
 zuul_user_name: zuul
-zuul_user_group: "{{ zuul_user_name }}"
-zuul_user_home: "/var/lib/{{ zuul_user_name }}"
+zuul_user_group: zuul
+zuul_user_home: /var/lib/zuul
 
 zuul_file_layout_dest: /etc/zuul/config/
-zuul_file_layout_group: "{{ ansible_ssh_user }}"
+zuul_file_layout_group: "{{ ansible_user_id }}"
 zuul_file_layout_mode: "0755"
-zuul_file_layout_owner: "{{ ansible_ssh_user }}"
+zuul_file_layout_owner: "{{ ansible_user_id }}"
 zuul_file_layout_src: etc/zuul/config/
 
 zuul_config_gearman_port: 4730
