@@ -13,8 +13,9 @@
 # under the License.
 ---
 - hosts: localhost
-  sudo: yes
+  become: yes
   vars:
+    ansible_user: "{{ lookup('env', 'USER') }}"
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   pre_tasks:
     # Make sure OS does not have a stale package cache.
