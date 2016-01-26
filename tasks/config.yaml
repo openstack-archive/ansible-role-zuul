@@ -13,10 +13,12 @@
 # under the License.
 ---
 - name: Create group account.
+  become: yes
   group:
     name: "{{ zuul_user_group }}"
 
 - name: Create user account.
+  become: yes
   user:
     createhome: yes
     home: "{{ zuul_user_home }}"
@@ -24,6 +26,7 @@
     name: "{{ zuul_user_name }}"
 
 - name: Create required directories.
+  become: yes
   file:
     group: "{{ zuul_user_group }}"
     owner: "{{ zuul_user_name }}"
@@ -34,6 +37,7 @@
     - /var/log/zuul
 
 - name: Template zuul configuration file.
+  become: yes
   template:
     dest: "{{ zuul_template_zuul_conf_dest }}"
     src: "{{ zuul_template_zuul_conf_src }}"
@@ -42,24 +46,34 @@
     - Reload zuul-server
 
 - name: Copy gearman logging file.
+  become: yes
   copy:
     dest: "{{ zuul_config_gearman_server_log_config }}"
     src: "{{ zuul_file_gearman_logging_conf }}"
   notify: Reload zuul-server
 
 - name: Copy merger logging file.
+  become: yes
   copy:
     dest: "{{ zuul_config_merger_log_config }}"
     src: "{{ zuul_file_merger_logging_conf }}"
   notify: Reload zuul-merger
 
 - name: Copy server logging file.
+  become: yes
   copy:
     dest: "{{ zuul_config_zuul_log_config }}"
     src: "{{ zuul_file_server_logging_conf }}"
   notify: Reload zuul-server
 
+  debug:
+    var: ansible_ssh_user
+
+  debug:
+    var: ansible_user
+
 - name: Create layout config directory.
+  become: yes
   file:
     dest: "{{ zuul_file_layout_dest }}"
     group: "{{ zuul_file_layout_group }}"
@@ -68,7 +82,7 @@
     state: directory
 
 - name: Rsync layout configuration.
-  sudo: no
+  become: no
   synchronize:
     delete: yes
     dest: "{{ zuul_file_layout_dest }}"
