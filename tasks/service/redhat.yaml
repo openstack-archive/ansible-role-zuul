@@ -15,4 +15,4 @@
 - name: Copy sysconfig file into place.
   copy:
     dest: /etc/sysconfig/zuul
-    src: ../../files/zuul.sysconfig
+    src: zuul.sysconfig
