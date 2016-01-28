@@ -64,6 +64,9 @@ zuul_install_method: git
 zuul_pip_version:
 
 # tasks/service.yaml
+zuul_file_zuul_service_config_group: root
+zuul_file_zuul_service_config_owner: root
+
 zuul_file_zuul_merger_service_group: root
 zuul_file_zuul_merger_service_owner: root
 

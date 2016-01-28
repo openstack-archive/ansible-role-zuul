@@ -12,6 +12,21 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+- name: Define zuul_file_zuul_service_config_dest.
+  set_fact:
+    zuul_file_zuul_service_config_dest: "{{ __zuul_file_zuul_service_config_dest }}"
+  when: zuul_file_zuul_service_config_dest is not defined
+
+- name: Define zuul_file_zuul_service_config_mode.
+  set_fact:
+    zuul_file_zuul_service_config_mode: "{{ __zuul_file_zuul_service_config_mode }}"
+  when: zuul_file_zuul_service_config_mode is not defined
+
+- name: Define zuul_file_zuul_service_config_src.
+  set_fact:
+    zuul_file_zuul_service_config_src: "{{ __zuul_file_zuul_service_config_src }}"
+  when: zuul_file_zuul_service_config_src is not defined
+
 - name: Define zuul_file_zuul_merger_service_dest.
   set_fact:
     zuul_file_zuul_merger_service_dest: "{{ __zuul_file_zuul_merger_service_dest }}"
@@ -42,6 +57,14 @@
     zuul_file_zuul_server_service_src: "{{ __zuul_file_zuul_server_service_src }}"
   when: zuul_file_zuul_server_service_src is not defined
 
+- name: Copy zuul service config into place.
+  copy:
+    dest: "{{ zuul_file_zuul_service_config_dest }}"
+    group: "{{ zuul_file_zuul_service_config_group }}"
+    mode: "{{ zuul_file_zuul_service_config_mode }}"
+    owner: "{{ zuul_file_zuul_service_config_owner }}"
+    src: "{{ zuul_file_zuul_service_config_src }}"
+
 - name: Copy zuul-merger service into place.
   copy:
     dest: "{{ zuul_file_zuul_merger_service_dest }}"
@@ -57,9 +80,6 @@
     mode: "{{ zuul_file_zuul_server_service_mode }}"
     owner: "{{ zuul_file_zuul_server_service_owner }}"
     src: "{{ zuul_file_zuul_server_service_src }}"
-
-- include: service/redhat.yaml
-  when: ansible_os_family == 'RedHat'
 
 - name: Enable zuul-merger service.
   service:

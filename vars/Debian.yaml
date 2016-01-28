@@ -17,6 +17,10 @@ __zuul_build_depends:
   - python-dev
   - python-pip
 
+__zuul_file_zuul_service_config_dest: /etc/default/zuul
+__zuul_file_zuul_service_config_mode: "0644"
+__zuul_file_zuul_service_config_src: etc/default/zuul
+
 __zuul_file_zuul_merger_service_dest: /etc/init.d/zuul-merger
 __zuul_file_zuul_merger_service_mode: "0755"
 __zuul_file_zuul_merger_service_src: etc/init.d/zuul-merger

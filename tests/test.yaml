@@ -95,6 +95,22 @@
           - zuul_layout_yaml_stat.stat.pw_name == 'jenkins'
           - zuul_layout_yaml_stat.stat.gr_name == 'jenkins'
 
+    - name: Register /etc/default/zuul
+      stat:
+        path: /etc/default/zuul
+      register: debian_zuul_service_config_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_zuul_service_config_stat tests.
+      assert:
+        that:
+          - debian_zuul_service_config_stat.stat.exists
+          - debian_zuul_service_config_stat.stat.isreg
+          - debian_zuul_service_config_stat.stat.pw_name == 'root'
+          - debian_zuul_service_config_stat.stat.gr_name == 'root'
+          - debian_zuul_service_config_stat.stat.mode == '0644'
+      when: ansible_os_family == 'Debian'
+
     - name: Register /etc/init.d/zuul-merger
       stat:
         path: /etc/init.d/zuul-merger
@@ -126,6 +142,22 @@
           - debian_zuul_server_service_stat.stat.gr_name == 'root'
           - debian_zuul_server_service_stat.stat.mode == '0755'
       when: ansible_os_family == 'Debian'
+
+    - name: Register /etc/sysconfig/zuul
+      stat:
+        path: /etc/sysconfig/zuul
+      register: redhat_zuul_service_config_stat
+      when: ansible_os_family == 'RedHat'
+
+    - name: Assert redhat_zuul_service_config_stat tests.
+      assert:
+        that:
+          - redhat_zuul_service_config_stat.stat.exists
+          - redhat_zuul_service_config_stat.stat.isreg
+          - redhat_zuul_service_config_stat.stat.pw_name == 'root'
+          - redhat_zuul_service_config_stat.stat.gr_name == 'root'
+          - redhat_zuul_service_config_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
 
     - name: Register /etc/systemd/system/zuul-merger.service
       stat:
