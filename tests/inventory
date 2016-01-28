@@ -1,2 +1,6 @@
 [all]
-localhost
+# NOTE(pabelanger): We should not be hard-coding jenkins here, since it limits
+# who can run this test.  However, ansible 2.0 has broken ansible_user and it
+# now requires to be setup, otherwise it will return nil[1].
+# [1] https://github.com/ansible/ansible/issues/13669
+localhost ansible_user=jenkins
