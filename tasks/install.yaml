@@ -17,11 +17,20 @@
     zuul_build_depends: "{{ __zuul_build_depends | list }}"
   when: zuul_build_depends is not defined
 
-- include: install/debian.yaml
-  when: ansible_os_family == 'Debian'
+# NOTE(pabelanger): This needs to be here for now, since we need python-pip.
+- name: Ensure EPEL is enabled.
+  package:
+    name: epel-release
+    state: installed
+  when: (zuul_install_method == 'git' or zuul_install_method == 'pip') and
+        ansible_os_family == 'RedHat'
 
-- include: install/redhat.yaml
-  when: ansible_os_family == 'RedHat'
+- name: Ensure build dependencies are installed.
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: zuul_build_depends
+  when: zuul_install_method == 'git' or zuul_install_method == 'pip'
 
 - include: install/git.yaml
   when: zuul_install_method == 'git'
