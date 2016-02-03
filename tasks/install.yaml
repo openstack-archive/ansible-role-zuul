@@ -26,7 +26,7 @@
         ansible_os_family == 'RedHat'
 
 - name: Ensure build dependencies are installed.
-  package:
+  kage:
     name: "{{ item }}"
     state: installed
   with_items: zuul_build_depends
