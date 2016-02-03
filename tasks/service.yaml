@@ -31,16 +31,22 @@
   set_fact:
     zuul_file_zuul_merger_service_dest: "{{ __zuul_file_zuul_merger_service_dest }}"
   when: zuul_file_zuul_merger_service_dest is not defined
+  tags:
+    - merger
 
 - name: Define zuul_file_zuul_merger_service_mode.
   set_fact:
     zuul_file_zuul_merger_service_mode: "{{ __zuul_file_zuul_merger_service_mode }}"
   when: zuul_file_zuul_merger_service_mode is not defined
+  tags:
+    - merger
 
 - name: Define zuul_file_zuul_merger_service_src.
   set_fact:
     zuul_file_zuul_merger_service_src: "{{ __zuul_file_zuul_merger_service_src }}"
   when: zuul_file_zuul_merger_service_src is not defined
+  tags:
+    - merger
 
 - name: Define zuul_file_zuul_server_service_dest.
   set_fact:
@@ -72,6 +78,8 @@
     mode: "{{ zuul_file_zuul_merger_service_mode }}"
     owner: "{{ zuul_file_zuul_merger_service_owner }}"
     src: "{{ zuul_file_zuul_merger_service_src }}"
+  tags:
+    - merger
 
 - name: Copy zuul-server service into place.
   copy:
@@ -87,6 +95,8 @@
     name: "{{ zuul_service_zuul_merger_name }}"
     state: "{{ zuul_service_zuul_merger_state }}"
   register: __zuul_merger_service
+  tags:
+    - merger
 
 - name: Enable zuul-server service.
   service:

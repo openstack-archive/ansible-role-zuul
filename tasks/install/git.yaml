@@ -17,7 +17,11 @@
     dest: "{{ zuul_git_dest }}"
     repo: "{{ zuul_git_uri }}"
     version: "{{ zuul_git_version }}"
+  tags:
+    - always
 
 - name: Pip install zuul from local git repo.
   pip:
     name: "file://{{ zuul_git_dest }}"
+  tags:
+    - always

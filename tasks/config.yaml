@@ -16,6 +16,8 @@
   become: yes
   group:
     name: "{{ zuul_user_group }}"
+  tags:
+   - merger
 
 - name: Create user account.
   become: yes
@@ -24,6 +26,8 @@
     home: "{{ zuul_user_home }}"
     group: "{{ zuul_user_group }}"
     name: "{{ zuul_user_name }}"
+  tags:
+   - merger
 
 - name: Create required directories.
   become: yes
@@ -35,6 +39,8 @@
   with_items:
     - /etc/zuul
     - /var/log/zuul
+  tags:
+    - merger
 
 - name: Template zuul configuration file.
   become: yes
@@ -44,6 +50,8 @@
   notify:
     - Reload zuul-merger
     - Reload zuul-server
+  tags:
+    - merger
 
 - name: Copy gearman logging file.
   become: yes
@@ -51,6 +59,8 @@
     dest: "{{ zuul_config_gearman_server_log_config }}"
     src: "{{ zuul_file_gearman_logging_conf }}"
   notify: Reload zuul-server
+  tags:
+    - merger
 
 - name: Copy merger logging file.
   become: yes
@@ -58,6 +68,8 @@
     dest: "{{ zuul_config_merger_log_config }}"
     src: "{{ zuul_file_merger_logging_conf }}"
   notify: Reload zuul-merger
+  tags:
+    - merger
 
 - name: Copy server logging file.
   become: yes
