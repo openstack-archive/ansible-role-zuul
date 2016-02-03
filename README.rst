@@ -1,6 +1,6 @@
 =================
 ansible-role-zuul
-=================
+=============
 
 Ansible role to manage Zuul
 
