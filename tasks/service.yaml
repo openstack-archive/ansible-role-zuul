@@ -87,6 +87,7 @@
     name: "{{ zuul_service_zuul_merger_name }}"
     state: "{{ zuul_service_zuul_merger_state }}"
   register: __zuul_merger_service
+  when: zuul_service_zuul_merger_manage
 
 - name: Enable zuul-server service.
   service:
@@ -94,3 +95,4 @@
     name: "{{ zuul_service_zuul_server_name }}"
     state: "{{ zuul_service_zuul_server_state }}"
   register: __zuul_server_service
+  when: zuul_service_zuul_server_manage
