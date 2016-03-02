@@ -53,22 +53,11 @@
     src: "{{ zuul_file_server_logging_conf }}"
   notify: Reload zuul-server
 
-- name: Create layout config directory.
+- name: Copy layout configuration.
   become: yes
-  file:
+  copy:
     dest: "{{ zuul_file_layout_dest }}"
     group: "{{ zuul_file_layout_group }}"
     mode: "{{ zuul_file_layout_mode }}"
     owner: "{{ zuul_file_layout_owner }}"
-    state: directory
-
-- name: Rsync layout configuration.
-  become: no
-  synchronize:
-    delete: yes
-    dest: "{{ zuul_file_layout_dest }}"
-    perms: yes
-    rsync_opts:
-      - "--chmod=Du=rwx,Dgo=rx"
-    src: "{{ zuul_file_layout_src }}"
   notify: Reload zuul-server
