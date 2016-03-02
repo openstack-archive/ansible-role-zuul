@@ -71,4 +71,5 @@
     rsync_opts:
       - "--chmod=Du=rwx,Dgo=rx"
     src: "{{ zuul_file_layout_src }}"
+    _substitute_controller: no
   notify: Reload zuul-server
