@@ -23,6 +23,11 @@ zuul_file_layout_mode: "0755"
 zuul_file_layout_owner: "{{ zuul_user_name }}"
 zuul_file_layout_src: etc/zuul/config/
 
+zuul_config_launcher_git_dir: "{{ zuul_user_home }}/git"
+zuul_config_launcher_log_config: /etc/zuul/launcher-logging.conf
+zuul_config_launcher_pidfile: /var/run/zuul-launcher/zuul-launcher.pid
+zuul_config_launcher_zuul_url: 127.0.0.1
+
 zuul_config_gearman_port: 4730
 zuul_config_gearman_server: 127.0.0.1
 
@@ -48,6 +53,7 @@ zuul_config_zuul_pidfile: /var/run/zuul-server/zuul-server.pid
 zuul_config_zuul_state_dir: "{{ zuul_user_home }}"
 
 zuul_file_gearman_logging_conf: etc/zuul/gearman-logging.conf
+zuul_file_launcher_logging_conf: etc/zuul/launcher-logging.conf
 zuul_file_merger_logging_conf: etc/zuul/merger-logging.conf
 zuul_file_server_logging_conf: etc/zuul/server-logging.conf
 
@@ -67,11 +73,19 @@ zuul_pip_version:
 zuul_file_zuul_service_config_group: root
 zuul_file_zuul_service_config_owner: root
 
+zuul_file_zuul_launcher_service_group: root
+zuul_file_zuul_launcher_service_owner: root
+
 zuul_file_zuul_merger_service_group: root
 zuul_file_zuul_merger_service_owner: root
 
 zuul_file_zuul_server_service_group: root
 zuul_file_zuul_server_service_owner: root
+
+zuul_service_zuul_launcher_enabled: yes
+zuul_service_zuul_launcher_manage: true
+zuul_service_zuul_launcher_name: zuul-launcher
+zuul_service_zuul_launcher_state: started
 
 zuul_service_zuul_merger_enabled: yes
 zuul_service_zuul_merger_manage: true

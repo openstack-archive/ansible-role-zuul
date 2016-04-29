@@ -107,6 +107,22 @@
           - debian_zuul_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'Debian'
 
+    - name: Register /etc/init.d/zuul-launcher
+      stat:
+        path: /etc/init.d/zuul-launcher
+      register: debian_zuul_launcher_service_stat
+      when: ansible_os_family == 'Debian'
+
+    - name: Assert debian_zuul_launcher_service_stat tests.
+      assert:
+        that:
+          - debian_zuul_launcher_service_stat.stat.exists
+          - debian_zuul_launcher_service_stat.stat.isreg
+          - debian_zuul_launcher_service_stat.stat.pw_name == 'root'
+          - debian_zuul_launcher_service_stat.stat.gr_name == 'root'
+          - debian_zuul_launcher_service_stat.stat.mode == '0755'
+      when: ansible_os_family == 'Debian'
+
     - name: Register /etc/init.d/zuul-merger
       stat:
         path: /etc/init.d/zuul-merger
@@ -155,6 +171,22 @@
           - redhat_zuul_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
 
+    - name: Register /etc/systemd/system/zuul-launcher.service
+      stat:
+        path: /etc/systemd/system/zuul-launcher.service
+      register: redhat_zuul_launcher_service_stat
+      when: ansible_os_family == 'RedHat'
+
+    - name: Assert redhat_zuul_launcher_service_stat tests.
+      assert:
+        that:
+          - redhat_zuul_launcher_service_stat.stat.exists
+          - redhat_zuul_launcher_service_stat.stat.isreg
+          - redhat_zuul_launcher_service_stat.stat.pw_name == 'root'
+          - redhat_zuul_launcher_service_stat.stat.gr_name == 'root'
+          - redhat_zuul_launcher_service_stat.stat.mode == '0644'
+      when: ansible_os_family == 'RedHat'
+
     - name: Register /etc/systemd/system/zuul-merger.service
       stat:
         path: /etc/systemd/system/zuul-merger.service
@@ -186,6 +218,10 @@
           - redhat_zuul_server_service_stat.stat.gr_name == 'root'
           - redhat_zuul_server_service_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
+
+    - name: Ensure zuul-launcher is running.
+      shell: /usr/sbin/service zuul-launcher status
+      tags: skip_ansible_lint
 
     - name: Ensure zuul-merger is running.
       shell: /usr/sbin/service zuul-merger status
