@@ -91,6 +91,19 @@
           - zuul_layout_yaml_stat.stat.pw_name == 'zuul'
           - zuul_layout_yaml_stat.stat.gr_name == 'zuul'
 
+    - name: Register /etc/zuul/zuul.conf
+      stat:
+        path: /etc/zuul/zuul.conf
+      register: zuul_conf_stat
+
+    - name: Assert zuul_conf_stat tests.
+      assert:
+        that:
+          - zuul_conf_stat.stat.exists
+          - zuul_conf_stat.stat.isreg
+          - zuul_conf_stat.stat.pw_name == 'zuul'
+          - zuul_conf_stat.stat.gr_name == 'zuul'
+
     - name: Register /etc/default/zuul
       stat:
         path: /etc/default/zuul
