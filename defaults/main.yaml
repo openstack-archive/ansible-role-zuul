@@ -23,36 +23,29 @@ zuul_file_layout_mode: "0755"
 zuul_file_layout_owner: "{{ zuul_user_name }}"
 zuul_file_layout_src: etc/zuul/config/
 
-zuul_config_gearman_port: 4730
-zuul_config_gearman_server: 127.0.0.1
+zuul_file_gearman_logging_conf_dest: /etc/zuul/gearman-logging.conf
+zuul_file_gearman_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_gearman_logging_conf_mode: "0644"
+zuul_file_gearman_logging_conf_owner: "{{ zuul_user_name }}"
+zuul_file_gearman_logging_conf_src: etc/zuul/gearman-logging.conf
 
-zuul_config_gearman_server_start: true
-zuul_config_gearman_server_listen_address: 127.0.0.1
-zuul_config_gearman_server_log_config: /etc/zuul/gearman-logging.conf
+zuul_file_merger_logging_conf_dest: /etc/zuul/merger-logging.conf
+zuul_file_merger_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_merger_logging_conf_mode: "0644"
+zuul_file_merger_logging_conf_owner: "{{ zuul_user_name }}"
+zuul_file_merger_logging_conf_src: etc/zuul/merger-logging.conf
 
-zuul_config_gerrit_port: 29418
-zuul_config_gerrit_server: 127.0.0.1
-zuul_config_gerrit_sshkey: "{{ zuul_user_home }}/.ssh/id_rsa"
-zuul_config_gerrit_user: zuul
+zuul_file_server_logging_conf_dest: /etc/zuul/server-logging.conf
+zuul_file_server_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_server_logging_conf_mode: "0644"
+zuul_file_server_logging_conf_owner: "{{ zuul_user_name }}"
+zuul_file_server_logging_conf_src: etc/zuul/server-logging.conf
 
-zuul_config_merger_git_dir: "{{ zuul_user_home }}/git"
-zuul_config_merger_git_user_email: ""
-zuul_config_merger_git_user_name: ""
-zuul_config_merger_log_config: /etc/zuul/merger-logging.conf
-zuul_config_merger_pidfile: /var/run/zuul-merger/zuul-merger.pid
-zuul_config_merger_zuul_url: 127.0.0.1
-
-zuul_config_zuul_layout_config: "{{ zuul_file_layout_dest }}/layout.yaml"
-zuul_config_zuul_log_config: /etc/zuul/server-logging.conf
-zuul_config_zuul_pidfile: /var/run/zuul-server/zuul-server.pid
-zuul_config_zuul_state_dir: "{{ zuul_user_home }}"
-
-zuul_file_gearman_logging_conf: etc/zuul/gearman-logging.conf
-zuul_file_merger_logging_conf: etc/zuul/merger-logging.conf
-zuul_file_server_logging_conf: etc/zuul/server-logging.conf
-
-zuul_template_zuul_conf_dest: /etc/zuul/zuul.conf
-zuul_template_zuul_conf_src: etc/zuul/zuul.conf.j2
+zuul_file_zuul_conf_dest: /etc/zuul/zuul.conf
+zuul_file_zuul_conf_group: "{{ zuul_user_group }}"
+zuul_file_zuul_conf_mode: "0644"
+zuul_file_zuul_conf_owner: "{{ zuul_user_name }}"
+zuul_file_zuul_conf_src: etc/zuul/zuul.conf
 
 # tasks/install.yaml
 zuul_git_dest: /opt/ansible-role-zuul/git/openstack-infra/zuul

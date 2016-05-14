@@ -23,34 +23,34 @@
     - /etc/zuul
     - /var/log/zuul
 
-- name: Template zuul configuration file.
-  become: yes
-  template:
-    dest: "{{ zuul_template_zuul_conf_dest }}"
-    src: "{{ zuul_template_zuul_conf_src }}"
-  notify:
-    - Reload zuul-merger
-    - Reload zuul-server
-
 - name: Copy gearman logging file.
   become: yes
   copy:
-    dest: "{{ zuul_config_gearman_server_log_config }}"
-    src: "{{ zuul_file_gearman_logging_conf }}"
+    dest: "{{ zuul_file_gearman_logging_conf_dest }}"
+    group: "{{ zuul_file_gearman_logging_conf_group }}"
+    mode: "{{ zuul_file_gearman_logging_conf_mode }}"
+    owner: "{{ zuul_file_gearman_logging_conf_owner }}"
+    src: "{{ zuul_file_gearman_logging_conf_src }}"
   notify: Reload zuul-server
 
 - name: Copy merger logging file.
   become: yes
   copy:
-    dest: "{{ zuul_config_merger_log_config }}"
-    src: "{{ zuul_file_merger_logging_conf }}"
+    dest: "{{ zuul_file_merger_logging_conf_dest }}"
+    group: "{{ zuul_file_merger_logging_conf_group }}"
+    mode: "{{ zuul_file_merger_logging_conf_mode }}"
+    owner: "{{ zuul_file_merger_logging_conf_owner }}"
+    src: "{{ zuul_file_merger_logging_conf_src }}"
   notify: Reload zuul-merger
 
 - name: Copy server logging file.
   become: yes
   copy:
-    dest: "{{ zuul_config_zuul_log_config }}"
-    src: "{{ zuul_file_server_logging_conf }}"
+    dest: "{{ zuul_file_server_logging_conf_dest }}"
+    group: "{{ zuul_file_server_logging_conf_group }}"
+    mode: "{{ zuul_file_server_logging_conf_mode }}"
+    owner: "{{ zuul_file_server_logging_conf_owner }}"
+    src: "{{ zuul_file_server_logging_conf_src }}"
   notify: Reload zuul-server
 
 - name: Copy layout configuration.
@@ -62,3 +62,15 @@
     owner: "{{ zuul_file_layout_owner }}"
     src: "{{ zuul_file_layout_src }}"
   notify: Reload zuul-server
+
+- name: Copy zuul configuration.
+  become: yes
+  copy:
+    dest: "{{ zuul_file_zuul_conf_dest }}"
+    group: "{{ zuul_file_zuul_conf_group }}"
+    mode: "{{ zuul_file_zuul_conf_mode }}"
+    owner: "{{ zuul_file_zuul_conf_owner }}"
+    src: "{{ zuul_file_zuul_conf_src }}"
+  notify:
+    - Reload zuul-merger
+    - Reload zuul-server
