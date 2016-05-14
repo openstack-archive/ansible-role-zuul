@@ -27,6 +27,21 @@
     zuul_file_zuul_service_config_src: "{{ __zuul_file_zuul_service_config_src }}"
   when: zuul_file_zuul_service_config_src is not defined
 
+- name: Define zuul_file_zuul_launcher_service_dest.
+  set_fact:
+    zuul_file_zuul_launcher_service_dest: "{{ __zuul_file_zuul_launcher_service_dest }}"
+  when: zuul_file_zuul_launcher_service_dest is not defined
+
+- name: Define zuul_file_zuul_launcher_service_mode.
+  set_fact:
+    zuul_file_zuul_launcher_service_mode: "{{ __zuul_file_zuul_launcher_service_mode }}"
+  when: zuul_file_zuul_launcher_service_mode is not defined
+
+- name: Define zuul_file_zuul_launcher_service_src.
+  set_fact:
+    zuul_file_zuul_launcher_service_src: "{{ __zuul_file_zuul_launcher_service_src }}"
+  when: zuul_file_zuul_launcher_service_src is not defined
+
 - name: Define zuul_file_zuul_merger_service_dest.
   set_fact:
     zuul_file_zuul_merger_service_dest: "{{ __zuul_file_zuul_merger_service_dest }}"
@@ -65,6 +80,14 @@
     owner: "{{ zuul_file_zuul_service_config_owner }}"
     src: "{{ zuul_file_zuul_service_config_src }}"
 
+- name: Copy zuul-launcher service into place.
+  copy:
+    dest: "{{ zuul_file_zuul_launcher_service_dest }}"
+    group: "{{ zuul_file_zuul_launcher_service_group }}"
+    mode: "{{ zuul_file_zuul_launcher_service_mode }}"
+    owner: "{{ zuul_file_zuul_launcher_service_owner }}"
+    src: "{{ zuul_file_zuul_launcher_service_src }}"
+
 - name: Copy zuul-merger service into place.
   copy:
     dest: "{{ zuul_file_zuul_merger_service_dest }}"
@@ -80,6 +103,14 @@
     mode: "{{ zuul_file_zuul_server_service_mode }}"
     owner: "{{ zuul_file_zuul_server_service_owner }}"
     src: "{{ zuul_file_zuul_server_service_src }}"
+
+- name: Enable zuul-launcher service.
+  service:
+    enabled: "{{ zuul_service_zuul_launcher_enabled }}"
+    name: "{{ zuul_service_zuul_launcher_name }}"
+    state: "{{ zuul_service_zuul_launcher_state }}"
+  register: __zuul_launcher_service
+  when: zuul_service_zuul_launcher_manage
 
 - name: Enable zuul-merger service.
   service:
