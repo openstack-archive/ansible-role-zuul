@@ -18,6 +18,14 @@
     repo: "{{ zuul_git_uri }}"
     version: "{{ zuul_git_version }}"
 
+- name: test
+  pip:
+    name: jenkins-job-builder
+
+- name: gggg
+  pip:
+    name: pyzmq
+
 - name: Pip install zuul from local git repo.
   pip:
     name: "file://{{ zuul_git_dest }}"
