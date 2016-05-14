@@ -16,12 +16,18 @@ __zuul_build_depends:
   - gcc
   - gcc-c++
   - git
+  - jenkins-job-builder
   - python-devel
   - python-pip
+  - python-zmq
 
 __zuul_file_zuul_service_config_dest: /etc/sysconfig/zuul
 __zuul_file_zuul_service_config_mode: "0644"
 __zuul_file_zuul_service_config_src: etc/sysconfig/zuul
+
+__zuul_file_zuul_launcher_service_dest: /etc/systemd/system/zuul-launcher.service
+__zuul_file_zuul_launcher_service_mode: "0644"
+__zuul_file_zuul_launcher_service_src: etc/systemd/system/zuul-launcher.service
 
 __zuul_file_zuul_merger_service_dest: /etc/systemd/system/zuul-merger.service
 __zuul_file_zuul_merger_service_mode: "0644"

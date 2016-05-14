@@ -33,6 +33,16 @@
     src: "{{ zuul_file_gearman_logging_conf_src }}"
   notify: Reload zuul-server
 
+- name: Copy launcher logging file.
+  become: yes
+  copy:
+    dest: "{{ zuul_file_launcher_logging_conf_dest }}"
+    group: "{{ zuul_file_launcher_logging_conf_group }}"
+    mode: "{{ zuul_file_launcher_logging_conf_mode }}"
+    owner: "{{ zuul_file_launcher_logging_conf_owner }}"
+    src: "{{ zuul_file_launcher_logging_conf_src }}"
+  notify: Reload zuul-launcher
+
 - name: Copy merger logging file.
   become: yes
   copy:
@@ -72,5 +82,6 @@
     owner: "{{ zuul_file_zuul_conf_owner }}"
     src: "{{ zuul_file_zuul_conf_src }}"
   notify:
+    - Reload zuul-launcher
     - Reload zuul-merger
     - Reload zuul-server
