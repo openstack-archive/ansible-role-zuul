@@ -33,3 +33,13 @@
   when: zuul_install_method == 'git' or zuul_install_method == 'pip'
 
 - include: "install/{{ zuul_install_method }}.yaml"
+
+# TODO(pabelanger): Remove once https://review.openstack.org/#/c/316387/ has
+# been merged.
+- name: Install missing pip dependencies
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - jenkins-job-builder
+    - pyzmq
+  when: zuul_install_method == 'git' or zuul_install_method == 'pip'
