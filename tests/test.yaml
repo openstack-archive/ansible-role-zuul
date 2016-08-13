@@ -29,13 +29,16 @@
   post_tasks:
     - name: Ensure zuul_user_name is zuul.
       shell: /usr/bin/getent passwd zuul
+      tags: skip_ansible_lint
 
     - name: Ensure zuul_user_group is zuul.
       shell: /usr/bin/getent group zuul
+      tags: skip_ansible_lint
 
     - name: Register zuul_user_home_getent.
       shell: '/usr/bin/getent passwd zuul | cut -d: -f6'
       register: zuul_user_home_getent
+      tags: skip_ansible_lint
 
     - name: Assert zuul_user_home is /var/lib/zuul.
       assert:
