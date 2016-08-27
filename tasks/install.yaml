@@ -17,15 +17,6 @@
     zuul_build_depends: "{{ __zuul_build_depends | list }}"
   when: zuul_build_depends is not defined
 
-# NOTE(pabelanger): This needs to be here for now, since we need python-pip.
-- name: Ensure EPEL is enabled.
-  become: yes
-  package:
-    name: epel-release
-    state: installed
-  when: (zuul_install_method == 'git' or zuul_install_method == 'pip') and
-        ansible_os_family == 'RedHat'
-
 - name: Ensure build dependencies are installed.
   become: yes
   package:

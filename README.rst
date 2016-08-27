@@ -18,6 +18,8 @@ so that changes are only merged if they pass tests.
 Requirements
 ------------
 
+See `other-requirements.txt` for role dependencies.
+
 Packages
 ~~~~~~~~
 
