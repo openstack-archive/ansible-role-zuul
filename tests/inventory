@@ -1,2 +1,2 @@
 [test]
-test01 ansible_host=localhost
+test01 ansible_host=127

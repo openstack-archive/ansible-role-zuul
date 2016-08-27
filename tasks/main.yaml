@@ -15,13 +15,7 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yaml"
 
-- include: pre.yaml
-  become: yes
-
-- include: install.yaml
-  become: yes
-
-- include: config.yaml
-
-- include: service.yaml
-  become: yes
+- include: "{{ zuul_task }}.yaml"
+  with_items: "{{ zuul_goo }}"
+  loop_control:
+    loop_var: zuul_task

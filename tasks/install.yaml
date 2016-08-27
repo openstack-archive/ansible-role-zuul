@@ -19,6 +19,7 @@
 
 # NOTE(pabelanger): This needs to be here for now, since we need python-pip.
 - name: Ensure EPEL is enabled.
+  become: yes
   package:
     name: epel-release
     state: installed
@@ -26,6 +27,7 @@
         ansible_os_family == 'RedHat'
 
 - name: Ensure build dependencies are installed.
+  become: yes
   package:
     name: "{{ item }}"
     state: installed
@@ -37,6 +39,7 @@
 # TODO(pabelanger): Remove once https://review.openstack.org/#/c/316387/ has
 # been merged.
 - name: Install missing pip dependencies
+  become: yes
   pip:
     name: "{{ item }}"
   with_items:
