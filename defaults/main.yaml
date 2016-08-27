@@ -12,6 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# tasks/main.yaml
+# NOTE(pabelanger): Because of a bug in ansible-lint, we cannot call this
+# zuul_tasks.  Once it has been fixed upstream, this will get renamed.
+zuul_steps:
+  - pre
+  - install
+  - config
+  - service
+
 # tasks/config.yaml
 zuul_user_name: zuul
 zuul_user_group: zuul
