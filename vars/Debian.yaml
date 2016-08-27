@@ -15,7 +15,6 @@
 __zuul_build_depends:
   - git
   - python-dev
-  - python-pip
 
 __zuul_file_zuul_service_config_dest: /etc/default/zuul
 __zuul_file_zuul_service_config_mode: "0644"

@@ -18,6 +18,8 @@ so that changes are only merged if they pass tests.
 Requirements
 ------------
 
+See `bindep.txt` for role dependencies.
+
 Packages
 ~~~~~~~~
 

@@ -17,7 +17,6 @@ __zuul_build_depends:
   - gcc-c++
   - git
   - python-devel
-  - python-pip
 
 __zuul_file_zuul_service_config_dest: /etc/sysconfig/zuul
 __zuul_file_zuul_service_config_mode: "0644"
