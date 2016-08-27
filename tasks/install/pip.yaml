@@ -13,11 +13,13 @@
 # under the License.
 ---
 - name: Install zuul using pip.
+  become: yes
   pip:
     name: zuul
   when: zuul_pip_version is none
 
 - name: Install zuul using pip.
+  become: yes
   pip:
     name: zuul
     version: "{{ zuul_pip_version }}"

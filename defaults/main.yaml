@@ -12,6 +12,13 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
+# tasks/main.yaml
+zuul_task_manager:
+  - pre
+  - install
+  - config
+  - service
+
 # tasks/config.yaml
 zuul_user_name: zuul
 zuul_user_group: zuul
