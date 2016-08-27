@@ -73,6 +73,7 @@
   when: zuul_file_zuul_server_service_src is not defined
 
 - name: Copy zuul service config into place.
+  become: yes
   copy:
     dest: "{{ zuul_file_zuul_service_config_dest }}"
     group: "{{ zuul_file_zuul_service_config_group }}"
@@ -81,6 +82,7 @@
     src: "{{ zuul_file_zuul_service_config_src }}"
 
 - name: Copy zuul-launcher service into place.
+  become: yes
   copy:
     dest: "{{ zuul_file_zuul_launcher_service_dest }}"
     group: "{{ zuul_file_zuul_launcher_service_group }}"
@@ -89,6 +91,7 @@
     src: "{{ zuul_file_zuul_launcher_service_src }}"
 
 - name: Copy zuul-merger service into place.
+  become: yes
   copy:
     dest: "{{ zuul_file_zuul_merger_service_dest }}"
     group: "{{ zuul_file_zuul_merger_service_group }}"
@@ -97,6 +100,7 @@
     src: "{{ zuul_file_zuul_merger_service_src }}"
 
 - name: Copy zuul-server service into place.
+  become: yes
   copy:
     dest: "{{ zuul_file_zuul_server_service_dest }}"
     group: "{{ zuul_file_zuul_server_service_group }}"
@@ -105,6 +109,7 @@
     src: "{{ zuul_file_zuul_server_service_src }}"
 
 - name: Enable zuul-launcher service.
+  become: yes
   service:
     enabled: "{{ zuul_service_zuul_launcher_enabled }}"
     name: "{{ zuul_service_zuul_launcher_name }}"
@@ -113,6 +118,7 @@
   when: zuul_service_zuul_launcher_manage
 
 - name: Enable zuul-merger service.
+  become: yes
   service:
     enabled: "{{ zuul_service_zuul_merger_enabled }}"
     name: "{{ zuul_service_zuul_merger_name }}"
@@ -121,6 +127,7 @@
   when: zuul_service_zuul_merger_manage
 
 - name: Enable zuul-server service.
+  become: yes
   service:
     enabled: "{{ zuul_service_zuul_server_enabled }}"
     name: "{{ zuul_service_zuul_server_name }}"
