@@ -13,11 +13,13 @@
 # under the License.
 ---
 - name: Git clone zuul.
+  become: yes
   git:
     dest: "{{ zuul_git_dest }}"
     repo: "{{ zuul_git_uri }}"
     version: "{{ zuul_git_version }}"
 
 - name: Pip install zuul from local git repo.
+  become: yes
   pip:
     name: "file://{{ zuul_git_dest }}"
