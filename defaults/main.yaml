@@ -73,17 +73,23 @@ zuul_pip_name: zuul
 #zuul_pip_virtualenv:
 
 # tasks/service.yaml
-zuul_file_zuul_service_config_group: root
-zuul_file_zuul_service_config_owner: root
-
 zuul_file_zuul_launcher_service_group: root
 zuul_file_zuul_launcher_service_owner: root
+
+zuul_file_zuul_launcher_service_config_group: root
+zuul_file_zuul_launcher_service_config_owner: root
 
 zuul_file_zuul_merger_service_group: root
 zuul_file_zuul_merger_service_owner: root
 
+zuul_file_zuul_merger_service_config_group: root
+zuul_file_zuul_merger_service_config_owner: root
+
 zuul_file_zuul_server_service_group: root
 zuul_file_zuul_server_service_owner: root
+
+zuul_file_zuul_server_service_config_group: root
+zuul_file_zuul_server_service_config_owner: root
 
 zuul_service_zuul_launcher_enabled: yes
 zuul_service_zuul_launcher_manage: true
