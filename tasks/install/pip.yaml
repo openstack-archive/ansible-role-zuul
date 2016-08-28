@@ -15,12 +15,7 @@
 - name: Install zuul using pip.
   become: yes
   pip:
-    name: zuul
-  when: zuul_pip_version is none
-
-- name: Install zuul using pip.
-  become: yes
-  pip:
-    name: zuul
-    version: "{{ zuul_pip_version }}"
-  when: zuul_pip_version is not none
+    extra_args: "{{ zuul_pip_extra_args|default(omit) }}"
+    name: "{{ zuul_pip_name }}"
+    version: "{{ zuul_pip_version|default(omit) }}"
+    virtualenv: "{{ zuul_pip_virtualenv|default(omit) }}"

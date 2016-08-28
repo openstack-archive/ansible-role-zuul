@@ -67,7 +67,10 @@ zuul_git_version: master
 
 zuul_install_method: git
 
-zuul_pip_version:
+zuul_pip_name: zuul
+#zuul_pip_extra_args:
+#zuul_pip_version:
+#zuul_pip_virtualenv:
 
 # tasks/service.yaml
 zuul_file_zuul_service_config_group: root
