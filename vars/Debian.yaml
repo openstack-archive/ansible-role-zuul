@@ -16,18 +16,26 @@ __zuul_build_depends:
   - git
   - python-dev
 
-__zuul_file_zuul_service_config_dest: /etc/default/zuul
-__zuul_file_zuul_service_config_mode: "0644"
-__zuul_file_zuul_service_config_src: etc/default/zuul
-
 __zuul_file_zuul_launcher_service_dest: /etc/init.d/zuul-launcher
 __zuul_file_zuul_launcher_service_mode: "0755"
 __zuul_file_zuul_launcher_service_src: etc/init.d/zuul-launcher
+
+__zuul_file_zuul_launcher_service_config_dest: /etc/default/zuul-launcher
+__zuul_file_zuul_launcher_service_config_mode: "0644"
+__zuul_file_zuul_launcher_service_config_src: etc/default/zuul-launcher
 
 __zuul_file_zuul_merger_service_dest: /etc/init.d/zuul-merger
 __zuul_file_zuul_merger_service_mode: "0755"
 __zuul_file_zuul_merger_service_src: etc/init.d/zuul-merger
 
+__zuul_file_zuul_merger_service_config_dest: /etc/default/zuul-merger
+__zuul_file_zuul_merger_service_config_mode: "0644"
+__zuul_file_zuul_merger_service_config_src: etc/default/zuul-merger
+
 __zuul_file_zuul_server_service_dest: /etc/init.d/zuul-server
 __zuul_file_zuul_server_service_mode: "0755"
 __zuul_file_zuul_server_service_src: etc/init.d/zuul-server
+
+__zuul_file_zuul_server_service_config_dest: /etc/default/zuul-server
+__zuul_file_zuul_server_service_config_mode: "0644"
+__zuul_file_zuul_server_service_config_src: etc/default/zuul-server
