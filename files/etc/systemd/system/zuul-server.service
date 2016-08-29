@@ -7,7 +7,7 @@ Type=simple
 User=zuul
 Group=zuul
 EnvironmentFile=-/etc/sysconfig/zuul-server
-ExecStart=/usr/bin/zuul-server -d
+ExecStart=$PREFIX/bin/zuul-server -d
 ExecReload=/bin/kill -HUP $MAINPID
 
 [Install]

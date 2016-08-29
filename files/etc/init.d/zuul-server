@@ -13,16 +13,17 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Zuul"
 NAME=zuul-server
-DAEMON=/usr/local/bin/zuul-server
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 USER=zuul
 
-# Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
-
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+DAEMON=$PREFIX/bin/zuul-server
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
