@@ -7,7 +7,7 @@ Type=simple
 User=zuul
 Group=zuul
 EnvironmentFile=-/etc/sysconfig/zuul-merger
-ExecStart=/usr/bin/zuul-merger -d
+ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-merger -d"
 
 [Install]
 WantedBy=multi-user.target
