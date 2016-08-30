@@ -33,6 +33,7 @@
   become: yes
   pip:
     name: "{{ item }}"
+    virtualenv: "{{ zuul_pip_virtualenv|default(omit) }}"
   with_items:
     - jenkins-job-builder
     - pyzmq
