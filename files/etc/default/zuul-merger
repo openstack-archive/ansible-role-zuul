@@ -4,4 +4,4 @@
 
 # The prefix used when zuul-merger was installed. Be sure to update this value
 # if you are using a virtualenv.
-PREFIX=/usr
+PREFIX=/usr/local

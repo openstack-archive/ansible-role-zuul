@@ -25,7 +25,7 @@ USER=zuul
 DAEMON=$PREFIX/bin/zuul-merger
 
 # Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
+[ -x "$DAEMON" ] || exit 5
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
