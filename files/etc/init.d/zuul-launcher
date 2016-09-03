@@ -17,7 +17,6 @@ DESC="Zuul Launcher"
 NAME=zuul-launcher
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-USER=zuul
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
