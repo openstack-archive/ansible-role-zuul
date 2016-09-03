@@ -15,12 +15,12 @@ DESC="Zuul"
 NAME=zuul-server
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-USER=zuul
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 DAEMON=$PREFIX/bin/zuul-server
+USER=${RUNASUSER:-zuul}
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 5
