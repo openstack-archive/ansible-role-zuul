@@ -13,12 +13,12 @@
 # under the License.
 ---
 - hosts: test
-  become: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   pre_tasks:
     # Make sure OS does not have a stale package cache.
     - name: Update apt cache.
+      become: yes
       apt:
         update_cache: yes
       when: ansible_os_family == 'Debian'
@@ -300,13 +300,16 @@
       when: ansible_os_family == 'RedHat'
 
     - name: Ensure zuul-launcher is running.
+      become: yes
       shell: /usr/sbin/service zuul-launcher status
       tags: skip_ansible_lint
 
     - name: Ensure zuul-merger is running.
+      become: yes
       shell: /usr/sbin/service zuul-merger status
       tags: skip_ansible_lint
 
     - name: Ensure zuul-server is running.
+      become: yes
       shell: /usr/sbin/service zuul-server status
       tags: skip_ansible_lint
