@@ -1,0 +1,9 @@
+Code-Review+2: Paul Belanger <pabelanger@redhat.com>
+Workflow+1: Paul Belanger <pabelanger@redhat.com>
+Code-Review+1: lidong <lidongbj@inspur.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Tue, 06 Sep 2016 01:58:32 +0000
+Reviewed-on: https://review.openstack.org/365813
+Project: openstack/ansible-role-zuul
+Branch: refs/heads/master
