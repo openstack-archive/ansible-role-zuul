@@ -13,7 +13,6 @@
 # under the License.
 ---
 - hosts: test
-  become: yes
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
   pre_tasks:
