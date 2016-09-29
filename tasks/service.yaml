@@ -110,6 +110,8 @@
     mode: "{{ zuul_file_zuul_launcher_service_mode }}"
     owner: "{{ zuul_file_zuul_launcher_service_owner }}"
     src: "{{ zuul_file_zuul_launcher_service_src }}"
+  notify:
+    - Daemon-reload
 
 - name: Copy zuul-launcher service config into place.
   become: yes
@@ -128,6 +130,8 @@
     mode: "{{ zuul_file_zuul_merger_service_mode }}"
     owner: "{{ zuul_file_zuul_merger_service_owner }}"
     src: "{{ zuul_file_zuul_merger_service_src }}"
+  notify:
+    - Daemon-reload
 
 - name: Copy zuul-merger service config into place.
   become: yes
@@ -146,6 +150,8 @@
     mode: "{{ zuul_file_zuul_server_service_mode }}"
     owner: "{{ zuul_file_zuul_server_service_owner }}"
     src: "{{ zuul_file_zuul_server_service_src }}"
+  notify:
+    - Daemon-reload
 
 - name: Copy zuul-server service config into place.
   become: yes

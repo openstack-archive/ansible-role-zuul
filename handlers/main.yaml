@@ -38,3 +38,8 @@
   when: zuul_service_zuul_server_manage and
         zuul_service_zuul_server_state == "started" and not
         __zuul_server_service.changed
+
+- name: Daemon-reload
+  become: yes
+  command: systemctl daemon-reload
+  when: ansible_os_family == 'RedHat'
