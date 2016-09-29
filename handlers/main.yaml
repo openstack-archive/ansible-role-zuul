@@ -21,6 +21,15 @@
         zuul_service_zuul_launcher_state == "started" and not
         __zuul_launcher_service.changed
 
+- name: Restart zuul-launcher
+  become: yes
+  service:
+    name: zuul-launcher
+    state: restarted
+  when: zuul_service_zuul_launcher_manage and
+        zuul_service_zuul_launcher_state == "started" and not
+        __zuul_launcher_service.changed
+
 - name: Reload zuul-merger
   become: yes
   service:
@@ -30,11 +39,29 @@
         zuul_service_zuul_merger_state == "started" and not
         __zuul_merger_service.changed
 
+- name: Restart zuul-merger
+  become: yes
+  service:
+    name: zuul-merger
+    state: restarted
+  when: zuul_service_zuul_merger_manage and
+        zuul_service_zuul_merger_state == "started" and not
+        __zuul_merger_service.changed
+
 - name: Reload zuul-server
   become: yes
   service:
     name: zuul-server
     state: reloaded
+  when: zuul_service_zuul_server_manage and
+        zuul_service_zuul_server_state == "started" and not
+        __zuul_server_service.changed
+
+- name: Restart zuul-server
+  become: yes
+  service:
+    name: zuul-server
+    state: restarted
   when: zuul_service_zuul_server_manage and
         zuul_service_zuul_server_state == "started" and not
         __zuul_server_service.changed
