@@ -110,6 +110,7 @@
     mode: "{{ zuul_file_zuul_launcher_service_mode }}"
     owner: "{{ zuul_file_zuul_launcher_service_owner }}"
     src: "{{ zuul_file_zuul_launcher_service_src }}"
+  register: __zuul_file_zuul_launcher_service_result
 
 - name: Copy zuul-launcher service config into place.
   become: yes
@@ -119,6 +120,7 @@
     mode: "{{ zuul_file_zuul_launcher_service_config_mode }}"
     owner: "{{ zuul_file_zuul_launcher_service_config_owner }}"
     src: "{{ zuul_file_zuul_launcher_service_config_src }}"
+  register: __zuul_file_zuul_launcher_service_config_result
 
 - name: Copy zuul-merger service into place.
   become: yes
@@ -128,6 +130,7 @@
     mode: "{{ zuul_file_zuul_merger_service_mode }}"
     owner: "{{ zuul_file_zuul_merger_service_owner }}"
     src: "{{ zuul_file_zuul_merger_service_src }}"
+  register: __zuul_file_zuul_merger_service_result
 
 - name: Copy zuul-merger service config into place.
   become: yes
@@ -137,6 +140,7 @@
     mode: "{{ zuul_file_zuul_merger_service_config_mode }}"
     owner: "{{ zuul_file_zuul_merger_service_config_owner }}"
     src: "{{ zuul_file_zuul_merger_service_config_src }}"
+  register: __zuul_file_zuul_merger_service_config_result
 
 - name: Copy zuul-server service into place.
   become: yes
@@ -146,6 +150,7 @@
     mode: "{{ zuul_file_zuul_server_service_mode }}"
     owner: "{{ zuul_file_zuul_server_service_owner }}"
     src: "{{ zuul_file_zuul_server_service_src }}"
+  register: __zuul_file_zuul_server_service_result
 
 - name: Copy zuul-server service config into place.
   become: yes
@@ -155,6 +160,7 @@
     mode: "{{ zuul_file_zuul_server_service_config_mode }}"
     owner: "{{ zuul_file_zuul_server_service_config_owner }}"
     src: "{{ zuul_file_zuul_server_service_config_src }}"
+  register: __zuul_file_zuul_server_service_config_result
 
 - name: Enable zuul-launcher service.
   become: yes
