@@ -27,6 +27,25 @@
     - "{{ rolename }}"
 
   post_tasks:
+    - name: Assert results are registered.
+      assert:
+        that:
+          - zuul_file_gearman_logging_conf
+          - zuul_file_launcher_logging_conf
+          - zuul_file_merger_logging_conf
+          - zuul_file_server_logging_conf
+          - zuul_file_layout
+          - zuul_file_zuul_conf
+          - zuul_file_zuul_launcher_service
+          - zuul_file_zuul_launcher_service_config
+          - zuul_file_zuul_merger_service
+          - zuul_file_zuul_merger_service_config
+          - zuul_file_zuul_server_service
+          - zuul_file_zuul_server_service_config
+          - zuul_service_zuul_launcher
+          - zuul_service_zuul_merger
+          - zuul_service_zuul_server
+
     - name: Ensure zuul_user_name is zuul.
       shell: /usr/bin/getent passwd zuul
       tags: skip_ansible_lint
