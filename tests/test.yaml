@@ -27,6 +27,11 @@
     - "{{ rolename }}"
 
   post_tasks:
+    - name: Assert results are registered.
+      assert:
+        that:
+          - blbl
+
     - name: Ensure zuul_user_name is zuul.
       shell: /usr/bin/getent passwd zuul
       tags: skip_ansible_lint
