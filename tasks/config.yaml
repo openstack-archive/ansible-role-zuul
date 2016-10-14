@@ -21,11 +21,12 @@
     state: directory
   with_items:
     - /etc/zuul
+    - /etc/zuul/config
     - /var/log/zuul
 
-- name: Copy gearman logging file.
+- name: Install gearman logging file.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_gearman_logging_conf_dest }}"
     group: "{{ zuul_file_gearman_logging_conf_group }}"
     mode: "{{ zuul_file_gearman_logging_conf_mode }}"
@@ -34,9 +35,9 @@
   register: zuul_file_gearman_logging_conf
   notify: Reload zuul-server
 
-- name: Copy launcher logging file.
+- name: Install launcher logging file.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_launcher_logging_conf_dest }}"
     group: "{{ zuul_file_launcher_logging_conf_group }}"
     mode: "{{ zuul_file_launcher_logging_conf_mode }}"
@@ -45,9 +46,9 @@
   register: zuul_file_launcher_logging_conf
   notify: Reload zuul-launcher
 
-- name: Copy merger logging file.
+- name: Install merger logging file.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_merger_logging_conf_dest }}"
     group: "{{ zuul_file_merger_logging_conf_group }}"
     mode: "{{ zuul_file_merger_logging_conf_mode }}"
@@ -56,9 +57,9 @@
   register: zuul_file_merger_logging_conf
   notify: Reload zuul-merger
 
-- name: Copy server logging file.
+- name: Install server logging file.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_server_logging_conf_dest }}"
     group: "{{ zuul_file_server_logging_conf_group }}"
     mode: "{{ zuul_file_server_logging_conf_mode }}"
@@ -67,9 +68,9 @@
   register: zuul_file_server_logging_conf
   notify: Reload zuul-server
 
-- name: Copy layout configuration.
+- name: Install layout configuration.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_layout_dest }}"
     group: "{{ zuul_file_layout_group }}"
     mode: "{{ zuul_file_layout_mode }}"
@@ -78,9 +79,9 @@
   register: zuul_file_layout
   notify: Reload zuul-server
 
-- name: Copy zuul configuration.
+- name: Install zuul configuration.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_zuul_conf_dest }}"
     group: "{{ zuul_file_zuul_conf_group }}"
     mode: "{{ zuul_file_zuul_conf_mode }}"
