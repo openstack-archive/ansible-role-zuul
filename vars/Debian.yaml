@@ -13,6 +13,7 @@
 # under the License.
 ---
 __zuul_build_depends:
+  - build-essential
   - git
   - python-dev
 
