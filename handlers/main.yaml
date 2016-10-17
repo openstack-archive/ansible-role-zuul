@@ -16,7 +16,7 @@
   become: yes
   service:
     name: zuul-launcher
-    state: reloaded
+    state: restarted
   when: zuul_service_zuul_launcher_manage and
         zuul_service_zuul_launcher_state == "started" and not
         zuul_service_zuul_launcher.changed
@@ -25,7 +25,7 @@
   become: yes
   service:
     name: zuul-merger
-    state: reloaded
+    state: restarted
   when: zuul_service_zuul_merger_manage and
         zuul_service_zuul_merger_state == "started" and not
         zuul_service_zuul_merger.changed
