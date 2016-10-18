@@ -2,7 +2,7 @@
 ansible-role-zuul
 =================
 
-Ansible role to manage Zuul
+Ansible role to manage Zuul.
 
 * License: Apache License, Version 2.0
 * Documentation: https://ansible-role-zuul.readthedocs.org
