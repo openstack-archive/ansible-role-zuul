@@ -130,7 +130,9 @@
       stat:
         path: /etc/init.d/zuul-launcher
       register: debian_zuul_launcher_service_stat
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Assert debian_zuul_launcher_service_stat tests.
       assert:
@@ -140,7 +142,9 @@
           - debian_zuul_launcher_service_stat.stat.pw_name == 'root'
           - debian_zuul_launcher_service_stat.stat.gr_name == 'root'
           - debian_zuul_launcher_service_stat.stat.mode == '0755'
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/default/zuul-launcher
       stat:
@@ -162,7 +166,9 @@
       stat:
         path: /etc/init.d/zuul-merger
       register: debian_zuul_merger_service_stat
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Assert debian_zuul_merger_service_stat tests.
       assert:
@@ -172,7 +178,9 @@
           - debian_zuul_merger_service_stat.stat.pw_name == 'root'
           - debian_zuul_merger_service_stat.stat.gr_name == 'root'
           - debian_zuul_merger_service_stat.stat.mode == '0755'
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/default/zuul-merger
       stat:
@@ -194,7 +202,9 @@
       stat:
         path: /etc/init.d/zuul-server
       register: debian_zuul_server_service_stat
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Assert debian_zuul_server_service_stat tests.
       assert:
@@ -204,7 +214,9 @@
           - debian_zuul_server_service_stat.stat.pw_name == 'root'
           - debian_zuul_server_service_stat.stat.gr_name == 'root'
           - debian_zuul_server_service_stat.stat.mode == '0755'
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_distribution == 'Ubuntu'
+        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/default/zuul-server
       stat:
@@ -226,7 +238,8 @@
       stat:
         path: /etc/systemd/system/zuul-launcher.service
       register: redhat_zuul_launcher_service_stat
-      when: ansible_os_family == 'RedHat'
+      when: (ansible_os_family == 'RedHat') or
+            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert redhat_zuul_launcher_service_stat tests.
       assert:
@@ -236,7 +249,8 @@
           - redhat_zuul_launcher_service_stat.stat.pw_name == 'root'
           - redhat_zuul_launcher_service_stat.stat.gr_name == 'root'
           - redhat_zuul_launcher_service_stat.stat.mode == '0644'
-      when: ansible_os_family == 'RedHat'
+      when: (ansible_os_family == 'RedHat') or
+            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Register /etc/sysconfig/zuul-launcher
       stat:
@@ -258,7 +272,8 @@
       stat:
         path: /etc/systemd/system/zuul-merger.service
       register: redhat_zuul_merger_service_stat
-      when: ansible_os_family == 'RedHat'
+      when: (ansible_os_family == 'RedHat') or
+            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert redhat_zuul_merger_service_stat tests.
       assert:
@@ -268,7 +283,8 @@
           - redhat_zuul_merger_service_stat.stat.pw_name == 'root'
           - redhat_zuul_merger_service_stat.stat.gr_name == 'root'
           - redhat_zuul_merger_service_stat.stat.mode == '0644'
-      when: ansible_os_family == 'RedHat'
+      when: (ansible_os_family == 'RedHat') or
+            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Register /etc/sysconfig/zuul-merger
       stat:
@@ -290,7 +306,8 @@
       stat:
         path: /etc/systemd/system/zuul-server.service
       register: redhat_zuul_server_service_stat
-      when: ansible_os_family == 'RedHat'
+      when: (ansible_os_family == 'RedHat') or
+            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert redhat_zuul_server_service_stat tests.
       assert:
@@ -300,7 +317,8 @@
           - redhat_zuul_server_service_stat.stat.pw_name == 'root'
           - redhat_zuul_server_service_stat.stat.gr_name == 'root'
           - redhat_zuul_server_service_stat.stat.mode == '0644'
-      when: ansible_os_family == 'RedHat'
+      when: (ansible_os_family == 'RedHat') or
+            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Register /etc/sysconfig/zuul-server
       stat:
