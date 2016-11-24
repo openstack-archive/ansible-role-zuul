@@ -13,31 +13,30 @@
 # under the License.
 ---
 __zuul_build_depends:
-  - gcc
-  - gcc-c++
+  - build-essential
   - git
-  - python-devel
+  - python-dev
 
 __zuul_file_zuul_launcher_service_dest: /etc/systemd/system/zuul-launcher.service
 __zuul_file_zuul_launcher_service_mode: 0644
-__zuul_file_zuul_launcher_service_src: etc/systemd/system/zuul-launcher.service
+__zuul_file_zuul_launcher_service_src: etc/systemd/system/zuul-launcher.service.ubuntu-xenial
 
-__zuul_file_zuul_launcher_service_config_dest: /etc/sysconfig/zuul-launcher
+__zuul_file_zuul_launcher_service_config_dest: /etc/default/zuul-launcher
 __zuul_file_zuul_launcher_service_config_mode: 0644
-__zuul_file_zuul_launcher_service_config_src: etc/sysconfig/zuul-launcher
+__zuul_file_zuul_launcher_service_config_src: etc/default/zuul-launcher
 
 __zuul_file_zuul_merger_service_dest: /etc/systemd/system/zuul-merger.service
 __zuul_file_zuul_merger_service_mode: 0644
-__zuul_file_zuul_merger_service_src: etc/systemd/system/zuul-merger.service
+__zuul_file_zuul_merger_service_src: etc/systemd/system/zuul-merger.service.ubuntu-xenial
 
-__zuul_file_zuul_merger_service_config_dest: /etc/sysconfig/zuul-merger
+__zuul_file_zuul_merger_service_config_dest: /etc/default/zuul-merger
 __zuul_file_zuul_merger_service_config_mode: 0644
-__zuul_file_zuul_merger_service_config_src: etc/sysconfig/zuul-merger
+__zuul_file_zuul_merger_service_config_src: etc/default/zuul-merger
 
 __zuul_file_zuul_server_service_dest: /etc/systemd/system/zuul-server.service
 __zuul_file_zuul_server_service_mode: 0644
-__zuul_file_zuul_server_service_src: etc/systemd/system/zuul-server.service
+__zuul_file_zuul_server_service_src: etc/systemd/system/zuul-server.service.ubuntu-xenial
 
-__zuul_file_zuul_server_service_config_dest: /etc/sysconfig/zuul-server
+__zuul_file_zuul_server_service_config_dest: /etc/default/zuul-server
 __zuul_file_zuul_server_service_config_mode: 0644
-__zuul_file_zuul_server_service_config_src: etc/sysconfig/zuul-server
+__zuul_file_zuul_server_service_config_src: etc/default/zuul-server

@@ -1,0 +1,14 @@
+[Unit]
+Description=Zuul Merger Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=zuul
+Group=zuul
+LimitNOFILE=8192
+EnvironmentFile=-/etc/default/zuul-merger
+ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-merger -d"
+
+[Install]
+WantedBy=multi-user.target

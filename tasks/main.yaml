@@ -13,7 +13,12 @@
 # under the License.
 ---
 - name: Include OS-specific variables.
-  include_vars: "{{ ansible_os_family }}.yaml"
+  include_vars: "{{ ansible_distribution|lower }}-{{ ansible_distribution_release }}.yaml"
+  when: ansible_os_family == 'Debian'
+
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_distribution|lower }}-{{ ansible_distribution_major_version }}.yaml"
+  when: ansible_os_family == 'RedHat'
 
 - include: "{{ zuul_task }}.yaml"
   with_items: "{{ zuul_task_manager }}"
