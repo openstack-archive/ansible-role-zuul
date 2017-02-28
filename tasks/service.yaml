@@ -72,35 +72,35 @@
     zuul_file_zuul_merger_service_config_src: "{{ __zuul_file_zuul_merger_service_config_src }}"
   when: zuul_file_zuul_merger_service_config_src is not defined
 
-- name: Define zuul_file_zuul_server_service_dest.
+- name: Define zuul_file_zuul_scheduler_service_dest.
   set_fact:
-    zuul_file_zuul_server_service_dest: "{{ __zuul_file_zuul_server_service_dest }}"
-  when: zuul_file_zuul_server_service_dest is not defined
+    zuul_file_zuul_scheduler_service_dest: "{{ __zuul_file_zuul_scheduler_service_dest }}"
+  when: zuul_file_zuul_scheduler_service_dest is not defined
 
-- name: Define zuul_file_zuul_server_service_mode.
+- name: Define zuul_file_zuul_scheduler_service_mode.
   set_fact:
-    zuul_file_zuul_server_service_mode: "{{ __zuul_file_zuul_server_service_mode }}"
-  when: zuul_file_zuul_server_service_mode is not defined
+    zuul_file_zuul_scheduler_service_mode: "{{ __zuul_file_zuul_scheduler_service_mode }}"
+  when: zuul_file_zuul_scheduler_service_mode is not defined
 
-- name: Define zuul_file_zuul_server_service_src.
+- name: Define zuul_file_zuul_scheduler_service_src.
   set_fact:
-    zuul_file_zuul_server_service_src: "{{ __zuul_file_zuul_server_service_src }}"
-  when: zuul_file_zuul_server_service_src is not defined
+    zuul_file_zuul_scheduler_service_src: "{{ __zuul_file_zuul_scheduler_service_src }}"
+  when: zuul_file_zuul_scheduler_service_src is not defined
 
-- name: Define zuul_file_zuul_server_service_config_dest.
+- name: Define zuul_file_zuul_scheduler_service_config_dest.
   set_fact:
-    zuul_file_zuul_server_service_config_dest: "{{ __zuul_file_zuul_server_service_config_dest }}"
-  when: zuul_file_zuul_server_service_config_dest is not defined
+    zuul_file_zuul_scheduler_service_config_dest: "{{ __zuul_file_zuul_scheduler_service_config_dest }}"
+  when: zuul_file_zuul_scheduler_service_config_dest is not defined
 
-- name: Define zuul_file_zuul_server_service_config_mode.
+- name: Define zuul_file_zuul_scheduler_service_config_mode.
   set_fact:
-    zuul_file_zuul_server_service_config_mode: "{{ __zuul_file_zuul_server_service_config_mode }}"
-  when: zuul_file_zuul_server_service_config_mode is not defined
+    zuul_file_zuul_scheduler_service_config_mode: "{{ __zuul_file_zuul_scheduler_service_config_mode }}"
+  when: zuul_file_zuul_scheduler_service_config_mode is not defined
 
-- name: Define zuul_file_zuul_server_service_config_src.
+- name: Define zuul_file_zuul_scheduler_service_config_src.
   set_fact:
-    zuul_file_zuul_server_service_config_src: "{{ __zuul_file_zuul_server_service_config_src }}"
-  when: zuul_file_zuul_server_service_config_src is not defined
+    zuul_file_zuul_scheduler_service_config_src: "{{ __zuul_file_zuul_scheduler_service_config_src }}"
+  when: zuul_file_zuul_scheduler_service_config_src is not defined
 
 - name: Copy zuul-launcher service into place.
   become: yes
@@ -142,25 +142,25 @@
     src: "{{ zuul_file_zuul_merger_service_config_src }}"
   register: zuul_file_zuul_merger_service_config
 
-- name: Copy zuul-server service into place.
+- name: Copy zuul-scheduler service into place.
   become: yes
   copy:
-    dest: "{{ zuul_file_zuul_server_service_dest }}"
-    group: "{{ zuul_file_zuul_server_service_group }}"
-    mode: "{{ zuul_file_zuul_server_service_mode }}"
-    owner: "{{ zuul_file_zuul_server_service_owner }}"
-    src: "{{ zuul_file_zuul_server_service_src }}"
-  register: zuul_file_zuul_server_service
+    dest: "{{ zuul_file_zuul_scheduler_service_dest }}"
+    group: "{{ zuul_file_zuul_scheduler_service_group }}"
+    mode: "{{ zuul_file_zuul_scheduler_service_mode }}"
+    owner: "{{ zuul_file_zuul_scheduler_service_owner }}"
+    src: "{{ zuul_file_zuul_scheduler_service_src }}"
+  register: zuul_file_zuul_scheduler_service
 
-- name: Copy zuul-server service config into place.
+- name: Copy zuul-scheduler service config into place.
   become: yes
   copy:
-    dest: "{{ zuul_file_zuul_server_service_config_dest }}"
-    group: "{{ zuul_file_zuul_server_service_config_group }}"
-    mode: "{{ zuul_file_zuul_server_service_config_mode }}"
-    owner: "{{ zuul_file_zuul_server_service_config_owner }}"
-    src: "{{ zuul_file_zuul_server_service_config_src }}"
-  register: zuul_file_zuul_server_service_config
+    dest: "{{ zuul_file_zuul_scheduler_service_config_dest }}"
+    group: "{{ zuul_file_zuul_scheduler_service_config_group }}"
+    mode: "{{ zuul_file_zuul_scheduler_service_config_mode }}"
+    owner: "{{ zuul_file_zuul_scheduler_service_config_owner }}"
+    src: "{{ zuul_file_zuul_scheduler_service_config_src }}"
+  register: zuul_file_zuul_scheduler_service_config
 
 - name: Enable zuul-launcher service.
   become: yes
@@ -180,11 +180,11 @@
   register: zuul_service_zuul_merger
   when: zuul_service_zuul_merger_manage
 
-- name: Enable zuul-server service.
+- name: Enable zuul-scheduler service.
   become: yes
   service:
-    enabled: "{{ zuul_service_zuul_server_enabled }}"
-    name: "{{ zuul_service_zuul_server_name }}"
-    state: "{{ zuul_service_zuul_server_state }}"
-  register: zuul_service_zuul_server
-  when: zuul_service_zuul_server_manage
+    enabled: "{{ zuul_service_zuul_scheduler_enabled }}"
+    name: "{{ zuul_service_zuul_scheduler_name }}"
+    state: "{{ zuul_service_zuul_scheduler_state }}"
+  register: zuul_service_zuul_scheduler
+  when: zuul_service_zuul_scheduler_manage

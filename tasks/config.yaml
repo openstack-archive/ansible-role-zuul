@@ -32,7 +32,7 @@
     owner: "{{ zuul_file_gearman_logging_conf_owner }}"
     src: "{{ zuul_file_gearman_logging_conf_src }}"
   register: zuul_file_gearman_logging_conf
-  notify: Reload zuul-server
+  notify: Reload zuul-scheduler
 
 - name: Install launcher logging file.
   become: yes
@@ -56,16 +56,16 @@
   register: zuul_file_merger_logging_conf
   notify: Reload zuul-merger
 
-- name: Install server logging file.
+- name: Install scheduler logging file.
   become: yes
   template:
-    dest: "{{ zuul_file_server_logging_conf_dest }}"
-    group: "{{ zuul_file_server_logging_conf_group }}"
-    mode: "{{ zuul_file_server_logging_conf_mode }}"
-    owner: "{{ zuul_file_server_logging_conf_owner }}"
-    src: "{{ zuul_file_server_logging_conf_src }}"
-  register: zuul_file_server_logging_conf
-  notify: Reload zuul-server
+    dest: "{{ zuul_file_scheduler_logging_conf_dest }}"
+    group: "{{ zuul_file_scheduler_logging_conf_group }}"
+    mode: "{{ zuul_file_scheduler_logging_conf_mode }}"
+    owner: "{{ zuul_file_scheduler_logging_conf_owner }}"
+    src: "{{ zuul_file_scheduler_logging_conf_src }}"
+  register: zuul_file_scheduler_logging_conf
+  notify: Reload zuul-scheduler
 
 - name: Install layout configuration.
   become: yes
@@ -76,7 +76,7 @@
     owner: "{{ zuul_file_layout_owner }}"
     src: "{{ zuul_file_layout_src }}"
   register: zuul_file_layout
-  notify: Reload zuul-server
+  notify: Reload zuul-scheduler
 
 - name: Install zuul configuration.
   become: yes
@@ -90,4 +90,4 @@
   notify:
     - Reload zuul-launcher
     - Reload zuul-merger
-    - Reload zuul-server
+    - Reload zuul-scheduler

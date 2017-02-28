@@ -33,10 +33,10 @@ __zuul_file_zuul_merger_service_config_dest: /etc/default/zuul-merger
 __zuul_file_zuul_merger_service_config_mode: 0644
 __zuul_file_zuul_merger_service_config_src: etc/default/zuul-merger
 
-__zuul_file_zuul_server_service_dest: /etc/systemd/system/zuul-server.service
-__zuul_file_zuul_server_service_mode: 0644
-__zuul_file_zuul_server_service_src: etc/systemd/system/zuul-server.service.ubuntu-xenial
+__zuul_file_zuul_scheduler_service_dest: /etc/systemd/system/zuul-scheduler.service
+__zuul_file_zuul_scheduler_service_mode: 0644
+__zuul_file_zuul_scheduler_service_src: etc/systemd/system/zuul-scheduler.service.ubuntu-xenial
 
-__zuul_file_zuul_server_service_config_dest: /etc/default/zuul-server
-__zuul_file_zuul_server_service_config_mode: 0644
-__zuul_file_zuul_server_service_config_src: etc/default/zuul-server
+__zuul_file_zuul_scheduler_service_config_dest: /etc/default/zuul-scheduler
+__zuul_file_zuul_scheduler_service_config_mode: 0644
+__zuul_file_zuul_scheduler_service_config_src: etc/default/zuul-scheduler

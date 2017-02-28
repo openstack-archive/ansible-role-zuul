@@ -33,18 +33,18 @@
           - zuul_file_gearman_logging_conf
           - zuul_file_launcher_logging_conf
           - zuul_file_merger_logging_conf
-          - zuul_file_server_logging_conf
+          - zuul_file_scheduler_logging_conf
           - zuul_file_layout
           - zuul_file_zuul_conf
           - zuul_file_zuul_launcher_service
           - zuul_file_zuul_launcher_service_config
           - zuul_file_zuul_merger_service
           - zuul_file_zuul_merger_service_config
-          - zuul_file_zuul_server_service
-          - zuul_file_zuul_server_service_config
+          - zuul_file_zuul_scheduler_service
+          - zuul_file_zuul_scheduler_service_config
           - zuul_service_zuul_launcher
           - zuul_service_zuul_merger
-          - zuul_service_zuul_server
+          - zuul_service_zuul_scheduler
 
     - name: Ensure zuul_user_name is zuul.
       shell: /usr/bin/getent passwd zuul
@@ -198,40 +198,40 @@
           - debian_zuul_merger_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'Debian'
 
-    - name: Register /etc/init.d/zuul-server
+    - name: Register /etc/init.d/zuul-scheduler
       stat:
-        path: /etc/init.d/zuul-server
-      register: _zuul_server_service_initd_stat
+        path: /etc/init.d/zuul-scheduler
+      register: _zuul_scheduler_service_initd_stat
       when:
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_release == 'trusty'
 
-    - name: Assert _zuul_server_service_initd_stat tests.
+    - name: Assert _zuul_scheduler_service_initd_stat tests.
       assert:
         that:
-          - _zuul_server_service_initd_stat.stat.exists
-          - _zuul_server_service_initd_stat.stat.isreg
-          - _zuul_server_service_initd_stat.stat.pw_name == 'root'
-          - _zuul_server_service_initd_stat.stat.gr_name == 'root'
-          - _zuul_server_service_initd_stat.stat.mode == '0755'
+          - _zuul_scheduler_service_initd_stat.stat.exists
+          - _zuul_scheduler_service_initd_stat.stat.isreg
+          - _zuul_scheduler_service_initd_stat.stat.pw_name == 'root'
+          - _zuul_scheduler_service_initd_stat.stat.gr_name == 'root'
+          - _zuul_scheduler_service_initd_stat.stat.mode == '0755'
       when:
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_release == 'trusty'
 
-    - name: Register /etc/default/zuul-server
+    - name: Register /etc/default/zuul-scheduler
       stat:
-        path: /etc/default/zuul-server
-      register: debian_zuul_server_service_config_stat
+        path: /etc/default/zuul-scheduler
+      register: debian_zuul_scheduler_service_config_stat
       when: ansible_os_family == 'Debian'
 
-    - name: Assert debian_zuul_server_service_config_stat tests.
+    - name: Assert debian_zuul_scheduler_service_config_stat tests.
       assert:
         that:
-          - debian_zuul_server_service_config_stat.stat.exists
-          - debian_zuul_server_service_config_stat.stat.isreg
-          - debian_zuul_server_service_config_stat.stat.pw_name == 'root'
-          - debian_zuul_server_service_config_stat.stat.gr_name == 'root'
-          - debian_zuul_server_service_config_stat.stat.mode == '0644'
+          - debian_zuul_scheduler_service_config_stat.stat.exists
+          - debian_zuul_scheduler_service_config_stat.stat.isreg
+          - debian_zuul_scheduler_service_config_stat.stat.pw_name == 'root'
+          - debian_zuul_scheduler_service_config_stat.stat.gr_name == 'root'
+          - debian_zuul_scheduler_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'Debian'
 
     - name: Register /etc/systemd/system/zuul-launcher.service
@@ -302,38 +302,38 @@
           - redhat_zuul_merger_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
 
-    - name: Register /etc/systemd/system/zuul-server.service
+    - name: Register /etc/systemd/system/zuul-scheduler.service
       stat:
-        path: /etc/systemd/system/zuul-server.service
-      register: _zuul_server_service_systemd_stat
+        path: /etc/systemd/system/zuul-scheduler.service
+      register: _zuul_scheduler_service_systemd_stat
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
-    - name: Assert _zuul_server_service_systemd_stat tests.
+    - name: Assert _zuul_scheduler_service_systemd_stat tests.
       assert:
         that:
-          - _zuul_server_service_systemd_stat.stat.exists
-          - _zuul_server_service_systemd_stat.stat.isreg
-          - _zuul_server_service_systemd_stat.stat.pw_name == 'root'
-          - _zuul_server_service_systemd_stat.stat.gr_name == 'root'
-          - _zuul_server_service_systemd_stat.stat.mode == '0644'
+          - _zuul_scheduler_service_systemd_stat.stat.exists
+          - _zuul_scheduler_service_systemd_stat.stat.isreg
+          - _zuul_scheduler_service_systemd_stat.stat.pw_name == 'root'
+          - _zuul_scheduler_service_systemd_stat.stat.gr_name == 'root'
+          - _zuul_scheduler_service_systemd_stat.stat.mode == '0644'
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
-    - name: Register /etc/sysconfig/zuul-server
+    - name: Register /etc/sysconfig/zuul-scheduler
       stat:
-        path: /etc/sysconfig/zuul-server
-      register: redhat_zuul_server_service_config_stat
+        path: /etc/sysconfig/zuul-scheduler
+      register: redhat_zuul_scheduler_service_config_stat
       when: ansible_os_family == 'RedHat'
 
-    - name: Assert redhat_zuul_server_service_config_stat tests.
+    - name: Assert redhat_zuul_scheduler_service_config_stat tests.
       assert:
         that:
-          - redhat_zuul_server_service_config_stat.stat.exists
-          - redhat_zuul_server_service_config_stat.stat.isreg
-          - redhat_zuul_server_service_config_stat.stat.pw_name == 'root'
-          - redhat_zuul_server_service_config_stat.stat.gr_name == 'root'
-          - redhat_zuul_server_service_config_stat.stat.mode == '0644'
+          - redhat_zuul_scheduler_service_config_stat.stat.exists
+          - redhat_zuul_scheduler_service_config_stat.stat.isreg
+          - redhat_zuul_scheduler_service_config_stat.stat.pw_name == 'root'
+          - redhat_zuul_scheduler_service_config_stat.stat.gr_name == 'root'
+          - redhat_zuul_scheduler_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
 
     - name: Ensure zuul-launcher is running.
@@ -346,7 +346,7 @@
       shell: /usr/sbin/service zuul-merger status
       tags: skip_ansible_lint
 
-    - name: Ensure zuul-server is running.
+    - name: Ensure zuul-scheduler is running.
       become: yes
-      shell: /usr/sbin/service zuul-server status
+      shell: /usr/sbin/service zuul-scheduler status
       tags: skip_ansible_lint
