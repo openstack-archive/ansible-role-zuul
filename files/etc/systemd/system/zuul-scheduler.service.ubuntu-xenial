@@ -1,13 +1,13 @@
 [Unit]
-Description=Zuul Server Service
+Description=Zuul Scheduler Service
 After=syslog.target network.target
 
 [Service]
 Type=simple
 User=zuul
 Group=zuul
-EnvironmentFile=-/etc/default/zuul-server
-ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-server -d"
+EnvironmentFile=-/etc/default/zuul-scheduler
+ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-scheduler -d"
 ExecReload=/bin/kill -HUP $MAINPID
 
 [Install]

@@ -48,11 +48,11 @@ zuul_file_merger_logging_conf_mode: 0644
 zuul_file_merger_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_merger_logging_conf_src: etc/zuul/merger-logging.conf
 
-zuul_file_server_logging_conf_dest: /etc/zuul/server-logging.conf
-zuul_file_server_logging_conf_group: "{{ zuul_user_group }}"
-zuul_file_server_logging_conf_mode: 0644
-zuul_file_server_logging_conf_owner: "{{ zuul_user_name }}"
-zuul_file_server_logging_conf_src: etc/zuul/server-logging.conf
+zuul_file_scheduler_logging_conf_dest: /etc/zuul/scheduler-logging.conf
+zuul_file_scheduler_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_scheduler_logging_conf_mode: 0644
+zuul_file_scheduler_logging_conf_owner: "{{ zuul_user_name }}"
+zuul_file_scheduler_logging_conf_src: etc/zuul/scheduler-logging.conf
 
 zuul_file_zuul_conf_dest: /etc/zuul/zuul.conf
 zuul_file_zuul_conf_group: "{{ zuul_user_group }}"
@@ -63,7 +63,7 @@ zuul_file_zuul_conf_src: etc/zuul/zuul.conf
 # tasks/install.yaml
 zuul_git_dest: /opt/ansible-role-zuul/git/openstack-infra/zuul
 zuul_git_uri: https://git.openstack.org/openstack-infra/zuul
-zuul_git_version: master
+zuul_git_version: feature/zuulv3
 
 zuul_install_method: git
 
@@ -85,11 +85,11 @@ zuul_file_zuul_merger_service_owner: root
 zuul_file_zuul_merger_service_config_group: root
 zuul_file_zuul_merger_service_config_owner: root
 
-zuul_file_zuul_server_service_group: root
-zuul_file_zuul_server_service_owner: root
+zuul_file_zuul_scheduler_service_group: root
+zuul_file_zuul_scheduler_service_owner: root
 
-zuul_file_zuul_server_service_config_group: root
-zuul_file_zuul_server_service_config_owner: root
+zuul_file_zuul_scheduler_service_config_group: root
+zuul_file_zuul_scheduler_service_config_owner: root
 
 zuul_service_zuul_launcher_enabled: yes
 zuul_service_zuul_launcher_manage: true
@@ -101,7 +101,7 @@ zuul_service_zuul_merger_manage: true
 zuul_service_zuul_merger_name: zuul-merger
 zuul_service_zuul_merger_state: started
 
-zuul_service_zuul_server_enabled: yes
-zuul_service_zuul_server_manage: true
-zuul_service_zuul_server_name: zuul-server
-zuul_service_zuul_server_state: started
+zuul_service_zuul_scheduler_enabled: yes
+zuul_service_zuul_scheduler_manage: true
+zuul_service_zuul_scheduler_name: zuul-scheduler
+zuul_service_zuul_scheduler_state: started

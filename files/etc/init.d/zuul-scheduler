@@ -1,6 +1,6 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          zuul-server
+# Provides:          zuul-scheduler
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
@@ -12,14 +12,14 @@
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Zuul"
-NAME=zuul-server
+NAME=zuul-scheduler
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-DAEMON=$PREFIX/bin/zuul-server
+DAEMON=$PREFIX/bin/zuul-scheduler
 USER=${RUNASUSER:-zuul}
 
 # Exit if the package is not installed
