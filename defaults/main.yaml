@@ -36,11 +36,11 @@ zuul_file_gearman_logging_conf_mode: 0644
 zuul_file_gearman_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_gearman_logging_conf_src: etc/zuul/gearman-logging.conf
 
-zuul_file_launcher_logging_conf_dest: /etc/zuul/launcher-logging.conf
-zuul_file_launcher_logging_conf_group: "{{ zuul_user_group }}"
-zuul_file_launcher_logging_conf_mode: 0644
-zuul_file_launcher_logging_conf_owner: "{{ zuul_user_name }}"
-zuul_file_launcher_logging_conf_src: etc/zuul/launcher-logging.conf
+zuul_file_executor_logging_conf_dest: /etc/zuul/executor-logging.conf
+zuul_file_executor_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_executor_logging_conf_mode: 0644
+zuul_file_executor_logging_conf_owner: "{{ zuul_user_name }}"
+zuul_file_executor_logging_conf_src: etc/zuul/executor-logging.conf
 
 zuul_file_merger_logging_conf_dest: /etc/zuul/merger-logging.conf
 zuul_file_merger_logging_conf_group: "{{ zuul_user_group }}"
@@ -73,11 +73,11 @@ zuul_pip_name: zuul
 #zuul_pip_virtualenv:
 
 # tasks/service.yaml
-zuul_file_zuul_launcher_service_group: root
-zuul_file_zuul_launcher_service_owner: root
+zuul_file_zuul_executor_service_group: root
+zuul_file_zuul_executor_service_owner: root
 
-zuul_file_zuul_launcher_service_config_group: root
-zuul_file_zuul_launcher_service_config_owner: root
+zuul_file_zuul_executor_service_config_group: root
+zuul_file_zuul_executor_service_config_owner: root
 
 zuul_file_zuul_merger_service_group: root
 zuul_file_zuul_merger_service_owner: root
@@ -91,10 +91,10 @@ zuul_file_zuul_scheduler_service_owner: root
 zuul_file_zuul_scheduler_service_config_group: root
 zuul_file_zuul_scheduler_service_config_owner: root
 
-zuul_service_zuul_launcher_enabled: yes
-zuul_service_zuul_launcher_manage: true
-zuul_service_zuul_launcher_name: zuul-launcher
-zuul_service_zuul_launcher_state: started
+zuul_service_zuul_executor_enabled: yes
+zuul_service_zuul_executor_manage: true
+zuul_service_zuul_executor_name: zuul-executor
+zuul_service_zuul_executor_state: started
 
 zuul_service_zuul_merger_enabled: yes
 zuul_service_zuul_merger_manage: true

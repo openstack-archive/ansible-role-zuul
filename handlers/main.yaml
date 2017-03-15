@@ -12,14 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Reload zuul-launcher
+- name: Reload zuul-executor
   become: yes
   service:
-    name: zuul-launcher
+    name: zuul-executor
     state: reloaded
-  when: zuul_service_zuul_launcher_manage and
-        zuul_service_zuul_launcher_state == "started" and not
-        zuul_service_zuul_launcher.changed
+  when: zuul_service_zuul_executor_manage and
+        zuul_service_zuul_executor_state == "started" and not
+        zuul_service_zuul_executor.changed
 
 - name: Reload zuul-merger
   become: yes
