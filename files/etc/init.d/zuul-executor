@@ -1,27 +1,27 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          zuul-launcher
+# Provides:          zuul-executor
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Zuul
-# Description:       Trunk gating system launcher
+# Description:       Trunk gating system executor
 ### END INIT INFO
 
 # Do NOT "set -e"
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="Zuul Launcher"
-NAME=zuul-launcher
+DESC="Zuul executor"
+NAME=zuul-executor
 PIDFILE=/var/run/$NAME/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-DAEMON=$PREFIX/bin/zuul-launcher
+DAEMON=$PREFIX/bin/zuul-executor
 USER=${RUNASUSER:-zuul}
 
 # Exit if the package is not installed
@@ -102,7 +102,7 @@ case "$1" in
         case "$?" in
             0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
             2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
-            3) echo "Pidfile at $PIDFILE already exists, run service zuul-launcher stop to clean up."
+            3) echo "Pidfile at $PIDFILE already exists, run service zuul-executor stop to clean up."
         esac
         ;;
     stop)

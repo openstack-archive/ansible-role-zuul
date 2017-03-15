@@ -1,0 +1,13 @@
+[Unit]
+Description=Zuul Executor Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=zuul
+Group=zuul
+EnvironmentFile=-/etc/default/zuul-executor
+ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-executor -d"
+
+[Install]
+WantedBy=multi-user.target

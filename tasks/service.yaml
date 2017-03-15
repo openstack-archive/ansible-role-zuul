@@ -12,35 +12,35 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define zuul_file_zuul_launcher_service_dest.
+- name: Define zuul_file_zuul_executor_service_dest.
   set_fact:
-    zuul_file_zuul_launcher_service_dest: "{{ __zuul_file_zuul_launcher_service_dest }}"
-  when: zuul_file_zuul_launcher_service_dest is not defined
+    zuul_file_zuul_executor_service_dest: "{{ __zuul_file_zuul_executor_service_dest }}"
+  when: zuul_file_zuul_executor_service_dest is not defined
 
-- name: Define zuul_file_zuul_launcher_service_mode.
+- name: Define zuul_file_zuul_executor_service_mode.
   set_fact:
-    zuul_file_zuul_launcher_service_mode: "{{ __zuul_file_zuul_launcher_service_mode }}"
-  when: zuul_file_zuul_launcher_service_mode is not defined
+    zuul_file_zuul_executor_service_mode: "{{ __zuul_file_zuul_executor_service_mode }}"
+  when: zuul_file_zuul_executor_service_mode is not defined
 
-- name: Define zuul_file_zuul_launcher_service_src.
+- name: Define zuul_file_zuul_executor_service_src.
   set_fact:
-    zuul_file_zuul_launcher_service_src: "{{ __zuul_file_zuul_launcher_service_src }}"
-  when: zuul_file_zuul_launcher_service_src is not defined
+    zuul_file_zuul_executor_service_src: "{{ __zuul_file_zuul_executor_service_src }}"
+  when: zuul_file_zuul_executor_service_src is not defined
 
-- name: Define zuul_file_zuul_launcher_service_config_dest.
+- name: Define zuul_file_zuul_executor_service_config_dest.
   set_fact:
-    zuul_file_zuul_launcher_service_config_dest: "{{ __zuul_file_zuul_launcher_service_config_dest }}"
-  when: zuul_file_zuul_launcher_service_config_dest is not defined
+    zuul_file_zuul_executor_service_config_dest: "{{ __zuul_file_zuul_executor_service_config_dest }}"
+  when: zuul_file_zuul_executor_service_config_dest is not defined
 
-- name: Define zuul_file_zuul_launcher_service_config_mode.
+- name: Define zuul_file_zuul_executor_service_config_mode.
   set_fact:
-    zuul_file_zuul_launcher_service_config_mode: "{{ __zuul_file_zuul_launcher_service_config_mode }}"
-  when: zuul_file_zuul_launcher_service_config_mode is not defined
+    zuul_file_zuul_executor_service_config_mode: "{{ __zuul_file_zuul_executor_service_config_mode }}"
+  when: zuul_file_zuul_executor_service_config_mode is not defined
 
-- name: Define zuul_file_zuul_launcher_service_config_src.
+- name: Define zuul_file_zuul_executor_service_config_src.
   set_fact:
-    zuul_file_zuul_launcher_service_config_src: "{{ __zuul_file_zuul_launcher_service_config_src }}"
-  when: zuul_file_zuul_launcher_service_config_src is not defined
+    zuul_file_zuul_executor_service_config_src: "{{ __zuul_file_zuul_executor_service_config_src }}"
+  when: zuul_file_zuul_executor_service_config_src is not defined
 
 - name: Define zuul_file_zuul_merger_service_dest.
   set_fact:
@@ -102,25 +102,25 @@
     zuul_file_zuul_scheduler_service_config_src: "{{ __zuul_file_zuul_scheduler_service_config_src }}"
   when: zuul_file_zuul_scheduler_service_config_src is not defined
 
-- name: Copy zuul-launcher service into place.
+- name: Copy zuul-executor service into place.
   become: yes
   copy:
-    dest: "{{ zuul_file_zuul_launcher_service_dest }}"
-    group: "{{ zuul_file_zuul_launcher_service_group }}"
-    mode: "{{ zuul_file_zuul_launcher_service_mode }}"
-    owner: "{{ zuul_file_zuul_launcher_service_owner }}"
-    src: "{{ zuul_file_zuul_launcher_service_src }}"
-  register: zuul_file_zuul_launcher_service
+    dest: "{{ zuul_file_zuul_executor_service_dest }}"
+    group: "{{ zuul_file_zuul_executor_service_group }}"
+    mode: "{{ zuul_file_zuul_executor_service_mode }}"
+    owner: "{{ zuul_file_zuul_executor_service_owner }}"
+    src: "{{ zuul_file_zuul_executor_service_src }}"
+  register: zuul_file_zuul_executor_service
 
-- name: Copy zuul-launcher service config into place.
+- name: Copy zuul-executor service config into place.
   become: yes
   copy:
-    dest: "{{ zuul_file_zuul_launcher_service_config_dest }}"
-    group: "{{ zuul_file_zuul_launcher_service_config_group }}"
-    mode: "{{ zuul_file_zuul_launcher_service_config_mode }}"
-    owner: "{{ zuul_file_zuul_launcher_service_config_owner }}"
-    src: "{{ zuul_file_zuul_launcher_service_config_src }}"
-  register: zuul_file_zuul_launcher_service_config
+    dest: "{{ zuul_file_zuul_executor_service_config_dest }}"
+    group: "{{ zuul_file_zuul_executor_service_config_group }}"
+    mode: "{{ zuul_file_zuul_executor_service_config_mode }}"
+    owner: "{{ zuul_file_zuul_executor_service_config_owner }}"
+    src: "{{ zuul_file_zuul_executor_service_config_src }}"
+  register: zuul_file_zuul_executor_service_config
 
 - name: Copy zuul-merger service into place.
   become: yes
@@ -162,14 +162,14 @@
     src: "{{ zuul_file_zuul_scheduler_service_config_src }}"
   register: zuul_file_zuul_scheduler_service_config
 
-- name: Enable zuul-launcher service.
+- name: Enable zuul-executor service.
   become: yes
   service:
-    enabled: "{{ zuul_service_zuul_launcher_enabled }}"
-    name: "{{ zuul_service_zuul_launcher_name }}"
-    state: "{{ zuul_service_zuul_launcher_state }}"
-  register: zuul_service_zuul_launcher
-  when: zuul_service_zuul_launcher_manage
+    enabled: "{{ zuul_service_zuul_executor_enabled }}"
+    name: "{{ zuul_service_zuul_executor_name }}"
+    state: "{{ zuul_service_zuul_executor_state }}"
+  register: zuul_service_zuul_executor
+  when: zuul_service_zuul_executor_manage
 
 - name: Enable zuul-merger service.
   become: yes

@@ -34,16 +34,16 @@
   register: zuul_file_gearman_logging_conf
   notify: Reload zuul-scheduler
 
-- name: Install launcher logging file.
+- name: Install executor logging file.
   become: yes
   template:
-    dest: "{{ zuul_file_launcher_logging_conf_dest }}"
-    group: "{{ zuul_file_launcher_logging_conf_group }}"
-    mode: "{{ zuul_file_launcher_logging_conf_mode }}"
-    owner: "{{ zuul_file_launcher_logging_conf_owner }}"
-    src: "{{ zuul_file_launcher_logging_conf_src }}"
-  register: zuul_file_launcher_logging_conf
-  notify: Reload zuul-launcher
+    dest: "{{ zuul_file_executor_logging_conf_dest }}"
+    group: "{{ zuul_file_executor_logging_conf_group }}"
+    mode: "{{ zuul_file_executor_logging_conf_mode }}"
+    owner: "{{ zuul_file_executor_logging_conf_owner }}"
+    src: "{{ zuul_file_executor_logging_conf_src }}"
+  register: zuul_file_executor_logging_conf
+  notify: Reload zuul-executor
 
 - name: Install merger logging file.
   become: yes
@@ -88,6 +88,6 @@
     src: "{{ zuul_file_zuul_conf_src }}"
   register: zuul_file_zuul_conf
   notify:
-    - Reload zuul-launcher
+    - Reload zuul-executor
     - Reload zuul-merger
     - Reload zuul-scheduler

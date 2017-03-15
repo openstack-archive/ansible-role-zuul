@@ -31,18 +31,18 @@
       assert:
         that:
           - zuul_file_gearman_logging_conf
-          - zuul_file_launcher_logging_conf
+          - zuul_file_executor_logging_conf
           - zuul_file_merger_logging_conf
           - zuul_file_scheduler_logging_conf
           - zuul_file_layout
           - zuul_file_zuul_conf
-          - zuul_file_zuul_launcher_service
-          - zuul_file_zuul_launcher_service_config
+          - zuul_file_zuul_executor_service
+          - zuul_file_zuul_executor_service_config
           - zuul_file_zuul_merger_service
           - zuul_file_zuul_merger_service_config
           - zuul_file_zuul_scheduler_service
           - zuul_file_zuul_scheduler_service_config
-          - zuul_service_zuul_launcher
+          - zuul_service_zuul_executor
           - zuul_service_zuul_merger
           - zuul_service_zuul_scheduler
 
@@ -126,40 +126,40 @@
           - zuul_conf_stat.stat.pw_name == 'zuul'
           - zuul_conf_stat.stat.gr_name == 'zuul'
 
-    - name: Register /etc/init.d/zuul-launcher
+    - name: Register /etc/init.d/zuul-executor
       stat:
-        path: /etc/init.d/zuul-launcher
-      register: _zuul_launcher_service_initd_stat
+        path: /etc/init.d/zuul-executor
+      register: _zuul_executor_service_initd_stat
       when:
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_release == 'trusty'
 
-    - name: Assert _zuul_launcher_service_initd_stat tests.
+    - name: Assert _zuul_executor_service_initd_stat tests.
       assert:
         that:
-          - _zuul_launcher_service_initd_stat.stat.exists
-          - _zuul_launcher_service_initd_stat.stat.isreg
-          - _zuul_launcher_service_initd_stat.stat.pw_name == 'root'
-          - _zuul_launcher_service_initd_stat.stat.gr_name == 'root'
-          - _zuul_launcher_service_initd_stat.stat.mode == '0755'
+          - _zuul_executor_service_initd_stat.stat.exists
+          - _zuul_executor_service_initd_stat.stat.isreg
+          - _zuul_executor_service_initd_stat.stat.pw_name == 'root'
+          - _zuul_executor_service_initd_stat.stat.gr_name == 'root'
+          - _zuul_executor_service_initd_stat.stat.mode == '0755'
       when:
         - ansible_distribution == 'Ubuntu'
         - ansible_distribution_release == 'trusty'
 
-    - name: Register /etc/default/zuul-launcher
+    - name: Register /etc/default/zuul-executor
       stat:
-        path: /etc/default/zuul-launcher
-      register: debian_zuul_launcher_service_config_stat
+        path: /etc/default/zuul-executor
+      register: debian_zuul_executor_service_config_stat
       when: ansible_os_family == 'Debian'
 
-    - name: Assert debian_zuul_launcher_service_config_stat tests.
+    - name: Assert debian_zuul_executor_service_config_stat tests.
       assert:
         that:
-          - debian_zuul_launcher_service_config_stat.stat.exists
-          - debian_zuul_launcher_service_config_stat.stat.isreg
-          - debian_zuul_launcher_service_config_stat.stat.pw_name == 'root'
-          - debian_zuul_launcher_service_config_stat.stat.gr_name == 'root'
-          - debian_zuul_launcher_service_config_stat.stat.mode == '0644'
+          - debian_zuul_executor_service_config_stat.stat.exists
+          - debian_zuul_executor_service_config_stat.stat.isreg
+          - debian_zuul_executor_service_config_stat.stat.pw_name == 'root'
+          - debian_zuul_executor_service_config_stat.stat.gr_name == 'root'
+          - debian_zuul_executor_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'Debian'
 
     - name: Register /etc/init.d/zuul-merger
@@ -234,38 +234,38 @@
           - debian_zuul_scheduler_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'Debian'
 
-    - name: Register /etc/systemd/system/zuul-launcher.service
+    - name: Register /etc/systemd/system/zuul-executor.service
       stat:
-        path: /etc/systemd/system/zuul-launcher.service
-      register: _zuul_launcher_service_systemd_stat
+        path: /etc/systemd/system/zuul-executor.service
+      register: _zuul_executor_service_systemd_stat
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
-    - name: Assert _zuul_launcher_service_systemd_stat tests.
+    - name: Assert _zuul_executor_service_systemd_stat tests.
       assert:
         that:
-          - _zuul_launcher_service_systemd_stat.stat.exists
-          - _zuul_launcher_service_systemd_stat.stat.isreg
-          - _zuul_launcher_service_systemd_stat.stat.pw_name == 'root'
-          - _zuul_launcher_service_systemd_stat.stat.gr_name == 'root'
-          - _zuul_launcher_service_systemd_stat.stat.mode == '0644'
+          - _zuul_executor_service_systemd_stat.stat.exists
+          - _zuul_executor_service_systemd_stat.stat.isreg
+          - _zuul_executor_service_systemd_stat.stat.pw_name == 'root'
+          - _zuul_executor_service_systemd_stat.stat.gr_name == 'root'
+          - _zuul_executor_service_systemd_stat.stat.mode == '0644'
       when: (ansible_os_family == 'RedHat') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
-    - name: Register /etc/sysconfig/zuul-launcher
+    - name: Register /etc/sysconfig/zuul-executor
       stat:
-        path: /etc/sysconfig/zuul-launcher
-      register: redhat_zuul_launcher_service_config_stat
+        path: /etc/sysconfig/zuul-executor
+      register: redhat_zuul_executor_service_config_stat
       when: ansible_os_family == 'RedHat'
 
-    - name: Assert redhat_zuul_launcher_service_config_stat tests.
+    - name: Assert redhat_zuul_executor_service_config_stat tests.
       assert:
         that:
-          - redhat_zuul_launcher_service_config_stat.stat.exists
-          - redhat_zuul_launcher_service_config_stat.stat.isreg
-          - redhat_zuul_launcher_service_config_stat.stat.pw_name == 'root'
-          - redhat_zuul_launcher_service_config_stat.stat.gr_name == 'root'
-          - redhat_zuul_launcher_service_config_stat.stat.mode == '0644'
+          - redhat_zuul_executor_service_config_stat.stat.exists
+          - redhat_zuul_executor_service_config_stat.stat.isreg
+          - redhat_zuul_executor_service_config_stat.stat.pw_name == 'root'
+          - redhat_zuul_executor_service_config_stat.stat.gr_name == 'root'
+          - redhat_zuul_executor_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
 
     - name: Register /etc/systemd/system/zuul-merger.service
@@ -336,9 +336,9 @@
           - redhat_zuul_scheduler_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'RedHat'
 
-    - name: Ensure zuul-launcher is running.
+    - name: Ensure zuul-executor is running.
       become: yes
-      shell: /usr/sbin/service zuul-launcher status
+      shell: /usr/sbin/service zuul-executor status
       tags: skip_ansible_lint
 
     - name: Ensure zuul-merger is running.
