@@ -18,4 +18,5 @@
     extra_args: "{{ zuul_pip_extra_args|default(omit) }}"
     name: "{{ zuul_pip_name }}"
     version: "{{ zuul_pip_version|default(omit) }}"
+    virtualenv_python: "{{ zuul_pip_virtualenv_python|default(omit) }}"
     virtualenv: "{{ zuul_pip_virtualenv|default(omit) }}"

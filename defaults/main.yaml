@@ -68,9 +68,10 @@ zuul_git_version: feature/zuulv3
 zuul_install_method: git
 
 zuul_pip_name: zuul
-#zuul_pip_extra_args:
-#zuul_pip_version:
-#zuul_pip_virtualenv:
+# zuul_pip_extra_args:
+# zuul_pip_version:
+# zuul_pip_virtualenv_python
+# zuul_pip_virtualenv:
 
 # tasks/service.yaml
 zuul_file_zuul_executor_service_group: root
