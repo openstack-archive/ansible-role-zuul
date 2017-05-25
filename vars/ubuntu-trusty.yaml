@@ -15,6 +15,8 @@
 __zuul_build_depends:
   - build-essential
   - git
+  - libffi-dev
+  - libssl-dev
   - python-dev
 
 __zuul_file_zuul_executor_service_dest: /etc/init.d/zuul-executor
