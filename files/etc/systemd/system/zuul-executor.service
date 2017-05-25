@@ -4,9 +4,9 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-User=zuul
+Environment="PREFIX=/usr/local"
 Group=zuul
-EnvironmentFile=-/etc/default/zuul-executor
+User=zuul
 ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-executor -d"
 
 [Install]

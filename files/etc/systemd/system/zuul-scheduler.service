@@ -4,9 +4,9 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-User=zuul
+Environment="PREFIX=/usr/local"
 Group=zuul
-EnvironmentFile=-/etc/sysconfig/zuul-scheduler
+User=zuul
 ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-scheduler -d"
 ExecReload=/bin/kill -HUP $MAINPID
 

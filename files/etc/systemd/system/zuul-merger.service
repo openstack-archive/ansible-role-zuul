@@ -4,10 +4,9 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-User=zuul
+Environment="PREFIX=/usr/local"
 Group=zuul
-LimitNOFILE=8192
-EnvironmentFile=-/etc/sysconfig/zuul-merger
+User=zuul
 ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-merger -d"
 
 [Install]
