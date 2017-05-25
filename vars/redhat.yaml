@@ -16,6 +16,8 @@ __zuul_build_depends:
   - gcc
   - gcc-c++
   - git
+  - libffi-devel
+  - openssl-devel
   - python-devel
 
 __zuul_file_zuul_executor_service_dest: /etc/systemd/system/zuul-executor.service
