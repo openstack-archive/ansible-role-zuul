@@ -113,9 +113,17 @@
   register: zuul_file_zuul_executor_service
   when: zuul_file_zuul_executor_service_manage
 
+- name: Create zuul-executor service config directory.
+  become: yes
+  file:
+    group: "{{ zuul_file_zuul_executor_service_config_group }}"
+    owner: "{{ zuul_file_zuul_executor_service_config_owner }}"
+    path: "{{ zuul_file_zuul_executor_service_dest }}.d"
+    state: directory
+
 - name: Copy zuul-executor service config into place.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_zuul_executor_service_config_dest }}"
     group: "{{ zuul_file_zuul_executor_service_config_group }}"
     mode: "{{ zuul_file_zuul_executor_service_config_mode }}"
@@ -135,9 +143,17 @@
   register: zuul_file_zuul_merger_service
   when: zuul_file_zuul_merger_service_manage
 
+- name: Create zuul-merger service config directory.
+  become: yes
+  file:
+    group: "{{ zuul_file_zuul_merger_service_config_group }}"
+    owner: "{{ zuul_file_zuul_merger_service_config_owner }}"
+    path: "{{ zuul_file_zuul_merger_service_dest }}.d"
+    state: directory
+
 - name: Copy zuul-merger service config into place.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_zuul_merger_service_config_dest }}"
     group: "{{ zuul_file_zuul_merger_service_config_group }}"
     mode: "{{ zuul_file_zuul_merger_service_config_mode }}"
@@ -157,9 +173,17 @@
   register: zuul_file_zuul_scheduler_service
   when: zuul_file_zuul_scheduler_service_manage
 
+- name: Create zuul-scheduler service config directory.
+  become: yes
+  file:
+    group: "{{ zuul_file_zuul_scheduler_service_config_group }}"
+    owner: "{{ zuul_file_zuul_scheduler_service_config_owner }}"
+    path: "{{ zuul_file_zuul_scheduler_service_dest }}.d"
+    state: directory
+
 - name: Copy zuul-scheduler service config into place.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_zuul_scheduler_service_config_dest }}"
     group: "{{ zuul_file_zuul_scheduler_service_config_group }}"
     mode: "{{ zuul_file_zuul_scheduler_service_config_mode }}"
