@@ -126,26 +126,6 @@
           - zuul_conf_stat.stat.pw_name == 'zuul'
           - zuul_conf_stat.stat.gr_name == 'zuul'
 
-    - name: Register /etc/init.d/zuul-executor
-      stat:
-        path: /etc/init.d/zuul-executor
-      register: _zuul_executor_service_initd_stat
-      when:
-        - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_release == 'trusty'
-
-    - name: Assert _zuul_executor_service_initd_stat tests.
-      assert:
-        that:
-          - _zuul_executor_service_initd_stat.stat.exists
-          - _zuul_executor_service_initd_stat.stat.isreg
-          - _zuul_executor_service_initd_stat.stat.pw_name == 'root'
-          - _zuul_executor_service_initd_stat.stat.gr_name == 'root'
-          - _zuul_executor_service_initd_stat.stat.mode == '0755'
-      when:
-        - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_release == 'trusty'
-
     - name: Register /etc/default/zuul-executor
       stat:
         path: /etc/default/zuul-executor
@@ -162,26 +142,6 @@
           - debian_zuul_executor_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'Debian'
 
-    - name: Register /etc/init.d/zuul-merger
-      stat:
-        path: /etc/init.d/zuul-merger
-      register: _zuul_merger_service_initd_stat
-      when:
-        - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_release == 'trusty'
-
-    - name: Assert _zuul_merger_service_initd_stat tests.
-      assert:
-        that:
-          - _zuul_merger_service_initd_stat.stat.exists
-          - _zuul_merger_service_initd_stat.stat.isreg
-          - _zuul_merger_service_initd_stat.stat.pw_name == 'root'
-          - _zuul_merger_service_initd_stat.stat.gr_name == 'root'
-          - _zuul_merger_service_initd_stat.stat.mode == '0755'
-      when:
-        - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_release == 'trusty'
-
     - name: Register /etc/default/zuul-merger
       stat:
         path: /etc/default/zuul-merger
@@ -197,26 +157,6 @@
           - debian_zuul_merger_service_config_stat.stat.gr_name == 'root'
           - debian_zuul_merger_service_config_stat.stat.mode == '0644'
       when: ansible_os_family == 'Debian'
-
-    - name: Register /etc/init.d/zuul-scheduler
-      stat:
-        path: /etc/init.d/zuul-scheduler
-      register: _zuul_scheduler_service_initd_stat
-      when:
-        - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_release == 'trusty'
-
-    - name: Assert _zuul_scheduler_service_initd_stat tests.
-      assert:
-        that:
-          - _zuul_scheduler_service_initd_stat.stat.exists
-          - _zuul_scheduler_service_initd_stat.stat.isreg
-          - _zuul_scheduler_service_initd_stat.stat.pw_name == 'root'
-          - _zuul_scheduler_service_initd_stat.stat.gr_name == 'root'
-          - _zuul_scheduler_service_initd_stat.stat.mode == '0755'
-      when:
-        - ansible_distribution == 'Ubuntu'
-        - ansible_distribution_release == 'trusty'
 
     - name: Register /etc/default/zuul-scheduler
       stat:
