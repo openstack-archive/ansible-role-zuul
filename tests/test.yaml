@@ -172,8 +172,6 @@
       stat:
         path: /etc/systemd/system/zuul-executor.service
       register: _zuul_executor_service_systemd_stat
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert _zuul_executor_service_systemd_stat tests.
       assert:
@@ -183,15 +181,11 @@
           - _zuul_executor_service_systemd_stat.stat.pw_name == 'root'
           - _zuul_executor_service_systemd_stat.stat.gr_name == 'root'
           - _zuul_executor_service_systemd_stat.stat.mode == '0644'
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Register /etc/systemd/system/zuul-merger.service
       stat:
         path: /etc/systemd/system/zuul-merger.service
       register: _zuul_merger_service_systemd_stat
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert _zuul_merger_service_systemd_stat tests.
       assert:
@@ -201,15 +195,11 @@
           - _zuul_merger_service_systemd_stat.stat.pw_name == 'root'
           - _zuul_merger_service_systemd_stat.stat.gr_name == 'root'
           - _zuul_merger_service_systemd_stat.stat.mode == '0644'
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Register /etc/systemd/system/zuul-scheduler.service
       stat:
         path: /etc/systemd/system/zuul-scheduler.service
       register: _zuul_scheduler_service_systemd_stat
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Assert _zuul_scheduler_service_systemd_stat tests.
       assert:
@@ -219,8 +209,6 @@
           - _zuul_scheduler_service_systemd_stat.stat.pw_name == 'root'
           - _zuul_scheduler_service_systemd_stat.stat.gr_name == 'root'
           - _zuul_scheduler_service_systemd_stat.stat.mode == '0644'
-      when: (ansible_os_family == 'RedHat') or
-            (ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial')
 
     - name: Ensure zuul-executor is running.
       become: yes
