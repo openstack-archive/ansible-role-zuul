@@ -98,17 +98,20 @@ zuul_file_zuul_scheduler_service_config_manage: true
 zuul_file_zuul_scheduler_service_config_group: root
 zuul_file_zuul_scheduler_service_config_owner: root
 
+zuul_service_zuul_executor_daemon_reload: yes
 zuul_service_zuul_executor_enabled: yes
 zuul_service_zuul_executor_manage: true
-zuul_service_zuul_executor_name: zuul-executor
+zuul_service_zuul_executor_name: zuul-executor.service
 zuul_service_zuul_executor_state: started
 
+zuul_service_zuul_merger_daemon_reload: yes
 zuul_service_zuul_merger_enabled: yes
 zuul_service_zuul_merger_manage: true
-zuul_service_zuul_merger_name: zuul-merger
+zuul_service_zuul_merger_name: zuul-merger.service
 zuul_service_zuul_merger_state: started
 
+zuul_service_zuul_scheduler_daemon_reload: yes
 zuul_service_zuul_scheduler_enabled: yes
 zuul_service_zuul_scheduler_manage: true
-zuul_service_zuul_scheduler_name: zuul-scheduler
+zuul_service_zuul_scheduler_name: zuul-scheduler.service
 zuul_service_zuul_scheduler_state: started

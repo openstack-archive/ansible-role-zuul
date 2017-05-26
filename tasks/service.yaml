@@ -197,7 +197,8 @@
 
 - name: Enable zuul-executor service.
   become: yes
-  service:
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_executor_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_executor_enabled }}"
     name: "{{ zuul_service_zuul_executor_name }}"
     state: "{{ zuul_service_zuul_executor_state }}"
@@ -206,7 +207,8 @@
 
 - name: Enable zuul-merger service.
   become: yes
-  service:
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_merger_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_merger_enabled }}"
     name: "{{ zuul_service_zuul_merger_name }}"
     state: "{{ zuul_service_zuul_merger_state }}"
@@ -215,7 +217,8 @@
 
 - name: Enable zuul-scheduler service.
   become: yes
-  service:
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_scheduler_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_scheduler_enabled }}"
     name: "{{ zuul_service_zuul_scheduler_name }}"
     state: "{{ zuul_service_zuul_scheduler_state }}"
