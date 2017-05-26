@@ -111,6 +111,7 @@
     owner: "{{ zuul_file_zuul_executor_service_owner }}"
     src: "{{ zuul_file_zuul_executor_service_src }}"
   register: zuul_file_zuul_executor_service
+  when: zuul_file_zuul_executor_service_manage
 
 - name: Copy zuul-executor service config into place.
   become: yes
@@ -121,6 +122,7 @@
     owner: "{{ zuul_file_zuul_executor_service_config_owner }}"
     src: "{{ zuul_file_zuul_executor_service_config_src }}"
   register: zuul_file_zuul_executor_service_config
+  when: zuul_file_zuul_executor_service_config_manage
 
 - name: Copy zuul-merger service into place.
   become: yes
@@ -131,6 +133,7 @@
     owner: "{{ zuul_file_zuul_merger_service_owner }}"
     src: "{{ zuul_file_zuul_merger_service_src }}"
   register: zuul_file_zuul_merger_service
+  when: zuul_file_zuul_merger_service_manage
 
 - name: Copy zuul-merger service config into place.
   become: yes
@@ -141,6 +144,7 @@
     owner: "{{ zuul_file_zuul_merger_service_config_owner }}"
     src: "{{ zuul_file_zuul_merger_service_config_src }}"
   register: zuul_file_zuul_merger_service_config
+  when: zuul_file_zuul_merger_service_config_manage
 
 - name: Copy zuul-scheduler service into place.
   become: yes
@@ -151,6 +155,7 @@
     owner: "{{ zuul_file_zuul_scheduler_service_owner }}"
     src: "{{ zuul_file_zuul_scheduler_service_src }}"
   register: zuul_file_zuul_scheduler_service
+  when: zuul_file_zuul_scheduler_service_manage
 
 - name: Copy zuul-scheduler service config into place.
   become: yes
@@ -161,6 +166,7 @@
     owner: "{{ zuul_file_zuul_scheduler_service_config_owner }}"
     src: "{{ zuul_file_zuul_scheduler_service_config_src }}"
   register: zuul_file_zuul_scheduler_service_config
+  when: zuul_file_zuul_scheduler_service_config_manage
 
 - name: Enable zuul-executor service.
   become: yes
