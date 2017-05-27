@@ -19,10 +19,8 @@
     repo: "{{ zuul_git_uri }}"
     version: "{{ zuul_git_version }}"
 
-- name: Pip install zuul from local git repo.
-  become: yes
-  pip:
-    extra_args: "{{ zuul_pip_extra_args|default(omit) }}"
-    name: "file://{{ zuul_git_dest }}"
-    virtualenv_python: "{{ zuul_pip_virtualenv_python|default(omit) }}"
-    virtualenv: "{{ zuul_pip_virtualenv|default(omit) }}"
+- name: Set zuul_pip_name to local git repo.
+  set_fact:
+    zuul_pip_name: "file://{{ zuul_git_dest }}"
+
+- include: pip.yaml
