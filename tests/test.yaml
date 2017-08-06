@@ -15,6 +15,7 @@
 - hosts: test
   vars:
     rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+    zuul_pip_executable: pip3
   pre_tasks:
     # Make sure OS does not have a stale package cache.
     - name: Update apt cache.
