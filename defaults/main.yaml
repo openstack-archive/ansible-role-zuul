@@ -54,6 +54,12 @@ zuul_file_scheduler_logging_conf_mode: 0644
 zuul_file_scheduler_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_scheduler_logging_conf_src: etc/zuul/scheduler-logging.conf
 
+zuul_file_web_logging_conf_dest: /etc/zuul/web-logging.conf
+zuul_file_web_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_web_logging_conf_mode: 0644
+zuul_file_web_logging_conf_owner: "{{ zuul_user_name }}"
+zuul_file_web_logging_conf_src: etc/zuul/web-logging.conf
+
 zuul_file_zuul_conf_dest: /etc/zuul/zuul.conf
 zuul_file_zuul_conf_group: "{{ zuul_user_group }}"
 zuul_file_zuul_conf_mode: 0644
@@ -100,6 +106,14 @@ zuul_file_zuul_scheduler_service_config_manage: true
 zuul_file_zuul_scheduler_service_config_group: root
 zuul_file_zuul_scheduler_service_config_owner: root
 
+zuul_file_zuul_web_service_manage: true
+zuul_file_zuul_web_service_group: root
+zuul_file_zuul_web_service_owner: root
+
+zuul_file_zuul_web_service_config_manage: true
+zuul_file_zuul_web_service_config_group: root
+zuul_file_zuul_web_service_config_owner: root
+
 zuul_service_zuul_executor_daemon_reload: yes
 zuul_service_zuul_executor_enabled: yes
 zuul_service_zuul_executor_manage: true
@@ -117,3 +131,9 @@ zuul_service_zuul_scheduler_enabled: yes
 zuul_service_zuul_scheduler_manage: true
 zuul_service_zuul_scheduler_name: zuul-scheduler.service
 zuul_service_zuul_scheduler_state: started
+
+zuul_service_zuul_web_daemon_reload: yes
+zuul_service_zuul_web_enabled: yes
+zuul_service_zuul_web_manage: true
+zuul_service_zuul_web_name: zuul-web.service
+zuul_service_zuul_web_state: started
