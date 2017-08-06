@@ -1,0 +1,14 @@
+[Unit]
+Description=Zuul Web Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+Environment="PREFIX=/usr/local"
+Group=zuul
+User=zuul
+ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-web -d"
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
