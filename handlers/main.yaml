@@ -38,3 +38,12 @@
   when: zuul_service_zuul_scheduler_manage and
         zuul_service_zuul_scheduler_state == "started" and not
         zuul_service_zuul_scheduler.changed
+
+- name: Reload zuul-web
+  become: yes
+  service:
+    name: zuul-web
+    state: reloaded
+  when: zuul_service_zuul_web_manage and
+        zuul_service_zuul_web_state == "started" and not
+        zuul_service_zuul_web.changed
