@@ -34,6 +34,7 @@
           - zuul_file_executor_logging_conf
           - zuul_file_merger_logging_conf
           - zuul_file_scheduler_logging_conf
+          - zuul_file_web_logging_conf
           - zuul_file_layout
           - zuul_file_zuul_conf
           - zuul_file_zuul_executor_service
@@ -42,9 +43,12 @@
           - zuul_file_zuul_merger_service_config
           - zuul_file_zuul_scheduler_service
           - zuul_file_zuul_scheduler_service_config
+          - zuul_file_zuul_web_service
+          - zuul_file_zuul_web_service_config
           - zuul_service_zuul_executor
           - zuul_service_zuul_merger
           - zuul_service_zuul_scheduler
+          - zuul_service_zuul_web
 
     - name: Ensure zuul_user_name is zuul.
       shell: /usr/bin/getent passwd zuul-test
@@ -168,6 +172,20 @@
           - zuul_scheduler_service_config_stat.stat.gr_name == 'root'
           - zuul_scheduler_service_config_stat.stat.mode == '0644'
 
+    - name: Register /etc/systemd/system/zuul-web.service.d/override.conf
+      stat:
+        path: /etc/systemd/system/zuul-web.service.d/override.conf
+      register: zuul_web_service_config_stat
+
+    - name: Assert zuul_web_service_config_stat tests.
+      assert:
+        that:
+          - zuul_web_service_config_stat.stat.exists
+          - zuul_web_service_config_stat.stat.isreg
+          - zuul_web_service_config_stat.stat.pw_name == 'root'
+          - zuul_web_service_config_stat.stat.gr_name == 'root'
+          - zuul_web_service_config_stat.stat.mode == '0644'
+
     - name: Register /etc/systemd/system/zuul-executor.service
       stat:
         path: /etc/systemd/system/zuul-executor.service
@@ -210,6 +228,20 @@
           - _zuul_scheduler_service_systemd_stat.stat.gr_name == 'root'
           - _zuul_scheduler_service_systemd_stat.stat.mode == '0644'
 
+    - name: Register /etc/systemd/system/zuul-web.service
+      stat:
+        path: /etc/systemd/system/zuul-web.service
+      register: _zuul_web_service_systemd_stat
+
+    - name: Assert _zuul_web_service_systemd_stat tests.
+      assert:
+        that:
+          - _zuul_web_service_systemd_stat.stat.exists
+          - _zuul_web_service_systemd_stat.stat.isreg
+          - _zuul_web_service_systemd_stat.stat.pw_name == 'root'
+          - _zuul_web_service_systemd_stat.stat.gr_name == 'root'
+          - _zuul_web_service_systemd_stat.stat.mode == '0644'
+
     - name: Ensure zuul-executor is running.
       become: yes
       shell: /usr/sbin/service zuul-executor status
@@ -223,4 +255,9 @@
     - name: Ensure zuul-scheduler is running.
       become: yes
       shell: /usr/sbin/service zuul-scheduler status
+      tags: skip_ansible_lint
+
+    - name: Ensure zuul-web is running.
+      become: yes
+      shell: /usr/sbin/service zuul-web status
       tags: skip_ansible_lint
