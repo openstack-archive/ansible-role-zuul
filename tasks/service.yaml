@@ -102,6 +102,37 @@
     zuul_file_zuul_scheduler_service_config_src: "{{ __zuul_file_zuul_scheduler_service_config_src }}"
   when: zuul_file_zuul_scheduler_service_config_src is not defined
 
+- name: Define zuul_file_zuul_web_service_dest.
+  set_fact:
+    zuul_file_zuul_web_service_dest: "{{ __zuul_file_zuul_web_service_dest }}"
+  when: zuul_file_zuul_web_service_dest is not defined
+
+- name: Define zuul_file_zuul_web_service_mode.
+  set_fact:
+    zuul_file_zuul_web_service_mode: "{{ __zuul_file_zuul_web_service_mode }}"
+  when: zuul_file_zuul_web_service_mode is not defined
+
+- name: Define zuul_file_zuul_web_service_src.
+  set_fact:
+    zuul_file_zuul_web_service_src: "{{ __zuul_file_zuul_web_service_src }}"
+  when: zuul_file_zuul_web_service_src is not defined
+
+- name: Define zuul_file_zuul_web_service_config_dest.
+  set_fact:
+    zuul_file_zuul_web_service_config_dest: "{{ __zuul_file_zuul_web_service_config_dest }}"
+  when: zuul_file_zuul_web_service_config_dest is not defined
+
+- name: Define zuul_file_zuul_web_service_config_mode.
+  set_fact:
+    zuul_file_zuul_web_service_config_mode: "{{ __zuul_file_zuul_web_service_config_mode }}"
+  when: zuul_file_zuul_web_service_config_mode is not defined
+
+- name: Define zuul_file_zuul_web_service_config_src.
+  set_fact:
+    zuul_file_zuul_web_service_config_src: "{{ __zuul_file_zuul_web_service_config_src }}"
+  when: zuul_file_zuul_web_service_config_src is not defined
+
+
 - name: Copy zuul-executor service into place.
   become: yes
   copy:
@@ -195,6 +226,38 @@
   register: zuul_file_zuul_scheduler_service_config
   when: zuul_file_zuul_scheduler_service_config_manage
 
+- name: Copy zuul-web service into place.
+  become: yes
+  copy:
+    dest: "{{ zuul_file_zuul_web_service_dest }}"
+    group: "{{ zuul_file_zuul_web_service_group }}"
+    mode: "{{ zuul_file_zuul_web_service_mode }}"
+    owner: "{{ zuul_file_zuul_web_service_owner }}"
+    src: "{{ zuul_file_zuul_web_service_src }}"
+  register: zuul_file_zuul_web_service
+  when: zuul_file_zuul_web_service_manage
+
+- name: Create zuul-web service config directory.
+  become: yes
+  file:
+    group: "{{ zuul_file_zuul_web_service_config_group }}"
+    owner: "{{ zuul_file_zuul_web_service_config_owner }}"
+    path: "{{ zuul_file_zuul_web_service_dest }}.d"
+    state: directory
+  when: zuul_file_zuul_web_service_config_manage
+
+- name: Copy zuul-web service config into place.
+  become: yes
+  template:
+    dest: "{{ zuul_file_zuul_web_service_config_dest }}"
+    group: "{{ zuul_file_zuul_web_service_config_group }}"
+    mode: "{{ zuul_file_zuul_web_service_config_mode }}"
+    owner: "{{ zuul_file_zuul_web_service_config_owner }}"
+    src: "{{ zuul_file_zuul_web_service_config_src }}"
+  register: zuul_file_zuul_web_service_config
+  when: zuul_file_zuul_web_service_config_manage
+
+
 - name: Enable zuul-executor service.
   become: yes
   systemd:
@@ -224,3 +287,13 @@
     state: "{{ zuul_service_zuul_scheduler_state }}"
   register: zuul_service_zuul_scheduler
   when: zuul_service_zuul_scheduler_manage
+
+- name: Enable zuul-web service.
+  become: yes
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_web_daemon_reload }}"
+    enabled: "{{ zuul_service_zuul_web_enabled }}"
+    name: "{{ zuul_service_zuul_web_name }}"
+    state: "{{ zuul_service_zuul_web_state }}"
+  register: zuul_service_zuul_web
+  when: zuul_service_zuul_web_manage
