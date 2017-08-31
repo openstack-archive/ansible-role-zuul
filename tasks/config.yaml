@@ -69,7 +69,7 @@
 
 - name: Install layout configuration.
   become: yes
-  copy:
+  template:
     dest: "{{ zuul_file_layout_dest }}"
     group: "{{ zuul_file_layout_group }}"
     mode: "{{ zuul_file_layout_mode }}"
