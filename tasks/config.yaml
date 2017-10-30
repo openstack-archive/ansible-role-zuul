@@ -20,8 +20,8 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - /etc/zuul
-    - /var/log/zuul
+    - "/etc/{{ zuul_user_name }}"
+    - "/var/log/{{ zuul_user_name }}"
 
 - name: Install gearman logging file.
   become: yes
