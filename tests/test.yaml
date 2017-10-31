@@ -12,17 +12,16 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- hosts: test
+- hosts: all
   vars:
-    rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+    rolename: ansible-role-zuul
+    zuul_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/zuul"
+    zuul_git_update: false
     zuul_pip_executable: pip3
-  pre_tasks:
-    # Make sure OS does not have a stale package cache.
-    - name: Update apt cache.
-      become: yes
-      apt:
-        update_cache: yes
-      when: ansible_os_family == 'Debian'
+    zuul_task_manager:
+      - install
+      - config
+      - service
 
   roles:
     - "{{ rolename }}"
@@ -78,7 +77,7 @@
 
     - name: Register zuul_git_dest_stat.
       stat:
-        path: /opt/ansible-role-zuul/git/openstack-infra/zuul
+        path: /home/zuul/src/git.openstack.org/openstack-infra/zuul
       register: zuul_git_dest_stat
 
     - name: Assert zuul_git_dest tests.
@@ -211,10 +210,10 @@
           - _zuul_scheduler_service_systemd_stat.stat.gr_name == 'root'
           - _zuul_scheduler_service_systemd_stat.stat.mode == '0644'
 
-    - name: Ensure zuul-executor is running.
-      become: yes
-      shell: /usr/sbin/service zuul-executor status
-      tags: skip_ansible_lint
+#    - name: Ensure zuul-executor is running.
+#      become: yes
+#      shell: /usr/sbin/service zuul-executor status
+#      tags: skip_ansible_lint
 
     - name: Ensure zuul-merger is running.
       become: yes
