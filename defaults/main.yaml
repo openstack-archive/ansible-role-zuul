@@ -58,7 +58,7 @@ zuul_file_zuul_conf_dest: /etc/zuul/zuul.conf
 zuul_file_zuul_conf_group: "{{ zuul_user_group }}"
 zuul_file_zuul_conf_mode: 0644
 zuul_file_zuul_conf_owner: "{{ zuul_user_name }}"
-zuul_file_zuul_conf_src: etc/zuul/zuul.conf
+zuul_file_zuul_conf_src: etc/zuul/zuul.conf.j2
 
 # tasks/install.yaml
 zuul_git_dest: /opt/ansible-role-zuul/git/openstack-infra/zuul
