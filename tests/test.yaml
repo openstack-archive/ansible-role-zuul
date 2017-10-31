@@ -12,17 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- hosts: test
+- hosts: all
   vars:
-    rolename: "{{ lookup('pipe', 'pwd') | dirname | basename }}"
+    rolename: ansible-role-zuul
+    zuul_user_name: zuul-test
+    zuul_user_group: zuul-test
+    zuul_user_home: /var/lib/zuul-test
+    zuul_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/zuul"
+    zuul_git_update: false
     zuul_pip_executable: pip3
-  pre_tasks:
-    # Make sure OS does not have a stale package cache.
-    - name: Update apt cache.
-      become: yes
-      apt:
-        update_cache: yes
-      when: ansible_os_family == 'Debian'
 
   roles:
     - "{{ rolename }}"
@@ -48,26 +46,26 @@
           - zuul_service_zuul_scheduler
 
     - name: Ensure zuul_user_name is zuul.
-      shell: /usr/bin/getent passwd zuul
+      shell: /usr/bin/getent passwd zuul-test
       tags: skip_ansible_lint
 
     - name: Ensure zuul_user_group is zuul.
-      shell: /usr/bin/getent group zuul
+      shell: /usr/bin/getent group zuul-test
       tags: skip_ansible_lint
 
     - name: Register zuul_user_home_getent.
-      shell: '/usr/bin/getent passwd zuul | cut -d: -f6'
+      shell: '/usr/bin/getent passwd zuul-test | cut -d: -f6'
       register: zuul_user_home_getent
       tags: skip_ansible_lint
 
-    - name: Assert zuul_user_home is /var/lib/zuul.
+    - name: Assert zuul_user_home is /var/lib/zuul-test.
       assert:
         that:
-          - zuul_user_home_getent.stdout == '/var/lib/zuul'
+          - zuul_user_home_getent.stdout == '/var/lib/zuul-test'
 
     - name: Register zuul_user_home_stat.
       stat:
-        path: /var/lib/zuul
+        path: /var/lib/zuul-test
       register: zuul_user_home_stat
 
     - name: Assert zuul_user_home tests.
@@ -78,7 +76,7 @@
 
     - name: Register zuul_git_dest_stat.
       stat:
-        path: /opt/ansible-role-zuul/git/openstack-infra/zuul
+        path: /home/zuul/src/git.openstack.org/openstack-infra/zuul
       register: zuul_git_dest_stat
 
     - name: Assert zuul_git_dest tests.
@@ -97,8 +95,8 @@
         that:
           - zuul_layout_stat.stat.exists
           - zuul_layout_stat.stat.isdir
-          - zuul_layout_stat.stat.pw_name == 'zuul'
-          - zuul_layout_stat.stat.gr_name == 'zuul'
+          - zuul_layout_stat.stat.pw_name == 'zuul-test'
+          - zuul_layout_stat.stat.gr_name == 'zuul-test'
           - zuul_layout_stat.stat.mode == '0755'
 
     - name: Register /etc/zuul/config/layout.yaml
@@ -111,8 +109,8 @@
         that:
           - zuul_layout_yaml_stat.stat.exists
           - zuul_layout_yaml_stat.stat.isreg
-          - zuul_layout_yaml_stat.stat.pw_name == 'zuul'
-          - zuul_layout_yaml_stat.stat.gr_name == 'zuul'
+          - zuul_layout_yaml_stat.stat.pw_name == 'zuul-test'
+          - zuul_layout_yaml_stat.stat.gr_name == 'zuul-test'
 
     - name: Register /etc/zuul/zuul.conf
       stat:
@@ -124,8 +122,8 @@
         that:
           - zuul_conf_stat.stat.exists
           - zuul_conf_stat.stat.isreg
-          - zuul_conf_stat.stat.pw_name == 'zuul'
-          - zuul_conf_stat.stat.gr_name == 'zuul'
+          - zuul_conf_stat.stat.pw_name == 'zuul-test'
+          - zuul_conf_stat.stat.gr_name == 'zuul-test'
 
     - name: Register /etc/systemd/system/zuul-executor.service.d/override.conf
       stat:
