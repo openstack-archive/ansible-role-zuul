@@ -1,0 +1,41 @@
+- job:
+    name: ansible-role-zuul
+    run: tests/test.yaml
+    required-projects:
+      - name: openstack-infra/zuul
+        override-branch: feature/zuulv3
+    roles:
+      - zuul: openstack/ansible-role-zuul
+
+- job:
+    name: ansible-role-zuul-centos-7
+    parent: ansible-role-zuul
+    nodeset: centos-7
+
+- job:
+    name: ansible-role-zuul-fedora-26
+    parent: ansible-role-zuul
+    nodeset: fedora-26
+
+- job:
+    name: ansible-role-zuul-ubuntu-xenial
+    parent: ansible-role-zuul
+    nodeset: ubuntu-xenial
+
+- project:
+    name: openstack/ansible-role-zuul
+    templates:
+      - windmill-jobs-fedora-26
+      - windmill-jobs-xenial
+    check:
+      jobs:
+        - ansible-role-zuul-centos-7
+        - ansible-role-zuul-fedora-26
+        - ansible-role-zuul-ubuntu-xenial
+        - tox-linters
+    gate:
+      jobs:
+        - ansible-role-zuul-centos-7
+        - ansible-role-zuul-fedora-26
+        - ansible-role-zuul-ubuntu-xenial
+        - tox-linters
