@@ -17,6 +17,7 @@
   git:
     dest: "{{ zuul_git_dest }}"
     repo: "{{ zuul_git_uri }}"
+    update: "{{ zuul_git_update|default(omit) }}"
     version: "{{ zuul_git_version }}"
 
 - name: Set zuul_pip_name to local git repo.
