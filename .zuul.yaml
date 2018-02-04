@@ -3,7 +3,6 @@
     run: tests/test.yaml
     required-projects:
       - name: openstack-infra/zuul
-        override-branch: feature/zuulv3
     roles:
       - zuul: openstack/ansible-role-zuul
 
@@ -19,9 +18,6 @@
 
 - project:
     name: openstack/ansible-role-zuul
-    templates:
-      - windmill-jobs-fedora-26
-      - windmill-jobs-xenial
     check:
       jobs:
         - ansible-role-zuul-fedora-26
