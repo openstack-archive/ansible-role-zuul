@@ -1,0 +1,14 @@
+- hosts: all
+  tasks:
+    - name: Ensure logs directory exists
+      file:
+        path: "{{ zuul.executor.log_root }}/logs"
+        state: directory
+      delegate_to: localhost
+
+    - name: Collect nodepool files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs"
+        mode: pull
+        src: /var/log/zuul
+        verify_host: true
