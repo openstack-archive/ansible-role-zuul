@@ -1,6 +1,7 @@
 - job:
     name: ansible-role-zuul
     run: tests/test.yaml
+    post-run: tests/collect-logs.yaml
     required-projects:
       - name: openstack-infra/zuul
     roles:
