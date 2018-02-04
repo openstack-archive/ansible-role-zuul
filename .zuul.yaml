@@ -18,6 +18,9 @@
 
 - project:
     name: openstack/ansible-role-zuul
+    templates:
+      - windmill-jobs-fedora-26
+      - windmill-jobs-xenial
     check:
       jobs:
         - ansible-role-zuul-fedora-26
