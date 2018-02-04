@@ -63,7 +63,7 @@ zuul_file_zuul_conf_src: etc/zuul/zuul.conf
 # tasks/install.yaml
 zuul_git_dest: /opt/ansible-role-zuul/git/openstack-infra/zuul
 zuul_git_uri: https://git.openstack.org/openstack-infra/zuul
-zuul_git_version: feature/zuulv3
+zuul_git_version: master
 # zuul_git_update:
 
 zuul_install_method: git

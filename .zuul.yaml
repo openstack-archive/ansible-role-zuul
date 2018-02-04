@@ -3,7 +3,6 @@
     run: tests/test.yaml
     required-projects:
       - name: openstack-infra/zuul
-        override-branch: feature/zuulv3
     roles:
       - zuul: openstack/ansible-role-zuul
 
