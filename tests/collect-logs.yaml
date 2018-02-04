@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+    - name: Collect nodepool files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}"
+        mode: pull
+        src: /etc/nodepool/nodepool.yaml
+        verify_host: true
