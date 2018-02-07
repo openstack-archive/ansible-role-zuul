@@ -17,7 +17,6 @@
     nodeset: ubuntu-xenial
 
 - project:
-    name: openstack/ansible-role-zuul
     templates:
       - windmill-jobs-fedora-26
       - windmill-jobs-xenial
