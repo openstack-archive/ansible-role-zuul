@@ -8,9 +8,9 @@
       - zuul: openstack/ansible-role-zuul
 
 - job:
-    name: ansible-role-zuul-fedora-26
+    name: ansible-role-zuul-fedora-27
     parent: ansible-role-zuul
-    nodeset: fedora-26
+    nodeset: fedora-27
 
 - job:
     name: ansible-role-zuul-ubuntu-xenial
@@ -19,15 +19,15 @@
 
 - project:
     templates:
-      - windmill-jobs-fedora-26
+      - windmill-jobs-fedora-27
       - windmill-jobs-xenial
     check:
       jobs:
-        - ansible-role-zuul-fedora-26
+        - ansible-role-zuul-fedora-27
         - ansible-role-zuul-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
-        - ansible-role-zuul-fedora-26
+        - ansible-role-zuul-fedora-27
         - ansible-role-zuul-ubuntu-xenial
         - tox-linters
