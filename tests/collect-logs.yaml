@@ -12,5 +12,8 @@
         mode: pull
         rsync_opts:
           - "--relative"
-        src: /var/log/zuul
+        src: "{{ item }}"
         verify_host: true
+      with_items:
+        - /etc/zuul
+        - /var/log/zuul
