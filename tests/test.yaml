@@ -20,7 +20,6 @@
     zuul_file_zuul_scheduler_service_config_src: etc/systemd/system/override.conf.j2
     zuul_user_name: zuul-test
     zuul_user_group: zuul-test
-    zuul_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/zuul"
     zuul_git_update: false
     zuul_pip_executable: pip3
 
