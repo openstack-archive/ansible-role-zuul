@@ -1,5 +1,6 @@
 - job:
     name: ansible-role-zuul
+    parent: unit-tests
     run: tests/test.yaml
     post-run: tests/collect-logs.yaml
     required-projects:
