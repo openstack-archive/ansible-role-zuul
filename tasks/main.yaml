@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Include OS-specific variables.
-  include_vars: "{{ ansible_distribution|lower }}-{{ ansible_distribution_release }}.yaml"
+  include_vars: "{{ ansible_distribution|lower }}.yaml"
   when: ansible_os_family == 'Debian'
 
 - name: Include OS-specific variables.
