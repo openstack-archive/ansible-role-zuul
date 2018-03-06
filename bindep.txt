@@ -7,3 +7,9 @@ libselinux-python [platform:rpm]
 libssl-dev [platform:dpkg]
 openssl-devel [platform:rpm]
 python2-dnf [platform:fedora]
+
+# NOTE(pabelanger): This is because of a bug in zuul, when zuul-scheduler starts
+# it will fail unless it cannot connect to zookeeper.  However, zuul should be
+# smart enough to try forever to connect.
+zookeeperd [platform:dpkg]
+zookeeper [platform:fedora]
