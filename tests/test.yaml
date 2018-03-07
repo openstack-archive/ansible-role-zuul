@@ -33,6 +33,7 @@
         that:
           - zuul_file_gearman_logging_conf
           - zuul_file_executor_logging_conf
+          - zuul_file_fingergw_logging_conf
           - zuul_file_merger_logging_conf
           - zuul_file_scheduler_logging_conf
           - zuul_file_web_logging_conf
@@ -40,6 +41,8 @@
           - zuul_file_zuul_conf
           - zuul_file_zuul_executor_service
           - zuul_file_zuul_executor_service_config
+          - zuul_file_zuul_fingergw_service
+          - zuul_file_zuul_fingergw_service_config
           - zuul_file_zuul_merger_service
           - zuul_file_zuul_merger_service_config
           - zuul_file_zuul_scheduler_service
@@ -47,6 +50,7 @@
           - zuul_file_zuul_web_service
           - zuul_file_zuul_web_service_config
           - zuul_service_zuul_executor
+          - zuul_service_zuul_fingergw
           - zuul_service_zuul_merger
           - zuul_service_zuul_scheduler
           - zuul_service_zuul_web
@@ -145,6 +149,20 @@
           - zuul_executor_service_config_stat.stat.gr_name == 'root'
           - zuul_executor_service_config_stat.stat.mode == '0644'
 
+    - name: Register /etc/systemd/system/zuul-fingergw.service.d/override.conf
+      stat:
+        path: /etc/systemd/system/zuul-fingergw.service.d/override.conf
+      register: zuul_fingergw_service_config_stat
+
+    - name: Assert zuul_fingergw_service_config_stat tests.
+      assert:
+        that:
+          - zuul_fingergw_service_config_stat.stat.exists
+          - zuul_fingergw_service_config_stat.stat.isreg
+          - zuul_fingergw_service_config_stat.stat.pw_name == 'root'
+          - zuul_fingergw_service_config_stat.stat.gr_name == 'root'
+          - zuul_fingergw_service_config_stat.stat.mode == '0644'
+
     - name: Register /etc/systemd/system/zuul-merger.service.d/override.conf
       stat:
         path: /etc/systemd/system/zuul-merger.service.d/override.conf
@@ -201,6 +219,20 @@
           - _zuul_executor_service_systemd_stat.stat.gr_name == 'root'
           - _zuul_executor_service_systemd_stat.stat.mode == '0644'
 
+    - name: Register /etc/systemd/system/zuul-fingergw.service
+      stat:
+        path: /etc/systemd/system/zuul-fingergw.service
+      register: _zuul_fingergw_service_systemd_stat
+
+    - name: Assert _zuul_fingergw_service_systemd_stat tests.
+      assert:
+        that:
+          - _zuul_fingergw_service_systemd_stat.stat.exists
+          - _zuul_fingergw_service_systemd_stat.stat.isreg
+          - _zuul_fingergw_service_systemd_stat.stat.pw_name == 'root'
+          - _zuul_fingergw_service_systemd_stat.stat.gr_name == 'root'
+          - _zuul_fingergw_service_systemd_stat.stat.mode == '0644'
+
     - name: Register /etc/systemd/system/zuul-merger.service
       stat:
         path: /etc/systemd/system/zuul-merger.service
@@ -246,6 +278,11 @@
     - name: Ensure zuul-executor is running.
       become: yes
       shell: /usr/sbin/service zuul-executor status
+      tags: skip_ansible_lint
+
+    - name: Ensure zuul-fingergw is running.
+      become: yes
+      shell: /usr/sbin/service zuul-fingergw status
       tags: skip_ansible_lint
 
     - name: Ensure zuul-merger is running.
