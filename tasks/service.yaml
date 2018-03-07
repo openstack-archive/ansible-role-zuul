@@ -42,6 +42,36 @@
     zuul_file_zuul_executor_service_config_src: "{{ __zuul_file_zuul_executor_service_config_src }}"
   when: zuul_file_zuul_executor_service_config_src is not defined
 
+- name: Define zuul_file_zuul_fingergw_service_dest.
+  set_fact:
+    zuul_file_zuul_fingergw_service_dest: "{{ __zuul_file_zuul_fingergw_service_dest }}"
+  when: zuul_file_zuul_fingergw_service_dest is not defined
+
+- name: Define zuul_file_zuul_fingergw_service_mode.
+  set_fact:
+    zuul_file_zuul_fingergw_service_mode: "{{ __zuul_file_zuul_fingergw_service_mode }}"
+  when: zuul_file_zuul_fingergw_service_mode is not defined
+
+- name: Define zuul_file_zuul_fingergw_service_src.
+  set_fact:
+    zuul_file_zuul_fingergw_service_src: "{{ __zuul_file_zuul_fingergw_service_src }}"
+  when: zuul_file_zuul_fingergw_service_src is not defined
+
+- name: Define zuul_file_zuul_fingergw_service_config_dest.
+  set_fact:
+    zuul_file_zuul_fingergw_service_config_dest: "{{ __zuul_file_zuul_fingergw_service_config_dest }}"
+  when: zuul_file_zuul_fingergw_service_config_dest is not defined
+
+- name: Define zuul_file_zuul_fingergw_service_config_mode.
+  set_fact:
+    zuul_file_zuul_fingergw_service_config_mode: "{{ __zuul_file_zuul_fingergw_service_config_mode }}"
+  when: zuul_file_zuul_fingergw_service_config_mode is not defined
+
+- name: Define zuul_file_zuul_fingergw_service_config_src.
+  set_fact:
+    zuul_file_zuul_fingergw_service_config_src: "{{ __zuul_file_zuul_fingergw_service_config_src }}"
+  when: zuul_file_zuul_fingergw_service_config_src is not defined
+
 - name: Define zuul_file_zuul_merger_service_dest.
   set_fact:
     zuul_file_zuul_merger_service_dest: "{{ __zuul_file_zuul_merger_service_dest }}"
@@ -163,6 +193,37 @@
   register: zuul_file_zuul_executor_service_config
   when: zuul_file_zuul_executor_service_config_manage
 
+- name: Copy zuul-fingergw service into place.
+  become: yes
+  copy:
+    dest: "{{ zuul_file_zuul_fingergw_service_dest }}"
+    group: "{{ zuul_file_zuul_fingergw_service_group }}"
+    mode: "{{ zuul_file_zuul_fingergw_service_mode }}"
+    owner: "{{ zuul_file_zuul_fingergw_service_owner }}"
+    src: "{{ zuul_file_zuul_fingergw_service_src }}"
+  register: zuul_file_zuul_fingergw_service
+  when: zuul_file_zuul_fingergw_service_manage
+
+- name: Create zuul-fingergw service config directory.
+  become: yes
+  file:
+    group: "{{ zuul_file_zuul_fingergw_service_config_group }}"
+    owner: "{{ zuul_file_zuul_fingergw_service_config_owner }}"
+    path: "{{ zuul_file_zuul_fingergw_service_dest }}.d"
+    state: directory
+  when: zuul_file_zuul_fingergw_service_config_manage
+
+- name: Copy zuul-fingergw service config into place.
+  become: yes
+  template:
+    dest: "{{ zuul_file_zuul_fingergw_service_config_dest }}"
+    group: "{{ zuul_file_zuul_fingergw_service_config_group }}"
+    mode: "{{ zuul_file_zuul_fingergw_service_config_mode }}"
+    owner: "{{ zuul_file_zuul_fingergw_service_config_owner }}"
+    src: "{{ zuul_file_zuul_fingergw_service_config_src }}"
+  register: zuul_file_zuul_fingergw_service_config
+  when: zuul_file_zuul_fingergw_service_config_manage
+
 - name: Copy zuul-merger service into place.
   become: yes
   copy:
@@ -265,6 +326,16 @@
     state: "{{ zuul_service_zuul_executor_state }}"
   register: zuul_service_zuul_executor
   when: zuul_service_zuul_executor_manage
+
+- name: Enable zuul-fingergw service.
+  become: yes
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_fingergw_daemon_reload }}"
+    enabled: "{{ zuul_service_zuul_fingergw_enabled }}"
+    name: "{{ zuul_service_zuul_fingergw_name }}"
+    state: "{{ zuul_service_zuul_fingergw_state }}"
+  register: zuul_service_zuul_fingergw
+  when: zuul_service_zuul_fingergw_manage
 
 - name: Enable zuul-merger service.
   become: yes
