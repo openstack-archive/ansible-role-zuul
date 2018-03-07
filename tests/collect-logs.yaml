@@ -6,6 +6,16 @@
         state: directory
       delegate_to: localhost
 
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /var/log/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-executor
+        - zuul-fingergw
+        - zuul-merger
+        - zuul-scheduler
+        - zuul-web
+
     - name: Collect zuul log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs"
@@ -16,4 +26,5 @@
         verify_host: true
       with_items:
         - /etc/zuul
+        - /var/log/journal
         - /var/log/zuul
