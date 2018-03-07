@@ -248,6 +248,11 @@
       shell: /usr/sbin/service zuul-executor status
       tags: skip_ansible_lint
 
+    - name: Ensure zuul-fingergw is running.
+      become: yes
+      shell: /usr/sbin/service zuul-fingergw status
+      tags: skip_ansible_lint
+
     - name: Ensure zuul-merger is running.
       become: yes
       shell: /usr/sbin/service zuul-merger status
