@@ -6,6 +6,22 @@
         state: directory
       delegate_to: localhost
 
+    - name: Ensure journal logs directory exists
+      become: yes
+      file:
+        path: /var/log/zuul/journal
+        state: directory
+
+    - name: Collect journal logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /var/log/zuul/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-executor
+        - zuul-fingergw
+        - zuul-merger
+        - zuul-scheduler
+        - zuul-web
+
     - name: Collect zuul log files
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs"
