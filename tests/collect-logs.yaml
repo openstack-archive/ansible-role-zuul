@@ -2,9 +2,35 @@
   tasks:
     - name: Ensure logs directory exists
       file:
-        path: "{{ zuul.executor.log_root }}/logs"
+        path: "{{ item }}"
         state: directory
+      with_items:
+        - "{{ zuul.executor.log_root }}/logs"
+        - "{{ zuul.executor.log_root }}/logs/var/log"
       delegate_to: localhost
+
+    - name: Ensure journald logs directory exists
+      file:
+        path: ~/logs/journal
+        state: directory
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      with_items:
+        - zuul-executor
+        - zuul-fingergw
+        - zuul-merger
+        - zuul-scheduler
+        - zuul-web
+
+    - name: Collect journald log files
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/logs/var/log"
+        mode: pull
+        src: ~/logs/journal
+        verify_host: true
 
     - name: Collect zuul log files
       synchronize:
