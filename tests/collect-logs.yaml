@@ -16,4 +16,5 @@
         verify_host: true
       with_items:
         - /etc/zuul
+        - /var/log/syslog
         - /var/log/zuul
