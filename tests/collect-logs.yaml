@@ -17,3 +17,7 @@
       with_items:
         - /etc/zuul
         - /var/log/zuul
+
+    - name: collect
+      become: yes
+      shell: journalctl -u zuul-fingerwg.service
