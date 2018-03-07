@@ -17,3 +17,13 @@
       with_items:
         - /etc/zuul
         - /var/log/zuul
+
+    - name: Collect journald logs
+      become: yes
+      shell: "journalctl -u {{ item }}.service"
+      with_items:
+        - zuul-executor
+        - zuul-fingergw
+        - zuul-merger
+        - zuul-scheduler
+        - zuul-web
