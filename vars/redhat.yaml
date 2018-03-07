@@ -28,6 +28,14 @@ __zuul_file_zuul_executor_service_config_dest: /etc/systemd/system/zuul-executor
 __zuul_file_zuul_executor_service_config_mode: 0644
 __zuul_file_zuul_executor_service_config_src: etc/systemd/system/zuul-executor.service.d/centos-7.conf
 
+__zuul_file_zuul_fingergw_service_dest: /etc/systemd/system/zuul-fingergw.service
+__zuul_file_zuul_fingergw_service_mode: 0644
+__zuul_file_zuul_fingergw_service_src: etc/systemd/system/zuul-fingergw.service
+
+__zuul_file_zuul_fingergw_service_config_dest: /etc/systemd/system/zuul-fingergw.service.d/override.conf
+__zuul_file_zuul_fingergw_service_config_mode: 0644
+__zuul_file_zuul_fingergw_service_config_src: etc/systemd/system/zuul-fingergw.service.d/centos-7.conf
+
 __zuul_file_zuul_merger_service_dest: /etc/systemd/system/zuul-merger.service
 __zuul_file_zuul_merger_service_mode: 0644
 __zuul_file_zuul_merger_service_src: etc/systemd/system/zuul-merger.service
