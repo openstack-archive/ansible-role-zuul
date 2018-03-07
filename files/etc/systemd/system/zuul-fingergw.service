@@ -1,0 +1,13 @@
+[Unit]
+Description=Zuul Finger Gateway Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+Environment="PREFIX=/usr/local"
+Group=root
+User=root
+ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-fingergw -d"
+
+[Install]
+WantedBy=multi-user.target
