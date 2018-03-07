@@ -21,6 +21,15 @@
         zuul_service_zuul_executor_state == "started" and not
         zuul_service_zuul_executor.changed
 
+- name: Reload zuul-fingergw
+  become: yes
+  service:
+    name: zuul-fingergw
+    state: reloaded
+  when: zuul_service_zuul_fingergw_manage and
+        zuul_service_zuul_fingergw_state == "started" and not
+        zuul_service_zuul_fingergw.changed
+
 - name: Reload zuul-merger
   become: yes
   service:
