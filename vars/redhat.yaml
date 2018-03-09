@@ -15,7 +15,6 @@
 __zuul_build_depends:
   - gcc
   - gcc-c++
-  - git
   - libffi-devel
   - openssl-devel
   - python3-devel

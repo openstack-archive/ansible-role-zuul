@@ -14,7 +14,6 @@
 ---
 __zuul_build_depends:
   - build-essential
-  - git
   - libffi-dev
   - libssl-dev
   - python3-dev
