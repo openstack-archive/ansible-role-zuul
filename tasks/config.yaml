@@ -21,6 +21,7 @@
     state: directory
   with_items:
     - /etc/zuul
+    - /etc/zuul/ssl
     - /var/log/zuul
 
 - name: Install gearman logging file.
@@ -77,6 +78,36 @@
     src: "{{ zuul_file_scheduler_logging_conf_src }}"
   register: zuul_file_scheduler_logging_conf
   notify: Reload zuul-scheduler
+
+- name: Install zuul ssl ca configuration.
+  become: yes
+  template:
+    dest: "{{ zuul_file_ssl_ca_dest }}"
+    group: "{{ zuul_file_ssl_ca_group }}"
+    mode: "{{ zuul_file_ssl_ca_mode }}"
+    owner: "{{ zuul_file_ssl_ca_owner }}"
+    src: "{{ zuul_file_ssl_ca_src }}"
+  register: zuul_file_ssl_ca
+
+- name: Install zuul ssl cert configuration.
+  become: yes
+  template:
+    dest: "{{ zuul_file_ssl_cert_dest }}"
+    group: "{{ zuul_file_ssl_cert_group }}"
+    mode: "{{ zuul_file_ssl_cert_mode }}"
+    owner: "{{ zuul_file_ssl_cert_owner }}"
+    src: "{{ zuul_file_ssl_cert_src }}"
+  register: zuul_file_ssl_cert
+
+- name: Install zuul ssl key configuration.
+  become: yes
+  template:
+    dest: "{{ zuul_file_ssl_key_dest }}"
+    group: "{{ zuul_file_ssl_key_group }}"
+    mode: "{{ zuul_file_ssl_key_mode }}"
+    owner: "{{ zuul_file_ssl_key_owner }}"
+    src: "{{ zuul_file_ssl_key_src }}"
+  register: zuul_file_ssl_key
 
 - name: Install web logging file.
   become: yes
