@@ -36,6 +36,27 @@ zuul_file_gearman_logging_conf_mode: 0644
 zuul_file_gearman_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_gearman_logging_conf_src: etc/zuul/gearman-logging.conf
 
+zuul_file_gearman_ssl_ca_content:
+zuul_file_gearman_ssl_ca_dest: /etc/zuul/ssl/root-ca.pem
+zuul_file_gearman_ssl_ca_group: "{{ zuul_user_group }}"
+zuul_file_gearman_ssl_ca_mode: 0644
+zuul_file_gearman_ssl_ca_owner: "{{ zuul_user_name }}"
+zuul_file_gearman_ssl_ca_src: etc/zuul/ssl/root-ca.pem
+
+zuul_file_gearman_ssl_client_cert_content:
+zuul_file_gearman_ssl_client_cert_dest: /etc/zuul/ssl/client.pem
+zuul_file_gearman_ssl_client_cert_group: "{{ zuul_user_group }}"
+zuul_file_gearman_ssl_client_cert_mode: 0644
+zuul_file_gearman_ssl_client_cert_owner: "{{ zuul_user_name }}"
+zuul_file_gearman_ssl_client_cert_src: etc/zuul/ssl/client.pem
+
+zuul_file_gearman_ssl_key_content:
+zuul_file_gearman_ssl_key_dest: /etc/zuul/ssl/client.key
+zuul_file_gearman_ssl_key_group: "{{ zuul_user_group }}"
+zuul_file_gearman_ssl_key_mode: 0600
+zuul_file_gearman_ssl_key_owner: "{{ zuul_user_name }}"
+zuul_file_gearman_ssl_key_src: etc/zuul/ssl/client.key
+
 zuul_file_executor_logging_conf_dest: /etc/zuul/executor-logging.conf
 zuul_file_executor_logging_conf_group: "{{ zuul_user_group }}"
 zuul_file_executor_logging_conf_mode: 0644
