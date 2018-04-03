@@ -32,6 +32,9 @@
       assert:
         that:
           - zuul_file_gearman_logging_conf
+          - zuul_file_gearman_ssl_ca
+          - zuul_file_gearman_ssl_cert
+          - zuul_file_gearman_ssl_key
           - zuul_file_executor_logging_conf
           - zuul_file_fingergw_logging_conf
           - zuul_file_merger_logging_conf
@@ -134,6 +137,48 @@
           - zuul_conf_stat.stat.isreg
           - zuul_conf_stat.stat.pw_name == 'zuul-test'
           - zuul_conf_stat.stat.gr_name == 'zuul-test'
+
+    - name: Register /etc/zuul/ssl/root-ca.pem
+      stat:
+        path: /etc/zuul/ssl/root-ca.pem
+      register: _zuul_file_gearman_ssl_ca_stat
+
+    - name: Assert _zuul_file_gearman_ssl_ca_stat tests.
+      assert:
+        that:
+          - _zuul_file_gearman_ssl_ca_stat.stat.exists
+          - _zuul_file_gearman_ssl_ca_stat.stat.isreg
+          - _zuul_file_gearman_ssl_ca_stat.stat.pw_name == 'zuul-test'
+          - _zuul_file_gearman_ssl_ca_stat.stat.gr_name == 'zuul-test'
+          - _zuul_file_gearman_ssl_ca_stat.stat.mode == '0644'
+
+    - name: Register /etc/zuul/ssl/client.pem
+      stat:
+        path: /etc/zuul/ssl/client.pem
+      register: _zuul_file_gearman_ssl_cert_stat
+
+    - name: Assert _zuul_file_gearman_ssl_cert_stat tests.
+      assert:
+        that:
+          - _zuul_file_gearman_ssl_cert_stat.stat.exists
+          - _zuul_file_gearman_ssl_cert_stat.stat.isreg
+          - _zuul_file_gearman_ssl_cert_stat.stat.pw_name == 'zuul-test'
+          - _zuul_file_gearman_ssl_cert_stat.stat.gr_name == 'zuul-test'
+          - _zuul_file_gearman_ssl_cert_stat.stat.mode == '0644'
+
+    - name: Register /etc/zuul/ssl/client.key
+      stat:
+        path: /etc/zuul/ssl/client.key
+      register: _zuul_file_gearman_ssl_key_stat
+
+    - name: Assert _zuul_file_gearman_ssl_key_stat tests.
+      assert:
+        that:
+          - _zuul_file_gearman_ssl_key_stat.stat.exists
+          - _zuul_file_gearman_ssl_key_stat.stat.isreg
+          - _zuul_file_gearman_ssl_key_stat.stat.pw_name == 'zuul-test'
+          - _zuul_file_gearman_ssl_key_stat.stat.gr_name == 'zuul-test'
+          - _zuul_file_gearman_ssl_key_stat.stat.mode == '0600'
 
     - name: Register /etc/systemd/system/zuul-executor.service.d/override.conf
       stat:
