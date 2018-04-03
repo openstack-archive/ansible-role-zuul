@@ -37,10 +37,11 @@
       synchronize:
         dest: "{{ zuul.executor.log_root }}/logs"
         mode: pull
+        recursive: false
         rsync_opts:
           - "--relative"
         src: "{{ item }}"
         verify_host: true
       with_items:
-        - /etc/zuul
-        - /var/log/zuul
+        - /etc/zuul/
+        - /var/log/zuul/
