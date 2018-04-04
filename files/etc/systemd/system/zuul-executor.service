@@ -8,6 +8,7 @@ Environment="PREFIX=/usr/local"
 Group=zuul
 User=zuul
 ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-executor -d"
+ExecStop=/bin/sh -c "${PREFIX}/bin/zuul-executor stop"
 
 [Install]
 WantedBy=multi-user.target

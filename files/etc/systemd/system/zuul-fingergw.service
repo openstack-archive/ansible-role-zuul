@@ -8,6 +8,7 @@ Environment="PREFIX=/usr/local"
 Group=root
 User=root
 ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-fingergw -d"
+ExecStop=/bin/sh -c "${PREFIX}/bin/zuul-fingergw stop"
 
 [Install]
 WantedBy=multi-user.target

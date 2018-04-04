@@ -8,6 +8,7 @@ Environment="PREFIX=/usr/local"
 Group=zuul
 User=zuul
 ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-scheduler -d"
+ExecStop=/bin/sh -c "${PREFIX}/bin/zuul-scheduler stop"
 ExecReload=/bin/kill -HUP $MAINPID
 
 [Install]
