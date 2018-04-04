@@ -12,33 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Reload zuul-executor
-  become: yes
-  service:
-    name: zuul-executor
-    state: reloaded
-  when: zuul_service_zuul_executor_manage and
-        zuul_service_zuul_executor_state == "started" and not
-        zuul_service_zuul_executor.changed
-
-- name: Reload zuul-fingergw
-  become: yes
-  service:
-    name: zuul-fingergw
-    state: reloaded
-  when: zuul_service_zuul_fingergw_manage and
-        zuul_service_zuul_fingergw_state == "started" and not
-        zuul_service_zuul_fingergw.changed
-
-- name: Reload zuul-merger
-  become: yes
-  service:
-    name: zuul-merger
-    state: reloaded
-  when: zuul_service_zuul_merger_manage and
-        zuul_service_zuul_merger_state == "started" and not
-        zuul_service_zuul_merger.changed
-
 - name: Reload zuul-scheduler
   become: yes
   service:
@@ -47,12 +20,3 @@
   when: zuul_service_zuul_scheduler_manage and
         zuul_service_zuul_scheduler_state == "started" and not
         zuul_service_zuul_scheduler.changed
-
-- name: Reload zuul-web
-  become: yes
-  service:
-    name: zuul-web
-    state: reloaded
-  when: zuul_service_zuul_web_manage and
-        zuul_service_zuul_web_state == "started" and not
-        zuul_service_zuul_web.changed

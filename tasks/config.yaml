@@ -44,7 +44,6 @@
     owner: "{{ zuul_file_executor_logging_conf_owner }}"
     src: "{{ zuul_file_executor_logging_conf_src }}"
   register: zuul_file_executor_logging_conf
-  notify: Reload zuul-executor
 
 - name: Install fingergw logging file.
   become: yes
@@ -55,7 +54,6 @@
     owner: "{{ zuul_file_fingergw_logging_conf_owner }}"
     src: "{{ zuul_file_fingergw_logging_conf_src }}"
   register: zuul_file_fingergw_logging_conf
-  notify: Reload zuul-fingergw
 
 - name: Install merger logging file.
   become: yes
@@ -66,7 +64,6 @@
     owner: "{{ zuul_file_merger_logging_conf_owner }}"
     src: "{{ zuul_file_merger_logging_conf_src }}"
   register: zuul_file_merger_logging_conf
-  notify: Reload zuul-merger
 
 - name: Install scheduler logging file.
   become: yes
@@ -118,7 +115,6 @@
     owner: "{{ zuul_file_web_logging_conf_owner }}"
     src: "{{ zuul_file_web_logging_conf_src }}"
   register: zuul_file_web_logging_conf
-  notify: Reload zuul-web
 
 - name: Install layout configuration.
   become: yes
@@ -129,7 +125,6 @@
     owner: "{{ zuul_file_layout_owner }}"
     src: "{{ zuul_file_layout_src }}"
   register: zuul_file_layout
-  notify: Reload zuul-scheduler
 
 - name: Install zuul configuration.
   become: yes
@@ -141,7 +136,4 @@
     src: "{{ zuul_file_zuul_conf_src }}"
   register: zuul_file_zuul_conf
   notify:
-    - Reload zuul-executor
-    - Reload zuul-fingergw
-    - Reload zuul-merger
     - Reload zuul-scheduler
