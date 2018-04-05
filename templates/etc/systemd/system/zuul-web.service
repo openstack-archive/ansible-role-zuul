@@ -4,10 +4,9 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-Environment="PREFIX=/usr/local"
 Group=zuul
 User=zuul
-ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-web -d"
+ExecStart={{ zuul_pip_virtualenv | default('/usr/local') }}/bin/zuul-web -d
 
 [Install]
 WantedBy=multi-user.target

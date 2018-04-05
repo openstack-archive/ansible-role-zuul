@@ -4,11 +4,10 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-Environment="PREFIX=/usr/local"
 Group=zuul
 User=zuul
-ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-executor -d"
-ExecStop=/bin/sh -c "${PREFIX}/bin/zuul-executor stop"
+ExecStart={{ zuul_pip_virtualenv | default('/usr/local') }}/bin/zuul-executor -d
+ExecStop={{ zuul_pip_virtualenv | default('/usr/local') }}/bin/zuul-executor stop
 
 [Install]
 WantedBy=multi-user.target

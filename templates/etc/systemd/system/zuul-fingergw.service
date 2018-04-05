@@ -4,11 +4,10 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-Environment="PREFIX=/usr/local"
 Group=root
 User=root
-ExecStart=/bin/sh -c "${PREFIX}/bin/zuul-fingergw -d"
-ExecStop=/bin/sh -c "${PREFIX}/bin/zuul-fingergw stop"
+ExecStart={{ zuul_pip_virtualenv | default('/usr/local') }}/bin/zuul-fingergw -d
+ExecStop={{ zuul_pip_virtualenv | default('/usr/local') }}/bin/zuul-fingergw stop
 
 [Install]
 WantedBy=multi-user.target
