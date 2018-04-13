@@ -1,6 +1,7 @@
 - job:
     name: ansible-role-zuul-base
     parent: unittests
+    pre-run: tests/playbooks/pre.yaml
     run: tests/playbooks/run.yaml
     post-run: tests/collect-logs.yaml
     roles:
