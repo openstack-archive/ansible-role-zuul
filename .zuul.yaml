@@ -1,12 +1,17 @@
 - job:
-    name: ansible-role-zuul
-    parent: unittests
-    run: tests/test.yaml
+    name: ansible-role-zuul-base
+    pre-run: tests/playbooks/pre.yaml
+    run: tests/playbooks/run.yaml
     post-run: tests/collect-logs.yaml
-    required-projects:
-      - name: openstack-infra/zuul
     roles:
       - zuul: openstack/ansible-role-zuul
+
+# Testing for zuul_install_method: pip
+- job:
+    name: ansible-role-zuul
+    parent: ansible-role-zuul-base
+    vars:
+      zuul_install_method: pip
 
 - job:
     name: ansible-role-zuul-fedora-27
@@ -23,6 +28,31 @@
     parent: ansible-role-zuul
     nodeset: ubuntu-xenial
 
+# Testing for zuul_install_method: git
+- job:
+    name: ansible-role-zuul-src
+    parent: ansible-role-zuul-base
+    required-projects:
+      - name: openstack-infra/zuul
+    vars:
+      zuul_git_update: false
+      zuul_install_method: git
+
+- job:
+    name: ansible-role-zuul-src-fedora-27
+    parent: ansible-role-zuul-src
+    nodeset: fedora-27
+
+- job:
+    name: ansible-role-zuul-src-ubuntu-bionic
+    parent: ansible-role-zuul-src
+    nodeset: ubuntu-bionic
+
+- job:
+    name: ansible-role-zuul-src-ubuntu-xenial
+    parent: ansible-role-zuul-src
+    nodeset: ubuntu-xenial
+
 - project:
     templates:
       - windmill-jobs-fedora-27
@@ -33,9 +63,14 @@
         - ansible-role-zuul-fedora-27
         - ansible-role-zuul-ubuntu-bionic
         - ansible-role-zuul-ubuntu-xenial
+        - ansible-role-zuul-src-fedora-27
+        - ansible-role-zuul-src-ubuntu-bionic
+        - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
         - ansible-role-zuul-fedora-27
         - ansible-role-zuul-ubuntu-xenial
+        - ansible-role-zuul-src-fedora-27
+        - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters

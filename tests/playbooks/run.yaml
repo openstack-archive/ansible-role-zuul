@@ -21,7 +21,6 @@
     zuul_file_zuul_web_service_config_src: etc/systemd/system/override.conf.j2
     zuul_user_name: zuul-test
     zuul_user_group: zuul-test
-    zuul_git_update: false
     zuul_pip_executable: pip3
 
   roles:
@@ -91,12 +90,14 @@
       stat:
         path: /home/zuul/src/git.openstack.org/openstack-infra/zuul
       register: zuul_git_dest_stat
+      when: zuul_install_method == 'git'
 
     - name: Assert zuul_git_dest tests.
       assert:
         that:
           - zuul_git_dest_stat.stat.exists
           - zuul_git_dest_stat.stat.isdir
+      when: zuul_install_method == 'git'
 
     - name: Register /etc/zuul/config/
       stat:
