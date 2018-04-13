@@ -99,7 +99,7 @@ zuul_git_uri: https://git.openstack.org/openstack-infra/zuul
 zuul_git_version: master
 # zuul_git_update:
 
-zuul_install_method: git
+zuul_install_method: pip
 
 zuul_pip_name: zuul
 # zuul_pip_executable:
