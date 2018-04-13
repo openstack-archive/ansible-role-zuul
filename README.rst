@@ -18,6 +18,8 @@ so that changes are only merged if they pass tests.
 Requirements
 ------------
 
+* pip3 to be installed if using zuul_install_method: (git|pip)
+
 See `bindep.txt` for role dependencies.
 
 Packages
