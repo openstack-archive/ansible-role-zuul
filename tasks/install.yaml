@@ -20,9 +20,8 @@
 - name: Ensure build dependencies are installed.
   become: yes
   package:
-    name: "{{ item }}"
+    name: "{{ zuul_build_depends }}"
     state: installed
-  with_items: "{{ zuul_build_depends }}"
   when: zuul_install_method == 'git'
 
 - name: Define zuul_pip_executable if needed.
