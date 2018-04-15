@@ -24,11 +24,11 @@ zuul_user_name: zuul
 zuul_user_group: zuul
 zuul_user_home: /var/lib/zuul
 
-zuul_file_layout_dest: /etc/zuul/config/
-zuul_file_layout_group: "{{ zuul_user_group }}"
-zuul_file_layout_mode: 0755
-zuul_file_layout_owner: "{{ zuul_user_name }}"
-zuul_file_layout_src: etc/zuul/config/
+zuul_file_main_yaml_dest: /etc/zuul/main.yaml
+zuul_file_main_yaml_group: "{{ zuul_user_group }}"
+zuul_file_main_yaml_mode: 0644
+zuul_file_main_yaml_owner: "{{ zuul_user_name }}"
+zuul_file_main_yaml_src: etc/zuul/main.yaml
 
 zuul_file_gearman_logging_conf_dest: /etc/zuul/gearman-logging.conf
 zuul_file_gearman_logging_conf_group: "{{ zuul_user_group }}"
