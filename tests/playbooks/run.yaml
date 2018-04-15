@@ -36,10 +36,10 @@
           - zuul_file_gearman_ssl_key
           - zuul_file_executor_logging_conf
           - zuul_file_fingergw_logging_conf
+          - zuul_file_main_yaml
           - zuul_file_merger_logging_conf
           - zuul_file_scheduler_logging_conf
           - zuul_file_web_logging_conf
-          - zuul_file_layout
           - zuul_file_zuul_conf
           - zuul_file_zuul_executor_service
           - zuul_file_zuul_executor_service_config
@@ -99,32 +99,19 @@
           - zuul_git_dest_stat.stat.isdir
       when: zuul_install_method == 'git'
 
-    - name: Register /etc/zuul/config/
+    - name: Register /etc/zuul/main.yaml
       stat:
-        path: /etc/zuul/config/
-      register: zuul_layout_stat
+        path: /etc/zuul/main.yaml
+      register: zuul_main_yaml_stat
 
-    - name: Assert zuul_layout_stat tests.
+    - name: Assert zuul_main_yaml_stat tests.
       assert:
         that:
-          - zuul_layout_stat.stat.exists
-          - zuul_layout_stat.stat.isdir
-          - zuul_layout_stat.stat.pw_name == 'zuul-test'
-          - zuul_layout_stat.stat.gr_name == 'zuul-test'
-          - zuul_layout_stat.stat.mode == '0755'
-
-    - name: Register /etc/zuul/config/layout.yaml
-      stat:
-        path: /etc/zuul/config/layout.yaml
-      register: zuul_layout_yaml_stat
-
-    - name: Assert zuul_layout_yaml_stat tests.
-      assert:
-        that:
-          - zuul_layout_yaml_stat.stat.exists
-          - zuul_layout_yaml_stat.stat.isreg
-          - zuul_layout_yaml_stat.stat.pw_name == 'zuul-test'
-          - zuul_layout_yaml_stat.stat.gr_name == 'zuul-test'
+          - zuul_main_yaml_stat.stat.exists
+          - zuul_main_yaml_stat.stat.isreg
+          - zuul_main_yaml_stat.stat.pw_name == 'zuul-test'
+          - zuul_main_yaml_stat.stat.gr_name == 'zuul-test'
+          - zuul_main_yaml_stat.stat.mode == '0644'
 
     - name: Register /etc/zuul/zuul.conf
       stat:

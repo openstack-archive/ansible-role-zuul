@@ -116,15 +116,17 @@
     src: "{{ zuul_file_web_logging_conf_src }}"
   register: zuul_file_web_logging_conf
 
-- name: Install layout configuration.
+- name: Install zuul main.yaml configuration.
   become: yes
-  copy:
-    dest: "{{ zuul_file_layout_dest }}"
-    group: "{{ zuul_file_layout_group }}"
-    mode: "{{ zuul_file_layout_mode }}"
-    owner: "{{ zuul_file_layout_owner }}"
-    src: "{{ zuul_file_layout_src }}"
-  register: zuul_file_layout
+  template:
+    dest: "{{ zuul_file_main_yaml_dest }}"
+    group: "{{ zuul_file_main_yaml_group }}"
+    mode: "{{ zuul_file_main_yaml_mode }}"
+    owner: "{{ zuul_file_main_yaml_owner }}"
+    src: "{{ zuul_file_main_yaml_src }}"
+  register: zuul_file_main_yaml
+  notify:
+    - Reload zuul-scheduler
 
 - name: Install zuul configuration.
   become: yes
