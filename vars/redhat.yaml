@@ -18,6 +18,7 @@ __zuul_build_depends:
   - libffi-devel
   - openssl-devel
   - python3-devel
+  - re2-devel
 
 __zuul_file_zuul_executor_service_dest: /etc/systemd/system/zuul-executor.service
 __zuul_file_zuul_executor_service_mode: 0644

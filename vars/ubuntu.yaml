@@ -15,6 +15,7 @@
 __zuul_build_depends:
   - build-essential
   - libffi-dev
+  - libre2-dev
   - libssl-dev
   - python3-dev
 
