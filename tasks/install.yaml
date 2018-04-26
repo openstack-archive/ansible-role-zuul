@@ -22,7 +22,7 @@
   package:
     name: "{{ zuul_build_depends }}"
     state: installed
-  when: zuul_install_method == 'git'
+  when: zuul_install_method == 'git' or zuul_install_method == 'pip'
 
 - name: Define zuul_pip_executable if needed.
   set_fact:
