@@ -16,6 +16,7 @@
   become: yes
   pip:
     executable: "{{ zuul_pip_executable|default(omit) }}"
+    editable : "{{ zuul_pip_editable|default(omit) }}"
     extra_args: "{{ zuul_pip_extra_args|default(omit) }}"
     name: "{{ zuul_pip_name }}"
     version: "{{ zuul_pip_version|default(omit) }}"

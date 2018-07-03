@@ -103,6 +103,7 @@ zuul_install_method: pip
 
 zuul_pip_name: zuul
 # zuul_pip_executable:
+# zuul_pip_editable:
 # zuul_pip_extra_args:
 # zuul_pip_version:
 # zuul_pip_virtualenv_python
