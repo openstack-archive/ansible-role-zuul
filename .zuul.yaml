@@ -69,7 +69,9 @@
     gate:
       jobs:
         - ansible-role-zuul-fedora-latest
+        - ansible-role-zuul-ubuntu-bionic
         - ansible-role-zuul-ubuntu-xenial
         - ansible-role-zuul-src-fedora-latest
+        - ansible-role-zuul-src-ubuntu-bionic
         - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
