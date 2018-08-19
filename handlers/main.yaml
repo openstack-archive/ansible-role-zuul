@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Reload zuul-scheduler
-  become: yes
+  become: true
   service:
     name: zuul-scheduler
     state: reloaded

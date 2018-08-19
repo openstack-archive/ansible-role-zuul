@@ -18,7 +18,7 @@
   when: zuul_build_depends is not defined
 
 - name: Ensure build dependencies are installed.
-  become: yes
+  become: true
   package:
     name: "{{ zuul_build_depends }}"
     state: installed

@@ -13,7 +13,7 @@
 # under the License.
 ---
 - name: Install zuul using pip.
-  become: yes
+  become: true
   pip:
     executable: "{{ zuul_pip_executable|default(omit) }}"
     editable : "{{ zuul_pip_editable|default(omit) }}"

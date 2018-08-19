@@ -163,7 +163,7 @@
   when: zuul_file_zuul_web_service_config_src is not defined
 
 - name: Install zuul-executor service into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_executor_service_dest }}"
     group: "{{ zuul_file_zuul_executor_service_group }}"
@@ -174,7 +174,7 @@
   when: zuul_file_zuul_executor_service_manage
 
 - name: Create zuul-executor service config directory.
-  become: yes
+  become: true
   file:
     group: "{{ zuul_file_zuul_executor_service_config_group }}"
     owner: "{{ zuul_file_zuul_executor_service_config_owner }}"
@@ -183,7 +183,7 @@
   when: zuul_file_zuul_executor_service_config_manage
 
 - name: Install zuul-executor service config into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_executor_service_config_dest }}"
     group: "{{ zuul_file_zuul_executor_service_config_group }}"
@@ -194,7 +194,7 @@
   when: zuul_file_zuul_executor_service_config_manage
 
 - name: Install zuul-fingergw service into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_fingergw_service_dest }}"
     group: "{{ zuul_file_zuul_fingergw_service_group }}"
@@ -205,7 +205,7 @@
   when: zuul_file_zuul_fingergw_service_manage
 
 - name: Create zuul-fingergw service config directory.
-  become: yes
+  become: true
   file:
     group: "{{ zuul_file_zuul_fingergw_service_config_group }}"
     owner: "{{ zuul_file_zuul_fingergw_service_config_owner }}"
@@ -214,7 +214,7 @@
   when: zuul_file_zuul_fingergw_service_config_manage
 
 - name: Install zuul-fingergw service config into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_fingergw_service_config_dest }}"
     group: "{{ zuul_file_zuul_fingergw_service_config_group }}"
@@ -225,7 +225,7 @@
   when: zuul_file_zuul_fingergw_service_config_manage
 
 - name: Install zuul-merger service into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_merger_service_dest }}"
     group: "{{ zuul_file_zuul_merger_service_group }}"
@@ -236,7 +236,7 @@
   when: zuul_file_zuul_merger_service_manage
 
 - name: Create zuul-merger service config directory.
-  become: yes
+  become: true
   file:
     group: "{{ zuul_file_zuul_merger_service_config_group }}"
     owner: "{{ zuul_file_zuul_merger_service_config_owner }}"
@@ -245,7 +245,7 @@
   when: zuul_file_zuul_merger_service_config_manage
 
 - name: Install zuul-merger service config into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_merger_service_config_dest }}"
     group: "{{ zuul_file_zuul_merger_service_config_group }}"
@@ -256,7 +256,7 @@
   when: zuul_file_zuul_merger_service_config_manage
 
 - name: Install zuul-scheduler service into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_scheduler_service_dest }}"
     group: "{{ zuul_file_zuul_scheduler_service_group }}"
@@ -267,7 +267,7 @@
   when: zuul_file_zuul_scheduler_service_manage
 
 - name: Create zuul-scheduler service config directory.
-  become: yes
+  become: true
   file:
     group: "{{ zuul_file_zuul_scheduler_service_config_group }}"
     owner: "{{ zuul_file_zuul_scheduler_service_config_owner }}"
@@ -276,7 +276,7 @@
   when: zuul_file_zuul_scheduler_service_config_manage
 
 - name: Install zuul-scheduler service config into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_scheduler_service_config_dest }}"
     group: "{{ zuul_file_zuul_scheduler_service_config_group }}"
@@ -287,7 +287,7 @@
   when: zuul_file_zuul_scheduler_service_config_manage
 
 - name: Install zuul-web service into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_web_service_dest }}"
     group: "{{ zuul_file_zuul_web_service_group }}"
@@ -298,7 +298,7 @@
   when: zuul_file_zuul_web_service_manage
 
 - name: Create zuul-web service config directory.
-  become: yes
+  become: true
   file:
     group: "{{ zuul_file_zuul_web_service_config_group }}"
     owner: "{{ zuul_file_zuul_web_service_config_owner }}"
@@ -307,7 +307,7 @@
   when: zuul_file_zuul_web_service_config_manage
 
 - name: Install zuul-web service config into place.
-  become: yes
+  become: true
   template:
     dest: "{{ zuul_file_zuul_web_service_config_dest }}"
     group: "{{ zuul_file_zuul_web_service_config_group }}"
@@ -318,7 +318,7 @@
   when: zuul_file_zuul_web_service_config_manage
 
 - name: Enable zuul-executor service.
-  become: yes
+  become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_executor_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_executor_enabled }}"
@@ -328,7 +328,7 @@
   when: zuul_service_zuul_executor_manage
 
 - name: Enable zuul-fingergw service.
-  become: yes
+  become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_fingergw_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_fingergw_enabled }}"
@@ -338,7 +338,7 @@
   when: zuul_service_zuul_fingergw_manage
 
 - name: Enable zuul-merger service.
-  become: yes
+  become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_merger_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_merger_enabled }}"
@@ -348,7 +348,7 @@
   when: zuul_service_zuul_merger_manage
 
 - name: Enable zuul-scheduler service.
-  become: yes
+  become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_scheduler_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_scheduler_enabled }}"
@@ -358,7 +358,7 @@
   when: zuul_service_zuul_scheduler_manage
 
 - name: Enable zuul-web service.
-  become: yes
+  become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_web_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_web_enabled }}"
