@@ -1,3 +1,4 @@
+---
 - job:
     name: ansible-role-zuul-base
     parent: unittests
@@ -6,6 +7,9 @@
     post-run: tests/collect-logs.yaml
     roles:
       - zuul: openstack/ansible-role-zuul
+    vars:
+      zuul_user_group: zuul-test
+      zuul_user_name: zuul-test
 
 # Testing for zuul_install_method: pip
 - job:
@@ -66,6 +70,7 @@
         - ansible-role-zuul-src-ubuntu-bionic
         - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
     gate:
       jobs:
         - ansible-role-zuul-fedora-latest
@@ -75,3 +80,4 @@
         - ansible-role-zuul-src-ubuntu-bionic
         - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
