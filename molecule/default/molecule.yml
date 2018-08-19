@@ -1,0 +1,37 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: ubuntu-bionic
+    image: ubuntu:bionic
+provisioner:
+  name: ansible
+  config_options:
+    ssh_connection:
+      pipelining: true
+  inventory:
+    group_vars:
+      all:
+        zuul_service_zuul_executor_manage: false
+        zuul_service_zuul_fingergw_manage: false
+        zuul_service_zuul_merger_manage: false
+        zuul_service_zuul_scheduler_manage: false
+        zuul_service_zuul_web_manage: false
+  lint:
+    name: ansible-lint
+  log: true
+  playbooks:
+    converge: ../../tests/playbooks/run.yaml
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  directory: ../tests
+  options:
+    verbose: true
+  lint:
+    name: flake8
