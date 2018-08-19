@@ -1,3 +1,4 @@
+---
 - job:
     name: ansible-role-zuul-base
     parent: unittests
@@ -66,6 +67,7 @@
         - ansible-role-zuul-src-ubuntu-bionic
         - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
     gate:
       jobs:
         - ansible-role-zuul-fedora-latest
@@ -75,3 +77,4 @@
         - ansible-role-zuul-src-ubuntu-bionic
         - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
+        - windmill-tox-molecule
