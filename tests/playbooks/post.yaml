@@ -1,0 +1,8 @@
+- hosts: all
+  tasks:
+    - name: Run testinfra validation
+      include_role:
+        name: tox
+      vars:
+        tox_envlist: testinfra
+        tox_install_siblings: false
