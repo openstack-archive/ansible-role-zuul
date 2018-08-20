@@ -14,6 +14,12 @@
 ---
 - hosts: all
   tasks:
+    # TODO(pabelanger): Remove once this lands in our base job in
+    # project-config.
+    - name: Execute ensure-output-dirs role
+      include_role:
+        name: ensure-output-dirs
+
     - name: Disable extra wheels mirror
       become: yes
       lineinfile:

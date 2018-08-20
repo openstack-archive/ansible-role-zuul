@@ -1,24 +1,14 @@
 - hosts: all
   tasks:
-    - name: Ensure logs directory exists
-      file:
-        path: "{{ item }}"
-        state: directory
-      with_items:
-        - "{{ zuul.executor.log_root }}/logs"
-        - "{{ zuul.executor.log_root }}/logs/var/log"
-      delegate_to: localhost
-
     - name: Ensure journald logs directory exists
       file:
-        path: ~/logs/journal
+        path: "{{ zuul_output_dir }}/logs/logs/var/log/journal"
         state: directory
 
     - name: Collect journald logs
-      become: yes
-      shell: "journalctl -u {{ item }}.service > /home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/var/log/journal/{{ item }}.service.log"
       args:
-        creates: "/home/{{ ansible_user }}/logs/journal/{{ item }}.service.log"
+        creates: "{{ zuul_output_dir }}/logs/logs/var/log/journal/{{ item }}.service.log"
       with_items:
         - zuul-executor
         - zuul-fingergw
@@ -26,22 +16,25 @@
         - zuul-scheduler
         - zuul-web
 
-    - name: Collect journald log files
+    - name: Prepare zuul log files
+      become: yes
       synchronize:
-        dest: "{{ zuul.executor.log_root }}/logs/var/log"
-        mode: pull
-        src: ~/logs/journal
-        verify_host: true
-
-    - name: Collect zuul log files
-      synchronize:
-        dest: "{{ zuul.executor.log_root }}/logs"
-        mode: pull
-        recursive: false
+        dest: "{{ zuul_output_dir }}/logs/logs"
         rsync_opts:
           - "--relative"
+          - "--chown={{ ansible_user_id }}:{{ ansible_user_id }}"
         src: "{{ item }}"
         verify_host: true
+      delegate_to: "{{ inventory_hostname }}"
       with_items:
-        - /etc/zuul/*
-        - /var/log/zuul/*
+        - /etc/zuul
+        - /var/log/zuul
+
+    # TODO: Migrate to fetch-zuul-logs when
+    # https://review.openstack.org/#/c/583346/ is merged.
+    - name: Collect log output
+      synchronize:
+        dest: "{{ zuul.executor.log_root }}/"
+        mode: pull
+        src: "{{ zuul_output_dir }}/logs/"
+        verify_host: true
