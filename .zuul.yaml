@@ -22,11 +22,6 @@
     parent: ansible-role-zuul
     nodeset: ubuntu-bionic
 
-- job:
-    name: ansible-role-zuul-ubuntu-xenial
-    parent: ansible-role-zuul
-    nodeset: ubuntu-xenial
-
 # Testing for zuul_install_method: git
 - job:
     name: ansible-role-zuul-src
@@ -47,31 +42,21 @@
     parent: ansible-role-zuul-src
     nodeset: ubuntu-bionic
 
-- job:
-    name: ansible-role-zuul-src-ubuntu-xenial
-    parent: ansible-role-zuul-src
-    nodeset: ubuntu-xenial
-
 - project:
     templates:
       - windmill-jobs-fedora-latest
       - windmill-jobs-bionic
-      - windmill-jobs-xenial
     check:
       jobs:
         - ansible-role-zuul-fedora-latest
         - ansible-role-zuul-ubuntu-bionic
-        - ansible-role-zuul-ubuntu-xenial
         - ansible-role-zuul-src-fedora-latest
         - ansible-role-zuul-src-ubuntu-bionic
-        - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
         - ansible-role-zuul-fedora-latest
         - ansible-role-zuul-ubuntu-bionic
-        - ansible-role-zuul-ubuntu-xenial
         - ansible-role-zuul-src-fedora-latest
         - ansible-role-zuul-src-ubuntu-bionic
-        - ansible-role-zuul-src-ubuntu-xenial
         - tox-linters
