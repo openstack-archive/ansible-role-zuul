@@ -1,14 +1,18 @@
 - hosts: all
   tasks:
+    - name: Setup logs directory fact
+      set_fact:
+        __log_dir: "{{ zuul_output_dir }}/logs/logs/var/log/journal"
+
     - name: Ensure journald logs directory exists
       file:
-        path: "{{ zuul_output_dir }}/logs/logs/var/log/journal"
+        path: "{{ __log_dir }}"
         state: directory
 
     - name: Collect journald logs
-      shell: "sudo journalctl -u {{ item }}.service | tee {{ zuul_output_dir }}/logs/logs/var/log/journal/{{ item }}.service.log"
+      shell: "sudo journalctl -u {{ item }}.service | tee {{ __log_dir }}/{{ item }}.service.log"
       args:
-        creates: "{{ zuul_output_dir }}/logs/logs/var/log/journal/{{ item }}.service.log"
+        creates: "{{ __log_dir }}/{{ item }}.service.log"
       with_items:
         - zuul-executor
         - zuul-fingergw
