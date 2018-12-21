@@ -12,157 +12,157 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define zuul_file_zuul_executor_service_dest.
+- name: Define zuul_file_zuul_executor_service_dest
   set_fact:
     zuul_file_zuul_executor_service_dest: "{{ __zuul_file_zuul_executor_service_dest }}"
   when: zuul_file_zuul_executor_service_dest is not defined
 
-- name: Define zuul_file_zuul_executor_service_mode.
+- name: Define zuul_file_zuul_executor_service_mode
   set_fact:
     zuul_file_zuul_executor_service_mode: "{{ __zuul_file_zuul_executor_service_mode }}"
   when: zuul_file_zuul_executor_service_mode is not defined
 
-- name: Define zuul_file_zuul_executor_service_src.
+- name: Define zuul_file_zuul_executor_service_src
   set_fact:
     zuul_file_zuul_executor_service_src: "{{ __zuul_file_zuul_executor_service_src }}"
   when: zuul_file_zuul_executor_service_src is not defined
 
-- name: Define zuul_file_zuul_executor_service_config_dest.
+- name: Define zuul_file_zuul_executor_service_config_dest
   set_fact:
     zuul_file_zuul_executor_service_config_dest: "{{ __zuul_file_zuul_executor_service_config_dest }}"
   when: zuul_file_zuul_executor_service_config_dest is not defined
 
-- name: Define zuul_file_zuul_executor_service_config_mode.
+- name: Define zuul_file_zuul_executor_service_config_mode
   set_fact:
     zuul_file_zuul_executor_service_config_mode: "{{ __zuul_file_zuul_executor_service_config_mode }}"
   when: zuul_file_zuul_executor_service_config_mode is not defined
 
-- name: Define zuul_file_zuul_executor_service_config_src.
+- name: Define zuul_file_zuul_executor_service_config_src
   set_fact:
     zuul_file_zuul_executor_service_config_src: "{{ __zuul_file_zuul_executor_service_config_src }}"
   when: zuul_file_zuul_executor_service_config_src is not defined
 
-- name: Define zuul_file_zuul_fingergw_service_dest.
+- name: Define zuul_file_zuul_fingergw_service_dest
   set_fact:
     zuul_file_zuul_fingergw_service_dest: "{{ __zuul_file_zuul_fingergw_service_dest }}"
   when: zuul_file_zuul_fingergw_service_dest is not defined
 
-- name: Define zuul_file_zuul_fingergw_service_mode.
+- name: Define zuul_file_zuul_fingergw_service_mode
   set_fact:
     zuul_file_zuul_fingergw_service_mode: "{{ __zuul_file_zuul_fingergw_service_mode }}"
   when: zuul_file_zuul_fingergw_service_mode is not defined
 
-- name: Define zuul_file_zuul_fingergw_service_src.
+- name: Define zuul_file_zuul_fingergw_service_src
   set_fact:
     zuul_file_zuul_fingergw_service_src: "{{ __zuul_file_zuul_fingergw_service_src }}"
   when: zuul_file_zuul_fingergw_service_src is not defined
 
-- name: Define zuul_file_zuul_fingergw_service_config_dest.
+- name: Define zuul_file_zuul_fingergw_service_config_dest
   set_fact:
     zuul_file_zuul_fingergw_service_config_dest: "{{ __zuul_file_zuul_fingergw_service_config_dest }}"
   when: zuul_file_zuul_fingergw_service_config_dest is not defined
 
-- name: Define zuul_file_zuul_fingergw_service_config_mode.
+- name: Define zuul_file_zuul_fingergw_service_config_mode
   set_fact:
     zuul_file_zuul_fingergw_service_config_mode: "{{ __zuul_file_zuul_fingergw_service_config_mode }}"
   when: zuul_file_zuul_fingergw_service_config_mode is not defined
 
-- name: Define zuul_file_zuul_fingergw_service_config_src.
+- name: Define zuul_file_zuul_fingergw_service_config_src
   set_fact:
     zuul_file_zuul_fingergw_service_config_src: "{{ __zuul_file_zuul_fingergw_service_config_src }}"
   when: zuul_file_zuul_fingergw_service_config_src is not defined
 
-- name: Define zuul_file_zuul_merger_service_dest.
+- name: Define zuul_file_zuul_merger_service_dest
   set_fact:
     zuul_file_zuul_merger_service_dest: "{{ __zuul_file_zuul_merger_service_dest }}"
   when: zuul_file_zuul_merger_service_dest is not defined
 
-- name: Define zuul_file_zuul_merger_service_mode.
+- name: Define zuul_file_zuul_merger_service_mode
   set_fact:
     zuul_file_zuul_merger_service_mode: "{{ __zuul_file_zuul_merger_service_mode }}"
   when: zuul_file_zuul_merger_service_mode is not defined
 
-- name: Define zuul_file_zuul_merger_service_src.
+- name: Define zuul_file_zuul_merger_service_src
   set_fact:
     zuul_file_zuul_merger_service_src: "{{ __zuul_file_zuul_merger_service_src }}"
   when: zuul_file_zuul_merger_service_src is not defined
 
-- name: Define zuul_file_zuul_merger_service_config_dest.
+- name: Define zuul_file_zuul_merger_service_config_dest
   set_fact:
     zuul_file_zuul_merger_service_config_dest: "{{ __zuul_file_zuul_merger_service_config_dest }}"
   when: zuul_file_zuul_merger_service_config_dest is not defined
 
-- name: Define zuul_file_zuul_merger_service_config_mode.
+- name: Define zuul_file_zuul_merger_service_config_mode
   set_fact:
     zuul_file_zuul_merger_service_config_mode: "{{ __zuul_file_zuul_merger_service_config_mode }}"
   when: zuul_file_zuul_merger_service_config_mode is not defined
 
-- name: Define zuul_file_zuul_merger_service_config_src.
+- name: Define zuul_file_zuul_merger_service_config_src
   set_fact:
     zuul_file_zuul_merger_service_config_src: "{{ __zuul_file_zuul_merger_service_config_src }}"
   when: zuul_file_zuul_merger_service_config_src is not defined
 
-- name: Define zuul_file_zuul_scheduler_service_dest.
+- name: Define zuul_file_zuul_scheduler_service_dest
   set_fact:
     zuul_file_zuul_scheduler_service_dest: "{{ __zuul_file_zuul_scheduler_service_dest }}"
   when: zuul_file_zuul_scheduler_service_dest is not defined
 
-- name: Define zuul_file_zuul_scheduler_service_mode.
+- name: Define zuul_file_zuul_scheduler_service_mode
   set_fact:
     zuul_file_zuul_scheduler_service_mode: "{{ __zuul_file_zuul_scheduler_service_mode }}"
   when: zuul_file_zuul_scheduler_service_mode is not defined
 
-- name: Define zuul_file_zuul_scheduler_service_src.
+- name: Define zuul_file_zuul_scheduler_service_src
   set_fact:
     zuul_file_zuul_scheduler_service_src: "{{ __zuul_file_zuul_scheduler_service_src }}"
   when: zuul_file_zuul_scheduler_service_src is not defined
 
-- name: Define zuul_file_zuul_scheduler_service_config_dest.
+- name: Define zuul_file_zuul_scheduler_service_config_dest
   set_fact:
     zuul_file_zuul_scheduler_service_config_dest: "{{ __zuul_file_zuul_scheduler_service_config_dest }}"
   when: zuul_file_zuul_scheduler_service_config_dest is not defined
 
-- name: Define zuul_file_zuul_scheduler_service_config_mode.
+- name: Define zuul_file_zuul_scheduler_service_config_mode
   set_fact:
     zuul_file_zuul_scheduler_service_config_mode: "{{ __zuul_file_zuul_scheduler_service_config_mode }}"
   when: zuul_file_zuul_scheduler_service_config_mode is not defined
 
-- name: Define zuul_file_zuul_scheduler_service_config_src.
+- name: Define zuul_file_zuul_scheduler_service_config_src
   set_fact:
     zuul_file_zuul_scheduler_service_config_src: "{{ __zuul_file_zuul_scheduler_service_config_src }}"
   when: zuul_file_zuul_scheduler_service_config_src is not defined
 
-- name: Define zuul_file_zuul_web_service_dest.
+- name: Define zuul_file_zuul_web_service_dest
   set_fact:
     zuul_file_zuul_web_service_dest: "{{ __zuul_file_zuul_web_service_dest }}"
   when: zuul_file_zuul_web_service_dest is not defined
 
-- name: Define zuul_file_zuul_web_service_mode.
+- name: Define zuul_file_zuul_web_service_mode
   set_fact:
     zuul_file_zuul_web_service_mode: "{{ __zuul_file_zuul_web_service_mode }}"
   when: zuul_file_zuul_web_service_mode is not defined
 
-- name: Define zuul_file_zuul_web_service_src.
+- name: Define zuul_file_zuul_web_service_src
   set_fact:
     zuul_file_zuul_web_service_src: "{{ __zuul_file_zuul_web_service_src }}"
   when: zuul_file_zuul_web_service_src is not defined
 
-- name: Define zuul_file_zuul_web_service_config_dest.
+- name: Define zuul_file_zuul_web_service_config_dest
   set_fact:
     zuul_file_zuul_web_service_config_dest: "{{ __zuul_file_zuul_web_service_config_dest }}"
   when: zuul_file_zuul_web_service_config_dest is not defined
 
-- name: Define zuul_file_zuul_web_service_config_mode.
+- name: Define zuul_file_zuul_web_service_config_mode
   set_fact:
     zuul_file_zuul_web_service_config_mode: "{{ __zuul_file_zuul_web_service_config_mode }}"
   when: zuul_file_zuul_web_service_config_mode is not defined
 
-- name: Define zuul_file_zuul_web_service_config_src.
+- name: Define zuul_file_zuul_web_service_config_src
   set_fact:
     zuul_file_zuul_web_service_config_src: "{{ __zuul_file_zuul_web_service_config_src }}"
   when: zuul_file_zuul_web_service_config_src is not defined
 
-- name: Install zuul-executor service into place.
+- name: Install zuul-executor service into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_executor_service_dest }}"
@@ -173,7 +173,7 @@
   register: zuul_file_zuul_executor_service
   when: zuul_file_zuul_executor_service_manage
 
-- name: Create zuul-executor service config directory.
+- name: Create zuul-executor service config directory
   become: true
   file:
     group: "{{ zuul_file_zuul_executor_service_config_group }}"
@@ -182,7 +182,7 @@
     state: directory
   when: zuul_file_zuul_executor_service_config_manage
 
-- name: Install zuul-executor service config into place.
+- name: Install zuul-executor service config into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_executor_service_config_dest }}"
@@ -193,7 +193,7 @@
   register: zuul_file_zuul_executor_service_config
   when: zuul_file_zuul_executor_service_config_manage
 
-- name: Install zuul-fingergw service into place.
+- name: Install zuul-fingergw service into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_fingergw_service_dest }}"
@@ -204,7 +204,7 @@
   register: zuul_file_zuul_fingergw_service
   when: zuul_file_zuul_fingergw_service_manage
 
-- name: Create zuul-fingergw service config directory.
+- name: Create zuul-fingergw service config directory
   become: true
   file:
     group: "{{ zuul_file_zuul_fingergw_service_config_group }}"
@@ -213,7 +213,7 @@
     state: directory
   when: zuul_file_zuul_fingergw_service_config_manage
 
-- name: Install zuul-fingergw service config into place.
+- name: Install zuul-fingergw service config into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_fingergw_service_config_dest }}"
@@ -224,7 +224,7 @@
   register: zuul_file_zuul_fingergw_service_config
   when: zuul_file_zuul_fingergw_service_config_manage
 
-- name: Install zuul-merger service into place.
+- name: Install zuul-merger service into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_merger_service_dest }}"
@@ -235,7 +235,7 @@
   register: zuul_file_zuul_merger_service
   when: zuul_file_zuul_merger_service_manage
 
-- name: Create zuul-merger service config directory.
+- name: Create zuul-merger service config directory
   become: true
   file:
     group: "{{ zuul_file_zuul_merger_service_config_group }}"
@@ -244,7 +244,7 @@
     state: directory
   when: zuul_file_zuul_merger_service_config_manage
 
-- name: Install zuul-merger service config into place.
+- name: Install zuul-merger service config into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_merger_service_config_dest }}"
@@ -255,7 +255,7 @@
   register: zuul_file_zuul_merger_service_config
   when: zuul_file_zuul_merger_service_config_manage
 
-- name: Install zuul-scheduler service into place.
+- name: Install zuul-scheduler service into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_scheduler_service_dest }}"
@@ -266,7 +266,7 @@
   register: zuul_file_zuul_scheduler_service
   when: zuul_file_zuul_scheduler_service_manage
 
-- name: Create zuul-scheduler service config directory.
+- name: Create zuul-scheduler service config directory
   become: true
   file:
     group: "{{ zuul_file_zuul_scheduler_service_config_group }}"
@@ -275,7 +275,7 @@
     state: directory
   when: zuul_file_zuul_scheduler_service_config_manage
 
-- name: Install zuul-scheduler service config into place.
+- name: Install zuul-scheduler service config into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_scheduler_service_config_dest }}"
@@ -286,7 +286,7 @@
   register: zuul_file_zuul_scheduler_service_config
   when: zuul_file_zuul_scheduler_service_config_manage
 
-- name: Install zuul-web service into place.
+- name: Install zuul-web service into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_web_service_dest }}"
@@ -297,7 +297,7 @@
   register: zuul_file_zuul_web_service
   when: zuul_file_zuul_web_service_manage
 
-- name: Create zuul-web service config directory.
+- name: Create zuul-web service config directory
   become: true
   file:
     group: "{{ zuul_file_zuul_web_service_config_group }}"
@@ -306,7 +306,7 @@
     state: directory
   when: zuul_file_zuul_web_service_config_manage
 
-- name: Install zuul-web service config into place.
+- name: Install zuul-web service config into place
   become: true
   template:
     dest: "{{ zuul_file_zuul_web_service_config_dest }}"
@@ -317,7 +317,7 @@
   register: zuul_file_zuul_web_service_config
   when: zuul_file_zuul_web_service_config_manage
 
-- name: Enable zuul-executor service.
+- name: Enable zuul-executor service
   become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_executor_daemon_reload }}"
@@ -327,7 +327,7 @@
   register: zuul_service_zuul_executor
   when: zuul_service_zuul_executor_manage
 
-- name: Enable zuul-fingergw service.
+- name: Enable zuul-fingergw service
   become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_fingergw_daemon_reload }}"
@@ -337,7 +337,7 @@
   register: zuul_service_zuul_fingergw
   when: zuul_service_zuul_fingergw_manage
 
-- name: Enable zuul-merger service.
+- name: Enable zuul-merger service
   become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_merger_daemon_reload }}"
@@ -347,7 +347,7 @@
   register: zuul_service_zuul_merger
   when: zuul_service_zuul_merger_manage
 
-- name: Enable zuul-scheduler service.
+- name: Enable zuul-scheduler service
   become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_scheduler_daemon_reload }}"
@@ -357,7 +357,7 @@
   register: zuul_service_zuul_scheduler
   when: zuul_service_zuul_scheduler_manage
 
-- name: Enable zuul-web service.
+- name: Enable zuul-web service
   become: true
   systemd:
     daemon_reload: "{{ zuul_service_zuul_web_daemon_reload }}"

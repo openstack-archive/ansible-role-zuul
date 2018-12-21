@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Install zuul using pip.
+- name: Install zuul using pip
   become: true
   pip:
     executable: "{{ zuul_pip_executable|default(omit) }}"

@@ -12,19 +12,19 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Define zuul_build_depends.
+- name: Define zuul_build_depends
   set_fact:
     zuul_build_depends: "{{ __zuul_build_depends | list }}"
   when: zuul_build_depends is not defined
 
-- name: Ensure build dependencies are installed.
+- name: Ensure build dependencies are installed
   become: true
   package:
     name: "{{ zuul_build_depends }}"
     state: present
   when: zuul_install_method == 'git' or zuul_install_method == 'pip'
 
-- name: Define zuul_pip_executable if needed.
+- name: Define zuul_pip_executable if needed
   set_fact:
     zuul_pip_executable: pip3
   when:

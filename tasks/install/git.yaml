@@ -12,14 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Git clone zuul.
+- name: Git clone zuul
   git:
     dest: "{{ zuul_git_dest }}"
     repo: "{{ zuul_git_uri }}"
     update: "{{ zuul_git_update|default(omit) }}"
     version: "{{ zuul_git_version }}"
 
-- name: Set zuul_pip_name to local git repo.
+- name: Set zuul_pip_name to local git repo
   set_fact:
     zuul_pip_name: "file://{{ zuul_git_dest }}"
 

@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Create required directories.
+- name: Create required directories
   become: true
   file:
     group: "{{ zuul_user_group }}"
@@ -24,7 +24,7 @@
     - /etc/zuul/ssl
     - /var/log/zuul
 
-- name: Install gearman logging file.
+- name: Install gearman logging file
   become: true
   template:
     dest: "{{ zuul_file_gearman_logging_conf_dest }}"
@@ -35,7 +35,7 @@
   register: zuul_file_gearman_logging_conf
   notify: Reload zuul-scheduler
 
-- name: Install executor logging file.
+- name: Install executor logging file
   become: true
   template:
     dest: "{{ zuul_file_executor_logging_conf_dest }}"
@@ -45,7 +45,7 @@
     src: "{{ zuul_file_executor_logging_conf_src }}"
   register: zuul_file_executor_logging_conf
 
-- name: Install fingergw logging file.
+- name: Install fingergw logging file
   become: true
   template:
     dest: "{{ zuul_file_fingergw_logging_conf_dest }}"
@@ -55,7 +55,7 @@
     src: "{{ zuul_file_fingergw_logging_conf_src }}"
   register: zuul_file_fingergw_logging_conf
 
-- name: Install merger logging file.
+- name: Install merger logging file
   become: true
   template:
     dest: "{{ zuul_file_merger_logging_conf_dest }}"
@@ -65,7 +65,7 @@
     src: "{{ zuul_file_merger_logging_conf_src }}"
   register: zuul_file_merger_logging_conf
 
-- name: Install scheduler logging file.
+- name: Install scheduler logging file
   become: true
   template:
     dest: "{{ zuul_file_scheduler_logging_conf_dest }}"
@@ -76,7 +76,7 @@
   register: zuul_file_scheduler_logging_conf
   notify: Reload zuul-scheduler
 
-- name: Install zuul gearman ssl ca configuration.
+- name: Install zuul gearman ssl ca configuration
   become: true
   template:
     dest: "{{ zuul_file_gearman_ssl_ca_dest }}"
@@ -86,7 +86,7 @@
     src: "{{ zuul_file_gearman_ssl_ca_src }}"
   register: zuul_file_gearman_ssl_ca
 
-- name: Install zuul gearman ssl cert configuration.
+- name: Install zuul gearman ssl cert configuration
   become: true
   template:
     dest: "{{ zuul_file_gearman_ssl_cert_dest }}"
@@ -96,7 +96,7 @@
     src: "{{ zuul_file_gearman_ssl_cert_src }}"
   register: zuul_file_gearman_ssl_cert
 
-- name: Install zuul gearman ssl key configuration.
+- name: Install zuul gearman ssl key configuration
   become: true
   template:
     dest: "{{ zuul_file_gearman_ssl_key_dest }}"
@@ -106,7 +106,7 @@
     src: "{{ zuul_file_gearman_ssl_key_src }}"
   register: zuul_file_gearman_ssl_key
 
-- name: Install web logging file.
+- name: Install web logging file
   become: true
   template:
     dest: "{{ zuul_file_web_logging_conf_dest }}"
@@ -116,7 +116,7 @@
     src: "{{ zuul_file_web_logging_conf_src }}"
   register: zuul_file_web_logging_conf
 
-- name: Install zuul main.yaml configuration.
+- name: Install zuul main.yaml configuration
   become: true
   template:
     dest: "{{ zuul_file_main_yaml_dest }}"
@@ -128,7 +128,7 @@
   notify:
     - Reload zuul-scheduler
 
-- name: Install zuul configuration.
+- name: Install zuul configuration
   become: true
   template:
     dest: "{{ zuul_file_zuul_conf_dest }}"

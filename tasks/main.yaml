@@ -12,11 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Include OS-specific variables.
+- name: Include OS-specific variables
   include_vars: "{{ ansible_distribution|lower }}.yaml"
   when: ansible_os_family == 'Debian'
 
-- name: Include OS-specific variables.
+- name: Include OS-specific variables
   include_vars: "{{ ansible_os_family|lower }}.yaml"
   when: ansible_os_family == 'RedHat'
 

@@ -12,12 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 ---
-- name: Create group account.
+- name: Create group account
   become: true
   group:
     name: "{{ zuul_user_group }}"
 
-- name: Create user account.
+- name: Create user account
   become: true
   user:
     createhome: true
