@@ -24,3 +24,4 @@
     home: "{{ zuul_user_home }}"
     group: "{{ zuul_user_group }}"
     name: "{{ zuul_user_name }}"
+    shell: "{{ zuul_user_shell | default(omit) }}"

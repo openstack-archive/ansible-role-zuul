@@ -23,6 +23,7 @@ zuul_task_manager:
 zuul_user_name: zuul
 zuul_user_group: zuul
 zuul_user_home: /var/lib/zuul
+# zuul_user_shell:
 
 zuul_file_main_yaml_dest: /etc/zuul/main.yaml
 zuul_file_main_yaml_group: "{{ zuul_user_group }}"
