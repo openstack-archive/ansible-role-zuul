@@ -27,12 +27,14 @@ zuul_user_home: /var/lib/zuul
 
 zuul_file_main_yaml_dest: /etc/zuul/main.yaml
 zuul_file_main_yaml_group: "{{ zuul_user_group }}"
+zuul_file_main_yaml_manage: true
 zuul_file_main_yaml_mode: 0644
 zuul_file_main_yaml_owner: "{{ zuul_user_name }}"
 zuul_file_main_yaml_src: etc/zuul/main.yaml
 
 zuul_file_gearman_logging_conf_dest: /etc/zuul/gearman-logging.conf
 zuul_file_gearman_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_gearman_logging_conf_manage: true
 zuul_file_gearman_logging_conf_mode: 0644
 zuul_file_gearman_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_gearman_logging_conf_src: etc/zuul/gearman-logging.conf
@@ -60,30 +62,35 @@ zuul_file_gearman_ssl_key_src: etc/zuul/ssl/client.key
 
 zuul_file_executor_logging_conf_dest: /etc/zuul/executor-logging.conf
 zuul_file_executor_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_executor_logging_conf_manage: true
 zuul_file_executor_logging_conf_mode: 0644
 zuul_file_executor_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_executor_logging_conf_src: etc/zuul/executor-logging.conf
 
 zuul_file_fingergw_logging_conf_dest: /etc/zuul/fingergw-logging.conf
 zuul_file_fingergw_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_fingergw_logging_conf_manage: true
 zuul_file_fingergw_logging_conf_mode: 0644
 zuul_file_fingergw_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_fingergw_logging_conf_src: etc/zuul/fingergw-logging.conf
 
 zuul_file_merger_logging_conf_dest: /etc/zuul/merger-logging.conf
 zuul_file_merger_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_merger_logging_conf_manage: true
 zuul_file_merger_logging_conf_mode: 0644
 zuul_file_merger_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_merger_logging_conf_src: etc/zuul/merger-logging.conf
 
 zuul_file_scheduler_logging_conf_dest: /etc/zuul/scheduler-logging.conf
 zuul_file_scheduler_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_scheduler_logging_conf_manage: true
 zuul_file_scheduler_logging_conf_mode: 0644
 zuul_file_scheduler_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_scheduler_logging_conf_src: etc/zuul/scheduler-logging.conf
 
 zuul_file_web_logging_conf_dest: /etc/zuul/web-logging.conf
 zuul_file_web_logging_conf_group: "{{ zuul_user_group }}"
+zuul_file_web_logging_conf_manage: true
 zuul_file_web_logging_conf_mode: 0644
 zuul_file_web_logging_conf_owner: "{{ zuul_user_name }}"
 zuul_file_web_logging_conf_src: etc/zuul/web-logging.conf
