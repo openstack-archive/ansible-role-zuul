@@ -119,6 +119,7 @@ zuul_pip_name: zuul
 
 # tasks/service.yaml
 zuul_file_zuul_executor_service_manage: true
+
 zuul_file_zuul_executor_service_group: root
 zuul_file_zuul_executor_service_owner: root
 
@@ -163,27 +164,32 @@ zuul_service_zuul_executor_enabled: true
 zuul_service_zuul_executor_manage: true
 zuul_service_zuul_executor_name: zuul-executor.service
 zuul_service_zuul_executor_state: started
+zuul_service_zuul_executor_state_manage: true
 
 zuul_service_zuul_fingergw_daemon_reload: true
 zuul_service_zuul_fingergw_enabled: true
 zuul_service_zuul_fingergw_manage: true
 zuul_service_zuul_fingergw_name: zuul-fingergw.service
 zuul_service_zuul_fingergw_state: started
+zuul_service_zuul_fingergw_state_manage: true
 
 zuul_service_zuul_merger_daemon_reload: true
 zuul_service_zuul_merger_enabled: true
 zuul_service_zuul_merger_manage: true
 zuul_service_zuul_merger_name: zuul-merger.service
 zuul_service_zuul_merger_state: started
+zuul_service_zuul_merger_state_manage: true
 
 zuul_service_zuul_scheduler_daemon_reload: true
 zuul_service_zuul_scheduler_enabled: true
 zuul_service_zuul_scheduler_manage: true
 zuul_service_zuul_scheduler_name: zuul-scheduler.service
 zuul_service_zuul_scheduler_state: started
+zuul_service_zuul_scheduler_state_manage: true
 
 zuul_service_zuul_web_daemon_reload: true
 zuul_service_zuul_web_enabled: true
 zuul_service_zuul_web_manage: true
 zuul_service_zuul_web_name: zuul-web.service
 zuul_service_zuul_web_state: started
+zuul_service_zuul_web_state_manage: true
