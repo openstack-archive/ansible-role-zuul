@@ -323,9 +323,17 @@
     daemon_reload: "{{ zuul_service_zuul_executor_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_executor_enabled }}"
     name: "{{ zuul_service_zuul_executor_name }}"
-    state: "{{ zuul_service_zuul_executor_state }}"
   register: zuul_service_zuul_executor
   when: zuul_service_zuul_executor_manage
+
+- name: Set zuul-executor service state
+  become: true
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_executor_daemon_reload }}"
+    name: "{{ zuul_service_zuul_executor_name }}"
+    state: "{{ zuul_service_zuul_executor_state }}"
+  register: zuul_service_zuul_executor_state_info
+  when: zuul_service_zuul_executor_state in ['reloaded', 'restarted', 'started', 'stopped']
 
 - name: Enable zuul-fingergw service
   become: true
@@ -333,9 +341,17 @@
     daemon_reload: "{{ zuul_service_zuul_fingergw_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_fingergw_enabled }}"
     name: "{{ zuul_service_zuul_fingergw_name }}"
-    state: "{{ zuul_service_zuul_fingergw_state }}"
   register: zuul_service_zuul_fingergw
   when: zuul_service_zuul_fingergw_manage
+
+- name: Set zuul-fingergw service state
+  become: true
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_fingergw_daemon_reload }}"
+    name: "{{ zuul_service_zuul_fingergw_name }}"
+    state: "{{ zuul_service_zuul_fingergw_state }}"
+  register: zuul_service_zuul_fingergw_state_info
+  when: zuul_service_zuul_fingergw_state in ['reloaded', 'restarted', 'started', 'stopped']
 
 - name: Enable zuul-merger service
   become: true
@@ -343,9 +359,17 @@
     daemon_reload: "{{ zuul_service_zuul_merger_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_merger_enabled }}"
     name: "{{ zuul_service_zuul_merger_name }}"
-    state: "{{ zuul_service_zuul_merger_state }}"
   register: zuul_service_zuul_merger
   when: zuul_service_zuul_merger_manage
+
+- name: Set zuul-merger service state
+  become: true
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_merger_daemon_reload }}"
+    name: "{{ zuul_service_zuul_merger_name }}"
+    state: "{{ zuul_service_zuul_merger_state }}"
+  register: zuul_service_zuul_merger_state_info
+  when: zuul_service_zuul_merger_state in ['reloaded', 'restarted', 'started', 'stopped']
 
 - name: Enable zuul-scheduler service
   become: true
@@ -353,9 +377,17 @@
     daemon_reload: "{{ zuul_service_zuul_scheduler_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_scheduler_enabled }}"
     name: "{{ zuul_service_zuul_scheduler_name }}"
-    state: "{{ zuul_service_zuul_scheduler_state }}"
   register: zuul_service_zuul_scheduler
   when: zuul_service_zuul_scheduler_manage
+
+- name: Set zuul-scheduler service state
+  become: true
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_scheduler_daemon_reload }}"
+    name: "{{ zuul_service_zuul_scheduler_name }}"
+    state: "{{ zuul_service_zuul_scheduler_state }}"
+  register: zuul_service_zuul_scheduler_state_info
+  when: zuul_service_zuul_scheduler_state in ['reloaded', 'restarted', 'started', 'stopped']
 
 - name: Enable zuul-web service
   become: true
@@ -363,6 +395,14 @@
     daemon_reload: "{{ zuul_service_zuul_web_daemon_reload }}"
     enabled: "{{ zuul_service_zuul_web_enabled }}"
     name: "{{ zuul_service_zuul_web_name }}"
-    state: "{{ zuul_service_zuul_web_state }}"
   register: zuul_service_zuul_web
   when: zuul_service_zuul_web_manage
+
+- name: Set zuul-web service state
+  become: true
+  systemd:
+    daemon_reload: "{{ zuul_service_zuul_web_daemon_reload }}"
+    name: "{{ zuul_service_zuul_web_name }}"
+    state: "{{ zuul_service_zuul_web_state }}"
+  register: zuul_service_zuul_web_state_info
+  when: zuul_service_zuul_web_state in ['reloaded', 'restarted', 'started', 'stopped']

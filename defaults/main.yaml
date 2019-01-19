@@ -162,7 +162,7 @@ zuul_service_zuul_executor_daemon_reload: true
 zuul_service_zuul_executor_enabled: true
 zuul_service_zuul_executor_manage: true
 zuul_service_zuul_executor_name: zuul-executor.service
-zuul_service_zuul_executor_state: started
+zuul_service_zuul_executor_state: false
 
 zuul_service_zuul_fingergw_daemon_reload: true
 zuul_service_zuul_fingergw_enabled: true
