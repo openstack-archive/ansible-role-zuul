@@ -119,6 +119,7 @@ zuul_pip_name: zuul
 
 # tasks/service.yaml
 zuul_file_zuul_executor_service_manage: true
+
 zuul_file_zuul_executor_service_group: root
 zuul_file_zuul_executor_service_owner: root
 
