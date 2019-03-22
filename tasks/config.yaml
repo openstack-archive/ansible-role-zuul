@@ -20,7 +20,6 @@
     path: "{{ item }}"
     state: directory
   with_items:
-    - /etc/zuul
     - /etc/zuul/ssl
     - /var/log/zuul
 
