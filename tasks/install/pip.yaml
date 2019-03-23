@@ -22,3 +22,14 @@
     version: "{{ zuul_pip_version|default(omit) }}"
     virtualenv_python: "{{ zuul_pip_virtualenv_python|default(omit) }}"
     virtualenv: "{{ zuul_pip_virtualenv|default(omit) }}"
+
+- name: Symlink zuul virtualenv
+  become: true
+  file:
+    src: "{{ zuul_pip_virtualenv }}"
+    dest: "{{ zuul_pip_virtualenv_symlink }}"
+    state: link
+  when:
+    - zuul_pip_virtualenv is defined
+    - zuul_pip_virtualenv_symlink is defined
+    - zuul_pip_virtualenv != zuul_pip_virtualenv_symlink
