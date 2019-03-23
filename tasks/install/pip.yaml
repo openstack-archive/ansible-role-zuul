@@ -22,3 +22,30 @@
     version: "{{ zuul_pip_version|default(omit) }}"
     virtualenv_python: "{{ zuul_pip_virtualenv_python|default(omit) }}"
     virtualenv: "{{ zuul_pip_virtualenv|default(omit) }}"
+
+- name: Stat zuul_pip_virtualenv_symlink
+  stat:
+    path: "{{ zuul_pip_virtualenv_symlink | dirname }}"
+  register: r
+  no_log: true
+  when: zuul_pip_virtualenv_symlink is defined
+
+- name: Create zuul_pip_virtualenv_symlink directory
+  become: true
+  file:
+    state: directory
+    path: "{{ zuul_pip_virtualenv_symlink | dirname }}"
+  when:
+    - zuul_pip_virtualenv_symlink is defined
+    - not r.stat.exists
+
+- name: Symlink zuul virtualenv
+  become: true
+  file:
+    dest: "{{ zuul_pip_virtualenv_symlink }}"
+    src: "{{ zuul_pip_virtualenv }}"
+    state: link
+  when:
+    - zuul_pip_virtualenv is defined
+    - zuul_pip_virtualenv_symlink is defined
+    - zuul_pip_virtualenv != zuul_pip_virtualenv_symlink
