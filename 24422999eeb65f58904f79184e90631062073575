@@ -1,0 +1,8 @@
+Code-Review+2: Paul Belanger <pabelanger@redhat.com>
+Workflow+1: Paul Belanger <pabelanger@redhat.com>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Sun, 31 Mar 2019 01:53:36 +0000
+Reviewed-on: https://review.openstack.org/648845
+Project: openstack/ansible-role-zuul
+Branch: refs/heads/master
